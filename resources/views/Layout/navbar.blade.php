@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Blank Page - Brand</title>
+    <title>MediLab-Admin</title>
     <link rel="stylesheet" href="{{asset('bootstrap/bootstrap.min.css')}}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i&amp;display=swap">
     <link rel="stylesheet" href="{{asset('fonts/fontawesome-all.min.css')}}">
@@ -24,7 +24,7 @@
 <body id="page-top">
     <div id="wrapper">
         <nav class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0" style="padding-right: 0px;padding-left: 4px;margin-left: 0px;margin-right: 1px;">
-            <div class="container-fluid d-flex flex-column p-0"><a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="#" style="margin-left: 3px;padding-left: 0px;padding-right: 0px;margin-right: -16px;"><span style="font-size: 14px;">Telehealth</span></a><a href="#">Link</a>
+            <div class="container-fluid d-flex flex-column p-0"><a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="#" style="margin-left: 3px;padding-left: 0px;padding-right: 0px;margin-right: -16px;"><span style="font-size: 14px;">MediLab</span></a><a href="#">Link</a>
                 <ul class="navbar-nav text-light" id="accordionSidebar">
                     <li class="nav-item"><a class="nav-link" href="Dashboard.html" style="margin-top: -1px;margin-left: 0px;margin-right: 0px;padding-left: 15px;"><i class="fas fa-tachometer-alt"></i><span>&nbsp;<span style="font-weight: normal !important;">Dashboard</span></span></a></li>
                     <li class="nav-item"><a class="nav-link" href="profile.html" style="margin-left: 0px;padding-right: 20px;padding-left: 15px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-32 0 512 512" width="1em" height="1em" fill="currentColor">
@@ -187,9 +187,10 @@
                 <div class="container-fluid">
                     @yield('content')
                 </div>
+
                 <footer class="bg-white sticky-footer">
                     <div class="container my-auto">
-                        <div class="text-center my-auto copyright"><span>Copyright © Telehealth2022</span></div>
+                        <div class="text-center my-auto copyright"><span>Copyright © MediLab2022</span></div>
                     </div>
                 </footer>
                 <a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
