@@ -1,0 +1,221 @@
+#logo {
+  text-transform: capitalize;
+  position: absolute;
+  right: 2px;
+}
+
+#Admin_profile_pic {
+  border-radius: 50%;
+  position: absolute;
+  left: 75px;
+  right: 75px;
+}
+
+#Admin_name {
+  position: absolute;
+  top: 135px;
+  left: 55px;
+  color: var(--bs-accordion-active-bg);
+}
+
+#Admin {
+  color: #27e417;
+  position: absolute;
+  left: 85px;
+  top: 155px;
+  text-size-adjust: initial;
+  font-size: 10px;
+}
+
+#Appointment_drop {
+  text-decoration: none;
+}
+
+#patient {
+  /*margin-left: 5px;*/
+}
+
+#first_name {
+  border-color: #888181;
+  margin-bottom: 10px;
+}
+
+#last_name {
+  margin-bottom: 10px;
+}
+
+#email {
+  margin-bottom: 10px;
+}
+
+#password {
+  margin-bottom: 10px;
+}
+
+#phone_number {
+  margin-bottom: 10px;
+}
+
+#mobile_number {
+  margin-bottom: 10px;
+}
+
+#blood_group {
+  margin-bottom: 10px;
+}
+
+input {
+  margin-right: 10px;
+}
+
+span {
+  margin-right: 10px;
+}
+
+.btn {
+  margin-bottom: 10px;
+}
+
+#date_of_birth {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+#address {
+  margin-bottom: 10px;
+}
+
+#date_of_birth {
+  margin-right: 500px;
+}
+
+#address {
+  margin-right: 500px;
+}
+
+#female {
+  margin-right: 50px;
+}
+
+#male {
+  margin-right: 100px;
+}
+
+#pt_pic {
+  width: 50px;
+  height: 50px;
+}
+
+#patient_list {
+  margin-left: 20px;
+}
+
+#add_patient {
+  margin-left: 20px;
+}
+
+#addSchedule {
+  margin-left: 20px;
+  border: 0px;
+  margin-right: 20px;
+}
+
+#doctorName {
+  width: 400px;
+}
+
+#available_days {
+  width: 400px;
+}
+
+#available_time {
+  width: 400px;
+}
+
+#thumbnail {
+}
+
+#schedule_list {
+  margin-left: 20px;
+}
+
+#days {
+  height: 40px;
+}
+
+#available_starttime {
+}
+
+#edit {
+  width: 40px;
+  margin-right: 10px;
+}
+
+#delete {
+  width: 40px;
+  background-color: red;
+  border: red;
+}
+
+#plus {
+  color: white;
+}
+
+#btn_appointment_list {
+  margin-left: 20px;
+}
+
+#patient_ID {
+  width: 400px;
+}
+
+#App_date {
+  width: 400px;
+}
+
+#problem {
+  width: 400px;
+  height: 400px;
+}
+
+#Rate {
+  width: 400px;
+}
+
+#service_name {
+  width: 400px;
+}
+
+#description {
+  width: 400px;
+  height: 300px;
+}
+
+svg {
+}
+
+#add {
+  /*color: white;*/
+  background-color: lawngreen;
+  margin-right: 10px;
+  color: wheat;
+}
+
+#remove {
+  background-color: red;
+  color: white;
+}
+
+#btn_package_list {
+  margin-left: 20px;
+}
+
+#btn_add {
+  background-color: var(--bs-green);
+  margin-right: 10px;
+}
+
+#btn_delete {
+  background-color: red;
+}
+

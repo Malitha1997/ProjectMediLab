@@ -1,0 +1,12 @@
+.fit-cover {
+  object-fit: cover;
+}
+
+#btn_signup {
+  background-color: var(--bs-blue);
+}
+
+#btn_login {
+  background-color: gray;
+}
+
