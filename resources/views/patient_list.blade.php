@@ -1,6 +1,7 @@
 @extends('Layout.navbar')
 
 @section('content')
+
                 <h3 class="text-dark mb-4" id="patient_list">Patient list</h3><button class="btn btn-primary" id="add_patient" type="button"><a href="Add_patient.html"><span style="color: rgb(255, 255, 255);">+Add patient</span></a></button>
                 <div class="container-fluid">
                     <div class="card shadow">
@@ -23,110 +24,36 @@
                                     <thead>
                                         <tr>
                                             <th>Patient ID</th>
-                                            <th>Picture</th>
                                             <th>First Name</th>
                                             <th>Last Name</th>
-                                            <th>Email Address</th>
-                                            <th>Phone number</th>
-                                            <th>Mobile number</th>
+                                            <th>House No.&nbsp;</th>
+                                            <th>Street No.</th>
+                                            <th>City</th>
+                                            <th>Age</th>
+                                            <th>Email address</th>
+                                            <th>Contact No.</th>
+                                            <th>NIC</th>
+                                            <th>Status</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
                                             <td>001</td>
-                                            <td><img width="100" height="80"></td>
-                                            <td>Malitha</td>
-                                            <td>Halahakoon</td>
-                                            <td>test@gmail.com</td>
-                                            <td>0411234567</td>
-                                            <td>0711234567</td>
-                                        </tr>
-                                        <tr>
-                                            <td>002</td>
-                                            <td><img></td>
-                                            <td>firstname1</td>
-                                            <td>lastname1</td>
-                                            <td>test1@gmail.com</td>
-                                            <td><br>0411234567<br><br></td>
-                                            <td><br>0711234567<br><br></td>
-                                        </tr>
-                                        <tr>
-                                            <td>003</td>
-                                            <td><img></td>
-                                            <td><br>firstname2<br><br></td>
-                                            <td><br>lastname2<br><br></td>
-                                            <td><br>test2@gmail.com<br><br></td>
-                                            <td><br>0411234567<br><br></td>
-                                            <td><br>0711234567<br><br></td>
-                                        </tr>
-                                        <tr>
-                                            <td>004</td>
-                                            <td><img></td>
-                                            <td><br>firstname3<br><br></td>
-                                            <td><br>lastname3<br><br></td>
-                                            <td><br>test3@gmail.com<br><br></td>
-                                            <td><br>0411234567<br><br></td>
-                                            <td><br>0711234567<br><br></td>
-                                        </tr>
-                                        <tr>
-                                            <td>005</td>
-                                            <td><img></td>
-                                            <td><br>firstname4<br><br></td>
-                                            <td><br>lastname4<br><br></td>
-                                            <td><br>test4@gmail.com<br><br></td>
-                                            <td><br>0411234567<br><br></td>
-                                            <td><br>0711234567<br><br></td>
-                                        </tr>
-                                        <tr>
-                                            <td>006</td>
-                                            <td><img></td>
-                                            <td><br>firstname5<br><br></td>
-                                            <td><br>lastname5<br><br></td>
-                                            <td><br>test5@gmail.com<br><br></td>
-                                            <td><br>0411234567<br><br></td>
-                                            <td><br>0711234567<br><br></td>
-                                        </tr>
-                                        <tr>
-                                            <td>007</td>
-                                            <td><img></td>
-                                            <td><br>firstname6<br><br></td>
-                                            <td><br>lastname6<br><br></td>
-                                            <td><br>test6@gmail.com<br><br></td>
-                                            <td><br>0411234567<br><br></td>
-                                            <td><br>0711234567<br><br></td>
-                                        </tr>
-                                        <tr>
-                                            <td>008</td>
-                                            <td><img></td>
-                                            <td><br>firstname7<br><br></td>
-                                            <td><br>lastname7<br><br></td>
-                                            <td><br>test7@gmail.com<br><br></td>
-                                            <td><br>0411234567<br><br></td>
-                                            <td><br>0711234567<br><br></td>
-                                        </tr>
-                                        <tr>
-                                            <td>009</td>
-                                            <td><img></td>
-                                            <td><br>firstname8<br><br></td>
-                                            <td><br>lastname8<br><br></td>
-                                            <td><br>test8@gmail.com<br><br></td>
-                                            <td><br>0411234567<br><br></td>
-                                            <td><br>0711234567<br><br></td>
-                                        </tr>
-                                        <tr>
-                                            <td>010</td>
-                                            <td><img></td>
-                                            <td><br>firstname9<br><br></td>
-                                            <td><br>lastname9<br><br></td>
-                                            <td><br>test9@gmail.com<br><br></td>
-                                            <td><br>0411234567<br><br></td>
-                                            <td><br>0711234567<br><br></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
                                         </tr>
                                     </tbody>
                                     <tfoot>
-                                        <tr>
-                                            <td>Summary 1</td>
-                                        </tr>
+                                        <tr></tr>
                                     </tfoot>
                                 </table>
                             </div>

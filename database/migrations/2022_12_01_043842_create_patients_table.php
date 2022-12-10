@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('patients', function (Blueprint $table) {
-            $table->increments('patient_id');
+            $table->id();
             $table->string('p_f_name');
             $table->string('p_l_name');
             $table->string('house_no');
@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('p_email');
             $table->string('p_telno');
             $table->string('nic');
-            $table->foreignId('id')->constrained('users');
+            $table->foreignId('user_id')->constrained('users');
             $table->timestamps();
         });
     }

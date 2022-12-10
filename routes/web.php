@@ -1,6 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\SignupController;
+use App\Http\Controllers\PatientController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -18,11 +22,11 @@ Route::get('/', function () {
 });
 
 Route::get('/home', function () {
-    return view('home');
+    return view('Home.home');
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('Admin_panel.dashboard');
 });
 
 Route::get('/signup', function () {
@@ -104,3 +108,22 @@ Route::get('/send_sms', function () {
 Route::get('/service_list', function () {
     return view('service_list');
 });
+
+Route::get('/add_user', function () {
+    return view('add_user');
+});
+
+
+Route::resource('users', UserController::class);
+
+//Route::group(['middleware' => ['auth']], function() {
+
+
+    Route::resource('patients', PatientController::class);
+
+//});
+
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
