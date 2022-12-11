@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
+use App\Models\Patient;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -17,7 +17,7 @@ class SignupController extends Controller
     public function index()
     {
         //
-        //return view('login');
+        return view('login');
     }
 
     /**
@@ -38,19 +38,27 @@ class SignupController extends Controller
      */
     public function store(Request $request)
     {
-        /*$user=new User;
+        $patient=new Patient;
 
         $this->validate($request,[
             'username'=>'required|max:100|min:5',
-            'email'=>'required|email|unique:users,email',
-            'password' => 'required',
+            'p_email'=>'required|email|unique:patients,email',
+            'p_password' => ['required','string', 'min:8'],
         ]);
 
-        $user->username=$request->username;
-        $user->email=$request->email;
-        $user->password=Hash::make($request->password);
-        $user->save();
-        return redirect()->route('users.index');*/
+        $patient->p_f_name=$request->p_f_name;
+        $patient->p_l_name=$request->p_l_name;
+        $patient->p_email=$request->p_email;
+        $patient->p_username=$request->p_username;
+        $patient->p_password=Hash::make($request->p_password);
+        $patient->house_no=$request->house_no;
+        $patient->street_no=$request->street_no;
+        $patient->city=$request->city;
+        $patient->p_telno=$request->p_telno;
+        $patient->age=$request->age;
+        $patient->nic=$request->nic;
+        $patient->save();
+        return redirect()->route('signup.index');
     }
 
     /**

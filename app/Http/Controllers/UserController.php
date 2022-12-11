@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -39,22 +40,21 @@ class UserController extends Controller
 
         $this->validate($request,[
             'username'=>'required|max:100|min:5',
-            'email'=>'required|email|unique:users,email',
-            'password' => 'required',
+            'u_email'=>'required',
+            'u_password' => ['required','string', 'min:8', ],
+            'u_role' => 'required',
         ]);
 
         $user->username=$request->username;
-        $user->email=$request->email;
-        $user->password=Hash::make($request->password);
+        $user->u_email=$request->u_email;
+        $user->u_password=Hash::make($request->u_password);
+        $user->u_role=$request->u_role;
         $user->save();
+
+        $data=User::all();
+        //return view('user_list')->with('users',$data);
         return redirect()->route('users.index');
 
-
-        /*$user->username=$request->username;
-        $user->password=Hash::make($request->password);
-        $user->role=$request->role;
-        $user->save();
-        return redirect()->route('users.index');*/
     }
 
     /**

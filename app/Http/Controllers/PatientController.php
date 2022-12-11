@@ -43,9 +43,9 @@ class PatientController extends Controller
         $patient->house_no=$request->house_no;
         $patient->street_no=$request->street_no;
         $patient->city=$request->city;
+        $patient->tel_no=$request->tel_no;
         $patient->age=$request->age;
         $patient->p_email=$request->p_email;
-        $patient->p_telno=$request->p_telno;
         $patient->nic=$request->nic;
         $patient->save();
         return redirect()->route('patients.index');

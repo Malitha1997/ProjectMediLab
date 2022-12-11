@@ -1,5 +1,6 @@
 <?php
 
+use App\User;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SignupController;
@@ -113,13 +114,18 @@ Route::get('/add_user', function () {
     return view('add_user');
 });
 
+Route::get('/user_list', function () {
+    $data=App\User::all();
+    return view('user_list')->with('users',$data);
+});
+
+
 
 Route::resource('users', UserController::class);
+Route::resource('patients', SignupController::class);
 
 //Route::group(['middleware' => ['auth']], function() {
 
-
-    Route::resource('patients', PatientController::class);
 
 //});
 
