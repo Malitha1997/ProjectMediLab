@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Patient;
+use session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
-
-class SignupController extends Controller
+class CustomAuthController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +15,7 @@ class SignupController extends Controller
      */
     public function index()
     {
-        //
-        return view('login');
+        return view('dashboard');
     }
 
     /**
@@ -38,19 +36,11 @@ class SignupController extends Controller
      */
     public function store(Request $request)
     {
-        $patient=new Patient;
-
-        $this->validate($request,[
-            'username'=>'required|max:100|min:5',
-            'email'=>'required|email|unique:patients,email',
-            'password' => ['required','string', 'min:8'],
-        ]);
-
-        $patient->p_f_name=$request->p_f_name;
+        /*$patient->p_f_name=$request->p_f_name;
         $patient->p_l_name=$request->p_l_name;
-        $patient->p_email=$request->p_email;
-        $patient->p_username=$request->p_username;
-        $patient->p_password=Hash::make($request->p_password);
+        $patient->email=$request->email;
+        $patient->username=$request->username;
+        $patient->password=Hash::make($request->password);
         $patient->house_no=$request->house_no;
         $patient->street_no=$request->street_no;
         $patient->city=$request->city;
@@ -58,7 +48,13 @@ class SignupController extends Controller
         $patient->age=$request->age;
         $patient->nic=$request->nic;
         $patient->save();
-        return redirect()->route('signup.index');
+        return redirect()->route('customauth.index');
+
+        $this->validate($request,[
+            'username'=>'required|max:100|min:5',
+            'email'=>'required|email|unique:patients',
+            'password' => ['required','string', 'min:8'],
+        ]);*/
     }
 
     /**
@@ -104,5 +100,30 @@ class SignupController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function loginUser(){
+        return view(CustomAuth.login);
+        $request -> validate([
+            'username'=>'requred|username|unique:users',
+            'password'=>'required|min:5|max:12',
+        ]);
+
+        $user=User::where('username','=',$request->uername)->first();
+        if($user){
+            if(Hash::check($request->password,$user->password)){
+                request->session()->put('loginId',$user->id);
+                return redirect('dashboard');
+            }else{
+                return back()->with('fail','Password incorrect!');
+            }
+        }else{
+            return back()->with('fail','This username is not registered');
+        }
+        return redirect()->route('customauth.index');
+    }
+
+    public function signup(){
+        return view(CustomAuth.signup);
     }
 }

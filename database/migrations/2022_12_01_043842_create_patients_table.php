@@ -17,9 +17,9 @@ return new class extends Migration
             $table->id();
             $table->string('p_f_name');
             $table->string('p_l_name');
-            $table->string('p_email');
-            $table->string('p_username');
-            $table->string('p_password');
+            $table->string('email');
+            $table->string('username');
+            $table->string('password');
             $table->string('house_no');
             $table->string('street_no');
             $table->string('city');

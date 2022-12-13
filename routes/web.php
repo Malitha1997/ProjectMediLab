@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SignupController;
 use App\Http\Controllers\PatientController;
+use App\Http\Controllers\CustomAuthController;
 
 
 /*
@@ -27,16 +28,16 @@ Route::get('/home', function () {
 });
 
 Route::get('/dashboard', function () {
-    return view('Admin_panel.dashboard');
+    return view('Admin.dashboard');
 });
 
 Route::get('/signup', function () {
-    return view('signup');
+    return view('CustomAuth.signup');
 });
 
-Route::get('/login', function () {
-    return view('login');
-});
+/*Route::get('/login', function () {
+    return view('CustomAuth.login');
+});*/
 
 Route::get('/add_bill', function () {
     return view('add_bill');
@@ -119,15 +120,36 @@ Route::get('/user_list', function () {
     return view('user_list')->with('users',$data);
 });
 
+Route::get('/patient_dashboard', function () {
+    return view('Patient_pannel.patient_dashaboard');
+});
 
+//Route::get('/dashboard',CustomAuthController::class,'dashboard');
 
 Route::resource('users', UserController::class);
-Route::resource('patients', SignupController::class);
+Route::resource('patients', CustomAuthController::class);
+
+/*Route::get('/login',[CustomAuthController::class,'login']);
+Route::get('/signup',[CustomAuthController::class,'signup']);*/
 
 //Route::group(['middleware' => ['auth']], function() {
 
 
 //});
+
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::group(['middleware' => ['auth']], function() {
+
+    Route::resource('roles', RoleController::class);
+
+    Route::resource('users', UserController::class);
+
+});
+
 
 
 Auth::routes();

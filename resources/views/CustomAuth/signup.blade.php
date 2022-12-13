@@ -22,6 +22,7 @@
                         <div class="form-group">
                             <label for="fname">First Name</label>
                             <input type="fname" id="name" class="form-control" name="p_f_name" />
+
                         </div>
                         <div class="form-group">
                             <label for="fname">Last Name</label>

@@ -18,19 +18,19 @@
     </div>
     <div class="row">
         <div class="col"><label class="col-form-label">Password</label></div>
-        <div class="col"><input class="form-control" type="password" name="u_password"></div>
+        <div class="col"><input class="form-control" type="password" name="password"></div>
     </div>
     <div class="row">
         <div class="col"><label class="col-form-label">Confirm Password</label></div>
-        <div class="col"><input class="form-control" type="password" name="u_password"></div>
+        <div class="col"><input class="form-control" type="password" name="password"></div>
     </div>
     <div class="row">
         <div class="col"><label class="col-form-label">Role</label></div>
-        <div class="col"><input class="form-control" type="text" name="u_role"></div>
+        <div class="col"><input class="form-control" type="text" name="role"></div>
     </div>
     <div class="row">
         <div class="col"><label class="col-form-label">Email</label></div>
-        <div class="col"><input class="form-control" type="email" placeholder="user@example.com" name="u_email"></div>
+        <div class="col"><input class="form-control" type="email" placeholder="user@example.com" name="email"></div>
     </div><button class="btn btn-primary" id="btn_save" type="submit">Save</button>
 </form>
 @endsection
