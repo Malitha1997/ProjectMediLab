@@ -11,6 +11,6 @@ class PagesController extends Controller
     }
 
     public function indexdashboard(){
-        return view('Admin_panel.dashboard');
+        return view('Admin.dashboard');
     }
 }

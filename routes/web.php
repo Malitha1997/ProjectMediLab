@@ -2,10 +2,11 @@
 
 use App\User;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SignupController;
 use App\Http\Controllers\PatientController;
-use App\Http\Controllers\CustomAuthController;
+use App\Http\Controllers\AdminDashboardController;
 
 
 /*
@@ -19,25 +20,17 @@ use App\Http\Controllers\CustomAuthController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Route::get('/home', function () {
     return view('Home.home');
-});
+})->name('home1');
 
 Route::get('/dashboard', function () {
     return view('Admin.dashboard');
 });
-
-Route::get('/signup', function () {
-    return view('CustomAuth.signup');
-});
-
-/*Route::get('/login', function () {
-    return view('CustomAuth.login');
-});*/
 
 Route::get('/add_bill', function () {
     return view('add_bill');
@@ -124,23 +117,13 @@ Route::get('/patient_dashboard', function () {
     return view('Patient_pannel.patient_dashaboard');
 });
 
-//Route::get('/dashboard',CustomAuthController::class,'dashboard');
 
 Route::resource('users', UserController::class);
-Route::resource('patients', CustomAuthController::class);
-
-/*Route::get('/login',[CustomAuthController::class,'login']);
-Route::get('/signup',[CustomAuthController::class,'signup']);*/
-
-//Route::group(['middleware' => ['auth']], function() {
-
-
-//});
-
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [AdminDashboardController::class, 'index'])->name('home1');
+Route::get('/dashboard', [UserController::class, 'index'])->name('home1');
 
 Route::group(['middleware' => ['auth']], function() {
 
@@ -150,8 +133,8 @@ Route::group(['middleware' => ['auth']], function() {
 
 });
 
-
-
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout')->name('logout');
+
+
