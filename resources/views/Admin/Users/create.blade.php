@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('Layout.navbar')
 
 
 @section('content')
@@ -9,7 +9,7 @@
 
         <div class="pull-left">
 
-            <h2>Create New User</h2>
+            <h2>Add User</h2>
 
         </div>
 

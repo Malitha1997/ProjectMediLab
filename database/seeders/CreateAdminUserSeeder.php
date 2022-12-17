@@ -37,9 +37,7 @@ class CreateAdminUserSeeder extends Seeder
         $user = User::create([
 
             'name' => 'AdminMediLab',
-
             'email' => 'admin@gmail.com',
-
             'password' => bcrypt('123456')
 
         ]);
@@ -47,6 +45,8 @@ class CreateAdminUserSeeder extends Seeder
 
 
         $role = Role::create(['name' => 'Admin']);
+        $role = Role::create(['name' => 'Doctor']);
+        $role = Role::create(['name' => 'Lab Assistant']);
 
 
 

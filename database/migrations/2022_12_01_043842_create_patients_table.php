@@ -15,17 +15,13 @@ return new class extends Migration
     {
         Schema::create('patients', function (Blueprint $table) {
             $table->id();
-            $table->string('p_f_name');
-            $table->string('p_l_name');
-            $table->string('email');
-            $table->string('username');
-            $table->string('password');
             $table->string('house_no');
             $table->string('street_no');
             $table->string('city');
             $table->string('age');
-            $table->string('p_telno');
+            $table->string('telno');
             $table->string('nic');
+            $table->string('blood_group');
             $table->foreignId('user_id')->constrained('users');
             $table->timestamps();
         });

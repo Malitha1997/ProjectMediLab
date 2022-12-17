@@ -9,7 +9,7 @@
 
         <div class="pull-left">
 
-            <h2>Role Management</h2>
+            <h2>Doctor List</h2>
 
         </div>
 

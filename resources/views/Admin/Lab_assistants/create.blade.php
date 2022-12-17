@@ -9,7 +9,7 @@
 
         <div class="pull-left">
 
-            <h2>Create New Role</h2>
+            <h2>Add Lab Assistant</h2>
 
         </div>
 

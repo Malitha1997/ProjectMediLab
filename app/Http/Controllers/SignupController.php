@@ -47,7 +47,7 @@ class SignupController extends Controller
         ]);
 
         $patient->p_f_name=$request->p_f_name;
-        $patient->p_l_name=$request->p_l_name;
+        $patient->p_l_name=$request->p_l_name; 
         $patient->p_email=$request->p_email;
         $patient->p_username=$request->p_username;
         $patient->p_password=Hash::make($request->p_password);

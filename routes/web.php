@@ -20,16 +20,16 @@ use App\Http\Controllers\AdminDashboardController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/', function () {
+    return view('welcome');
+});
 
 Route::get('/home', function () {
     return view('Home.home');
 })->name('home1');
 
-Route::get('/dashboard', function () {
-    return view('Admin.dashboard');
+Route::get('/signup', function () {
+    return view('signup');
 });
 
 Route::get('/add_bill', function () {
@@ -44,9 +44,9 @@ Route::get('/add_doctor', function () {
     return view('add_doctor');
 });
 
-Route::get('/add_patient', function () {
+/*Route::get('/add_patient', function () {
     return view('add_patient');
-});
+});*/
 
 Route::get('/add_packege', function () {
     return view('add_packege');
@@ -104,37 +104,35 @@ Route::get('/service_list', function () {
     return view('service_list');
 });
 
-Route::get('/add_user', function () {
-    return view('add_user');
-});
+Route::get('/add_user', [UserController::class, 'create']);
+Route::get('/add_patient', [patientController::class, 'create']);
 
-Route::get('/user_list', function () {
+/*Route::get('/user_list', function () {
     $data=App\User::all();
     return view('user_list')->with('users',$data);
-});
+});*/
 
 Route::get('/patient_dashboard', function () {
     return view('Patient_pannel.patient_dashaboard');
 });
 
+Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
 
-Route::resource('users', UserController::class);
+Route::get('/home', [UserController::class, 'index'])->name('home');
+Route::get('/user_list', [UserController::class, 'show'])->name('user_list');
 
-Auth::routes();
-
-Route::get('/home', [AdminDashboardController::class, 'index'])->name('home1');
-Route::get('/dashboard', [UserController::class, 'index'])->name('home1');
 
 Route::group(['middleware' => ['auth']], function() {
-
     Route::resource('roles', RoleController::class);
-
     Route::resource('users', UserController::class);
-
+    Route::resource('patients', PatientController::class);
 });
+
+Route::get('/patientlist', [ListViewController::class, 'patientlist']);
 
 Auth::routes();
 
-Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout')->name('logout');
+
+
 
 

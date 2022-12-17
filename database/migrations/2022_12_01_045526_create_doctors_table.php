@@ -15,10 +15,8 @@ return new class extends Migration
     {
         Schema::create('doctors', function (Blueprint $table) {
             $table->id();
-            $table->string('d_name');
             $table->string('speciality');
-            $table->string('d_telno');
-            $table->string('d_email');
+            $table->string('telno');
             $table->string('qualification');
             $table->foreignId('user_id')->constrained('users');
             $table->timestamps();

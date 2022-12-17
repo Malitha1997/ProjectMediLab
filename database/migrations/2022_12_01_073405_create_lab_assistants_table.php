@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('lab_assistants', function (Blueprint $table) {
             $table->id();
+            $table->string('telno');
             $table->string('rep_issue_date');
             $table->foreignId('user_id')->constrained('users');
             $table->timestamps();
