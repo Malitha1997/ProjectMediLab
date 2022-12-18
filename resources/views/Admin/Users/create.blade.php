@@ -9,13 +9,13 @@
 
         <div class="pull-left">
 
-            <h2>Add User</h2>
+            <h2 class="text-dark mb-1">Add User</h2>
 
         </div>
 
         <div class="pull-right">
 
-            <a class="btn btn-primary" href="{{ route('users.index') }}"> Back</a>
+            <a class="btn btn-primary" href="{{ route('users.index') }}">User List</a>
 
         </div>
 

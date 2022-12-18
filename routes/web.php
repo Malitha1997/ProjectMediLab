@@ -4,6 +4,7 @@ use App\User;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\SignupController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\AdminDashboardController;
@@ -68,17 +69,13 @@ Route::get('/appointment_assign_by_doctor', function () {
     return view('appointment_assign_by_doctor');
 });
 
-Route::get('/doctor_list', function () {
+/*Route::get('/doctor_list', function () {
     return view('doctor_list');
-});
+});*/
 
 Route::get('/package_list', function () {
     return view('package_list');
 });
-
-/*Route::get('/patient_list', function () {
-    return view('patient_list');
-});*/
 
 Route::get('/profile', function () {
     return view('profile');
@@ -105,15 +102,16 @@ Route::get('/service_list', function () {
 });
 
 Route::get('/add_user', [UserController::class, 'create']);
-Route::get('/add_patient', [patientController::class, 'create']);
+Route::get('/add_patient', [PatientController::class, 'create']);
+Route::get('/add_doctor', [DoctorController::class, 'create']);
 
 Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
 
-Route::get('/home', [UserController::class, 'index'])->name('home');
+//Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::get('/user_list', [UserController::class, 'index'])->name('user_list');
 Route::get('/patient_list', [PatientController::class, 'index'])->name('patient_list');
-
+Route::get('/doctor_list', [DoctorController::class, 'index'])->name('doctor_list');
 
 Route::group(['middleware' => ['auth']], function() {
     Route::resource('roles', RoleController::class);
@@ -124,6 +122,7 @@ Route::group(['middleware' => ['auth']], function() {
 Route::get('/patientlist', [ListViewController::class, 'patientlist']);
 Route::resource('users', UserController::class);
 Route::resource('patients', PatientController::class);
+Route::resource('doctors', DoctorController::class);
 
 Auth::routes();
 

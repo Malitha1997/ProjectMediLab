@@ -9,9 +9,15 @@
 
         <div class="pull-left">
 
-            <h2>Doctor List</h2>
+            <h2 class="text-dark mb-1">Doctor List</h2>
 
         </div>
+
+        <div class="pull-right">
+
+            <a class="btn btn-primary" href="{{ route('doctors.create') }}">Add Doctor</a>
+
+          </div>
 
         <div class="pull-right">
 
@@ -51,7 +57,7 @@
 
   </tr>
 
-    @foreach ($roles as $key => $role)
+    @foreach ($user_doctors as $doctor)
 
     <tr>
 
@@ -61,17 +67,17 @@
 
         <td>
 
-            <a class="btn btn-info" href="{{ route('roles.show',$role->id) }}">Show</a>
+            <a class="btn btn-info" href="{{ route('doctors.show',$role->id) }}">Show</a>
 
             @can('role-edit')
 
-                <a class="btn btn-primary" href="{{ route('roles.edit',$role->id) }}">Edit</a>
+                <a class="btn btn-primary" href="{{ route('doctors.edit',$role->id) }}">Edit</a>
 
             @endcan
 
             @can('role-delete')
 
-                {!! Form::open(['method' => 'DELETE','route' => ['roles.destroy', $role->id],'style'=>'display:inline']) !!}
+                {!! Form::open(['method' => 'DELETE','route' => ['doctors.destroy', $role->id],'style'=>'display:inline']) !!}
 
                     {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
 
@@ -87,8 +93,6 @@
 
 </table>
 
-
-{!! $roles->render() !!}
 
 
 @endsection

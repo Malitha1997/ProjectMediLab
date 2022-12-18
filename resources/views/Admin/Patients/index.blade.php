@@ -9,7 +9,13 @@
 
         <div class="pull-left">
 
-            <h2>Patient List</h2>
+            <h2 class="text-dark mb-1">Patient List</h2>
+
+        </div>
+
+        <div class="pull-right">
+
+            <a class="btn btn-primary" href="{{ route('patients.create') }}">Add Patient</a>
 
         </div>
 

@@ -6,17 +6,41 @@ namespace App\Http\Controllers;
 
 
 
-use App\Models\Patient;
+use App\Models\User;
 
-use App\Models\Patients;
+use App\Models\Doctor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 
 
-class PatientController extends Controller
+class DoctorController extends Controller
 
 {
+
+    /**
+
+     * Display a listing of the resource.
+
+     *
+
+     * @return \Illuminate\Http\Response
+
+     */
+
+    function __construct()
+
+    {
+
+         /*$this->middleware('permission:product-list|product-create|product-edit|product-delete', ['only' => ['index','show']]);
+
+         $this->middleware('permission:product-create', ['only' => ['create','store']]);
+
+         $this->middleware('permission:product-edit', ['only' => ['edit','update']]);
+
+         $this->middleware('permission:product-delete', ['only' => ['destroy']]);*/
+
+    }
 
     /**
 
@@ -31,13 +55,12 @@ class PatientController extends Controller
     public function index()
 
     {
-        $user_patients = DB::table('users')
-        ->join('patients', 'users.id', '=', 'patients.user_id')
-
-        ->select('users.*', 'patients.*')
+        $user_doctors = DB::table('users')
+        ->join('doctors', 'users.id', '=', 'doctors.user_id')
+        ->select('users.*', 'doctors.*')
         ->paginate(5);
 
-        return view('admin.patients.index',compact('user_patients'))
+        return view('admin.doctors.index',compact('user_doctors'))
         ->with('i', (request()->input('page', 1) - 1) * 5);
 
     }
@@ -58,8 +81,7 @@ class PatientController extends Controller
 
     {
 
-        return view('admin.patients.create');
-
+        return view('admin.doctors.create');
     }
 
 
@@ -83,41 +105,38 @@ class PatientController extends Controller
         request()->validate([
             'f_name'=> 'required',
             'l_name'=> 'required',
-            'house_no'=> 'required',
-            'street_no'=> 'required',
-            'city'=> 'required',
-            'tel_no'=> 'required',
-            'nic'=> 'required',
-            'age'=> 'required',
             'email'=> 'required',
+            'tel_no'=> 'required',
             'password' => 'required|string|min:8|confirmed',
-
         ]);
 
         $user = new User;
 
-        $user->f_name = $request->f_name; 
+        $user->f_name = $request->f_name;
         $user->l_name = $request->l_name;
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
 
         $user->save();
 
-        $patient = new Patient;
+        $doctor = new Doctor;
 
-        $patient->house_no = $request->house_no;
-        $patient->street_no = $request->street_no;
-        $patient->city = $request->city;
-        $patient->tel_no = $request->tel_no;
-        $patient->nic = $request->nic;
-        $patient->age = $request->age;
+        $doctor->house_no = $request->house_no;
+        $doctor->street_no = $request->street_no;
+        $doctor->city = $request->city;
+        $doctor->tel_no = $request->tel_no;
+        $doctor->nic = $request->nic;
+        $doctor->age = $request->age;
+        $doctor->qualification = $request->qualification;
+        $doctor->specialization = $request->specialization;
 
-        $user->patient()->save($patient);
 
-        $user->assignRole('patient');
+        $user->doctor()->save($doctor);
 
-        return redirect()->route('patient.index')
-                            ->with('success','Patient created successfully.');
+        $user->assignRole('doctor');
+
+        return redirect()->route('doctor.index')
+                        ->with('success','Doctor created successfully.');
 
 
     }
@@ -139,10 +158,10 @@ class PatientController extends Controller
     public function show($id)
 
     {
-        $patient=Patient::find($id);
-        $p_user=$patient->user;
+        $doctor=Doctor::find($id);
+        $duser=$doctor->user;
 
-        return view('admin.patient.show',compact('patient','p_user'));
+        return view('admin.doctors.show',compact('doctor','duser'));
 
     }
 
@@ -160,14 +179,12 @@ class PatientController extends Controller
 
      */
 
-    public function edit($id)
+    public function edit(Product $product)
 
     {
 
-        $patient=Patient::find($id);
-
-        return view('admin.patients.edit',compact('patient'));
-
+        $doctor=Doctor::find($id);
+        return view('admin.doctors.edit',compact('doctor'));
     }
 
 
@@ -195,38 +212,30 @@ class PatientController extends Controller
             'l_name'=> 'required',
             'email'=> 'required',
             'tel_no'=> 'required',
+
+
         ]);
 
         $user = User::find($id);
 
         $user->f_name = $request->f_name;
-        $user->l_name = $request->l_name;
         $user->email = $request->email;
-
-        if(!empty($request->password)){
-            $user->password = Hash::make($request->password);
-        }else{
-            $user = Arr::except($user, ['password']);
-
-        }
 
         $user->update();
 
-        $patient = new Patient;
+        $doctor = new Doctor;
 
+        $doctor->tel_no = $request->tel_no;
         $patient->house_no = $request->house_no;
         $patient->street_no = $request->street_no;
         $patient->city = $request->city;
-        $patient->tel_no = $request->tel_no;
-        $patient->nic = $request->nic;
-        $patient->age = $request->age;
+        $doctor->nic = $request->nic;
+        $doctor->age = $request->age;
+        $doctor->qualification = $request->qualification;
+        $doctor->specialization = $request->specialization;
 
-        $user->parent()->update($patient->toArray());
-
-        return redirect()->route('patient.index')
-                            ->with('success','Patient updated successfully.');
-
-
+        return redirect()->route('doctor.index')
+                        ->with('success','Doctor created successfully.');
     }
 
 
@@ -243,16 +252,17 @@ class PatientController extends Controller
 
      */
 
-    public function destroy($id)
+    public function destroy(Product $product)
 
     {
+
         $user = User::find($id);
 
-        $user->patient()->delete();
+        $user->doctor()->delete();
         $user->delete();
 
-        return redirect()->route('patients.index')
-        ->with('success','Patient deleted successfully');
+        return redirect()->route('doctor.index')
+        ->with('success','Doctor deleted successfully');
     }
 
 }

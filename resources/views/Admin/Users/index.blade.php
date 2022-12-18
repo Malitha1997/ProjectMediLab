@@ -9,13 +9,13 @@
 
         <div class="pull-left">
 
-            <h2>User List</h2>
+            <h2 class="text-dark mb-1">User List</h2>
 
         </div>
 
         <div class="pull-right">
 
-            <a class="btn btn-success" href="{{ route('users.create') }}"> Create New User</a>
+          <a class="btn btn-primary" href="{{ route('users.create') }}">Add User</a>
 
         </div>
 
