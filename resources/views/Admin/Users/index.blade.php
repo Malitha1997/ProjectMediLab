@@ -9,7 +9,7 @@
 
         <div class="pull-left">
 
-            <h2>Users Management</h2>
+            <h2>User List</h2>
 
         </div>
 
@@ -57,22 +57,18 @@
 
     <td>{{ ++$i }}</td>
 
-    <td>{{ $user->name }}</td>
+    <td>{{ $user->f_name }}</td>
 
     <td>{{ $user->email }}</td>
+
 
     <td>
 
       @if(!empty($user->getRoleNames()))
-
-        @foreach($user->getRoleNames() as $v)
-
-           <label class="badge badge-success">{{ $v }}</label>
-
-        @endforeach
-
-      @endif
-
+            @foreach($user->getRoleNames() as $v)
+              <label>{{ $v }}</label>
+            @endforeach
+          @endif
     </td>
 
     <td>

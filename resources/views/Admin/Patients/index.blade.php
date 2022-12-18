@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('Layout.navbar')
 
 
 @section('content')
@@ -51,7 +51,7 @@
 
   </tr>
 
-    @foreach ($roles as $key => $role)
+    @foreach ($roles=[] as $key => $role)
 
     <tr>
 
@@ -88,7 +88,7 @@
 </table>
 
 
-{!! $roles->render() !!}
+
 
 
 @endsection

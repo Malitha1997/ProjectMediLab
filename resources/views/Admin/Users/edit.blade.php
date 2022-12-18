@@ -9,7 +9,7 @@
 
         <div class="pull-left">
 
-            <h2>Edit New User</h2>
+            <h2>Edit User</h2>
 
         </div>
 
@@ -55,7 +55,7 @@
 
             <strong>Name:</strong>
 
-            {!! Form::text('name', null, array('placeholder' => 'Name','class' => 'form-control')) !!}
+            {!! Form::text('f_name', null, array('placeholder' => 'Name','class' => 'form-control')) !!}
 
         </div>
 

@@ -26,7 +26,7 @@ Route::get('/', function () {
 
 Route::get('/home', function () {
     return view('Home.home');
-})->name('home1');
+});
 
 Route::get('/signup', function () {
     return view('signup');
@@ -76,9 +76,9 @@ Route::get('/package_list', function () {
     return view('package_list');
 });
 
-Route::get('/patient_list', function () {
+/*Route::get('/patient_list', function () {
     return view('patient_list');
-});
+});*/
 
 Route::get('/profile', function () {
     return view('profile');
@@ -107,28 +107,23 @@ Route::get('/service_list', function () {
 Route::get('/add_user', [UserController::class, 'create']);
 Route::get('/add_patient', [patientController::class, 'create']);
 
-/*Route::get('/user_list', function () {
-    $data=App\User::all();
-    return view('user_list')->with('users',$data);
-});*/
-
-Route::get('/patient_dashboard', function () {
-    return view('Patient_pannel.patient_dashaboard');
-});
-
 Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
 
 Route::get('/home', [UserController::class, 'index'])->name('home');
-Route::get('/user_list', [UserController::class, 'show'])->name('user_list');
+
+Route::get('/user_list', [UserController::class, 'index'])->name('user_list');
+Route::get('/patient_list', [PatientController::class, 'index'])->name('patient_list');
 
 
 Route::group(['middleware' => ['auth']], function() {
     Route::resource('roles', RoleController::class);
-    Route::resource('users', UserController::class);
-    Route::resource('patients', PatientController::class);
+    //Route::resource('users', UserController::class);
+    //Route::resource('patients', PatientController::class);
 });
 
 Route::get('/patientlist', [ListViewController::class, 'patientlist']);
+Route::resource('users', UserController::class);
+Route::resource('patients', PatientController::class);
 
 Auth::routes();
 

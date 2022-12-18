@@ -6,9 +6,11 @@ namespace App\Http\Controllers;
 
 
 
-use App\Models\Product;
+use App\Models\Patient;
 
+use App\Models\Patients;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 
 
@@ -31,7 +33,7 @@ class PatientController extends Controller
     {
         $user_patients = DB::table('users')
         ->join('patients', 'users.id', '=', 'patients.user_id')
-        ->where('status', '=', 1)
+        
         ->select('users.*', 'patients.*')
         ->paginate(5);
 
@@ -101,7 +103,7 @@ class PatientController extends Controller
 
         $user->save();
 
-        $patient = new patient;
+        $patient = new Patient;
 
         $patient->house_no = $request->house_no;
         $patient->street_no = $request->street_no;
@@ -137,7 +139,7 @@ class PatientController extends Controller
     public function show($id)
 
     {
-        $patient=patient::find($id);
+        $patient=Patient::find($id);
         $p_user=$patient->user;
 
         return view('admin.patient.show',compact('patient','p_user'));

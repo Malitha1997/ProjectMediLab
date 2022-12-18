@@ -32,7 +32,7 @@
 
             <strong>Name:</strong>
 
-            {{ $user->name }}
+            {{ $user->f_name }}
 
         </div>
 
@@ -60,7 +60,7 @@
 
                 @foreach($user->getRoleNames() as $v)
 
-                    <label class="badge badge-success">{{ $v }}</label>
+                    <label>{{ $v }}</label>
 
                 @endforeach
 
