@@ -44,7 +44,7 @@
 
 @endif
 
-
+@csrf
 
 {!! Form::open(array('route' => 'users.store','method'=>'POST')) !!}
 

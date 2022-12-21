@@ -105,9 +105,17 @@ class DoctorController extends Controller
         request()->validate([
             'f_name'=> 'required',
             'l_name'=> 'required',
+            'house_no'=> 'required',
+            'street_no'=> 'required',
+            'city'=> 'required',
+            'telno'=> 'required',
+            'nic'=> 'required',
+            'age'=> 'required',
             'email'=> 'required',
-            'tel_no'=> 'required',
             'password' => 'required|string|min:8|confirmed',
+            'qualification'=> 'required',
+            'specialization'=> 'required',
+
         ]);
 
         $user = new User;
@@ -124,7 +132,7 @@ class DoctorController extends Controller
         $doctor->house_no = $request->house_no;
         $doctor->street_no = $request->street_no;
         $doctor->city = $request->city;
-        $doctor->tel_no = $request->tel_no;
+        $doctor->telno = $request->telno;
         $doctor->nic = $request->nic;
         $doctor->age = $request->age;
         $doctor->qualification = $request->qualification;

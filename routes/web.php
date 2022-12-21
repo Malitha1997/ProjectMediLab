@@ -107,7 +107,7 @@ Route::get('/add_doctor', [DoctorController::class, 'create']);
 
 Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
 
-//Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::get('/user_list', [UserController::class, 'index'])->name('user_list');
 Route::get('/patient_list', [PatientController::class, 'index'])->name('patient_list');
@@ -119,8 +119,9 @@ Route::group(['middleware' => ['auth']], function() {
     //Route::resource('patients', PatientController::class);
 });
 
-Route::get('/patientlist', [ListViewController::class, 'patientlist']);
 Route::resource('users', UserController::class);
+
+Route::get('/patientlist', [ListViewController::class, 'patientlist']);
 Route::resource('patients', PatientController::class);
 Route::resource('doctors', DoctorController::class);
 

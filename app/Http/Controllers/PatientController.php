@@ -6,8 +6,9 @@ namespace App\Http\Controllers;
 
 
 
-use App\Models\Patient;
+use App\Models\User;
 
+use App\Models\Patient;
 use App\Models\Patients;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -79,15 +80,15 @@ class PatientController extends Controller
     public function store(Request $request)
 
     {
-
         request()->validate([
             'f_name'=> 'required',
             'l_name'=> 'required',
             'house_no'=> 'required',
             'street_no'=> 'required',
             'city'=> 'required',
-            'tel_no'=> 'required',
+            'telno'=> 'required',
             'nic'=> 'required',
+            'blood_group'=> 'required',
             'age'=> 'required',
             'email'=> 'required',
             'password' => 'required|string|min:8|confirmed',
@@ -96,7 +97,7 @@ class PatientController extends Controller
 
         $user = new User;
 
-        $user->f_name = $request->f_name; 
+        $user->f_name = $request->f_name;
         $user->l_name = $request->l_name;
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
@@ -108,7 +109,8 @@ class PatientController extends Controller
         $patient->house_no = $request->house_no;
         $patient->street_no = $request->street_no;
         $patient->city = $request->city;
-        $patient->tel_no = $request->tel_no;
+        $patient->telno = $request->telno;
+        $patient->blood_group = $request->blood_group;
         $patient->nic = $request->nic;
         $patient->age = $request->age;
 
@@ -116,7 +118,7 @@ class PatientController extends Controller
 
         $user->assignRole('patient');
 
-        return redirect()->route('patient.index')
+        return redirect()->route('admin.patients.index')
                             ->with('success','Patient created successfully.');
 
 
@@ -142,7 +144,7 @@ class PatientController extends Controller
         $patient=Patient::find($id);
         $p_user=$patient->user;
 
-        return view('admin.patient.show',compact('patient','p_user'));
+        return view('admin.patients.show',compact('patient','p_user'));
 
     }
 
@@ -194,7 +196,7 @@ class PatientController extends Controller
             'f_name'=> 'required',
             'l_name'=> 'required',
             'email'=> 'required',
-            'tel_no'=> 'required',
+            'telno'=> 'required',
         ]);
 
         $user = User::find($id);
@@ -217,7 +219,8 @@ class PatientController extends Controller
         $patient->house_no = $request->house_no;
         $patient->street_no = $request->street_no;
         $patient->city = $request->city;
-        $patient->tel_no = $request->tel_no;
+        $patient->telno = $request->telno;
+        $patient->blood_group = $request->blood_group;
         $patient->nic = $request->nic;
         $patient->age = $request->age;
 

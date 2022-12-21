@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('telno');
             $table->string('nic');
             $table->string('blood_group');
-            $table->foreignId('user_id')->constrained('users'); 
+            $table->foreignId('user_id')->constrained('users');
             $table->timestamps();
         });
     }

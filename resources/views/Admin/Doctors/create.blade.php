@@ -12,11 +12,30 @@
          {{csrf_field()}}
             <div class="row">
                 <div class="col"><label class="col-form-label">First Name</label></div>
-                <div class="col"><input class="form-control" type="text" name="f_name"></div>
+                <div class="col"><input class="form-control" type="text" name="f_name" required></div>
+                @error('f_name')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
             </div>
             <div class="row">
                 <div class="col"><label class="col-form-label">Last Name</label></div>
-                <div class="col"><input class="form-control" type="text" name="l_name"></div>
+                <div class="col"><input class="form-control" type="text" name="l_name" required></div>
+                @error('l_name')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+            </div>
+            <div class="row">
+                <div class="col"><label class="col-form-label">Password</label></div>
+                <div class="col"><input class="form-control" type="password" name="password" required></div>
+                @error('password')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
             </div>
             <div class="row">
                 <div class="col"><label class="col-form-label">Address</label></div>
@@ -28,11 +47,21 @@
             </div>
             <div class="row">
                 <div class="col"><label class="col-form-label">Email address</label></div>
-                <div class="col"><input class="form-control" type="text" name="email"></div>
+                <div class="col"><input class="form-control" type="text" name="email" required></div>
+                @error('email')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
             </div>
             <div class="row">
                 <div class="col"><label class="col-form-label">Contact No.</label></div>
-                <div class="col"><input class="form-control" type="text" name="telno"></div>
+                <div class="col"><input class="form-control" type="text" name="telno" required></div>
+                @error('telno')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
             </div>
             <div class="row">
                 <div class="col"><label class="col-form-label">NIC</label></div>

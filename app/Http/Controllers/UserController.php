@@ -30,7 +30,7 @@ class UserController extends Controller
 
      * Display a listing of the resource.
 
-     * 
+     *
 
      * @return \Illuminate\Http\Response
 
@@ -200,7 +200,7 @@ class UserController extends Controller
         $user->assignRole($request->input('roles'));
 
         return redirect()->route('admin.users.index')
-                        ->with('success','User updated successfully');
+                        ->with('success','User updated successfully'); 
     }
 
 
