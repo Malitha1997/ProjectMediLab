@@ -42,12 +42,8 @@ Route::get('/add_appointment', function () {
 });
 
 Route::get('/add_doctor', function () {
-    return view('add_doctor');
+    return view('Admin.Doctors.create');
 });
-
-/*Route::get('/add_patient', function () {
-    return view('add_patient');
-});*/
 
 Route::get('/add_packege', function () {
     return view('add_packege');
@@ -68,10 +64,6 @@ Route::get('/appointment_assign_by_all', function () {
 Route::get('/appointment_assign_by_doctor', function () {
     return view('appointment_assign_by_doctor');
 });
-
-/*Route::get('/doctor_list', function () {
-    return view('doctor_list');
-});*/
 
 Route::get('/package_list', function () {
     return view('package_list');
@@ -101,29 +93,25 @@ Route::get('/service_list', function () {
     return view('service_list');
 });
 
-Route::get('/add_user', [UserController::class, 'create']);
-Route::get('/add_patient', [PatientController::class, 'create']);
-Route::get('/add_doctor', [DoctorController::class, 'create']);
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');
-
-Route::get('/user_list', [UserController::class, 'index'])->name('user_list');
-Route::get('/patient_list', [PatientController::class, 'index'])->name('patient_list');
-Route::get('/doctor_list', [DoctorController::class, 'index'])->name('doctor_list');
-
 Route::group(['middleware' => ['auth']], function() {
     Route::resource('roles', RoleController::class);
-    //Route::resource('users', UserController::class);
-    //Route::resource('patients', PatientController::class);
+    Route::resource('users', UserController::class);
+    Route::resource('patients', PatientController::class);
+    Route::resource('doctors', DoctorController::class);
+
+    Route::get('/add_user', [UserController::class, 'create']);
+    Route::get('/add_patient', [PatientController::class, 'create']);
+    //Route::resource('/add_doctor', [DoctorController::class]);
+
+    Route::get('/patient_list', [PatientController::class, 'index'])->name('patient_list');
+    Route::get('/user_list', [UserController::class, 'index'])->name('user_list');
+    Route::get('/doctor_list', [DoctorController::class, 'index'])->name('doctor_list');
 });
 
-Route::resource('users', UserController::class);
-
-Route::get('/patientlist', [ListViewController::class, 'patientlist']);
-Route::resource('patients', PatientController::class);
-Route::resource('doctors', DoctorController::class);
 
 Auth::routes();
 

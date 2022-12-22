@@ -12,6 +12,7 @@ use App\Models\Patient;
 use App\Models\Patients;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 
 
@@ -34,7 +35,6 @@ class PatientController extends Controller
     {
         $user_patients = DB::table('users')
         ->join('patients', 'users.id', '=', 'patients.user_id')
-
         ->select('users.*', 'patients.*')
         ->paginate(5);
 
@@ -78,8 +78,8 @@ class PatientController extends Controller
      */
 
     public function store(Request $request)
-
     {
+
         request()->validate([
             'f_name'=> 'required',
             'l_name'=> 'required',
@@ -91,9 +91,10 @@ class PatientController extends Controller
             'blood_group'=> 'required',
             'age'=> 'required',
             'email'=> 'required',
-            'password' => 'required|string|min:8|confirmed',
+            'password' => 'required|same:confirm-password',
 
         ]);
+
 
         $user = new User;
 
@@ -118,7 +119,7 @@ class PatientController extends Controller
 
         $user->assignRole('patient');
 
-        return redirect()->route('admin.patients.index')
+        return redirect()->route('patients.index')
                             ->with('success','Patient created successfully.');
 
 
@@ -195,24 +196,25 @@ class PatientController extends Controller
         request()->validate([
             'f_name'=> 'required',
             'l_name'=> 'required',
-            'email'=> 'required',
+            'house_no'=> 'required',
+            'street_no'=> 'required',
+            'city'=> 'required',
             'telno'=> 'required',
+            'nic'=> 'required',
+            'blood_group'=> 'required',
+            'age'=> 'required',
+            'email'=> 'required',
+            'password' => 'required|same:confirm-password',
         ]);
 
-        $user = User::find($id);
+        $user = new User;
 
         $user->f_name = $request->f_name;
         $user->l_name = $request->l_name;
         $user->email = $request->email;
+        $user->password = Hash::make($request->password);
 
-        if(!empty($request->password)){
-            $user->password = Hash::make($request->password);
-        }else{
-            $user = Arr::except($user, ['password']);
-
-        }
-
-        $user->update();
+        $user->save();
 
         $patient = new Patient;
 
@@ -224,10 +226,12 @@ class PatientController extends Controller
         $patient->nic = $request->nic;
         $patient->age = $request->age;
 
-        $user->parent()->update($patient->toArray());
+        $user->patient()->save($patient);
 
-        return redirect()->route('patient.index')
-                            ->with('success','Patient updated successfully.');
+        $user->assignRole('patient');
+
+        return redirect()->route('patients.index')
+                            ->with('success','Patient created successfully.');
 
 
     }

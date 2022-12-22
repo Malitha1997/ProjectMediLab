@@ -19,16 +19,6 @@
 
           </div>
 
-        <div class="pull-right">
-
-        @can('role-create')
-
-            <a class="btn btn-success" href="{{ route('roles.create') }}"> Create New Role</a>
-
-            @endcan
-
-        </div>
-
     </div>
 
 </div>
@@ -63,21 +53,21 @@
 
         <td>{{ ++$i }}</td>
 
-        <td>{{ $role->name }}</td>
+        <td>{{ $doctor->f_name }}</td>
 
         <td>
 
-            <a class="btn btn-info" href="{{ route('doctors.show',$role->id) }}">Show</a>
+            <a class="btn btn-info" href="{{ route('doctors.show',$doctor->id) }}">Show</a>
 
             @can('role-edit')
 
-                <a class="btn btn-primary" href="{{ route('doctors.edit',$role->id) }}">Edit</a>
+                <a class="btn btn-primary" href="{{ route('doctors.edit',$doctor->id) }}">Edit</a>
 
             @endcan
 
             @can('role-delete')
 
-                {!! Form::open(['method' => 'DELETE','route' => ['doctors.destroy', $role->id],'style'=>'display:inline']) !!}
+                {!! Form::open(['method' => 'DELETE','route' => ['doctors.destroy', $doctor->id],'style'=>'display:inline']) !!}
 
                     {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
 

@@ -99,11 +99,11 @@ class UserController extends Controller
 
         $input = $request->all();
         $input['password'] = Hash::make($input['password']);
-
+        //dd($input);
         $user = User::create($input);
         $user->assignRole($request->input('roles'));
 
-        return redirect()->route('admin.users.index')
+        return redirect()->route('users.index')
                         ->with('success','User created successfully');
 
     }
@@ -151,7 +151,7 @@ class UserController extends Controller
         $roles = Role::pluck('name','name')->all();
         $userRole = $user->roles->pluck('name','name')->all();
 
-        return view('admin.users.edit',compact('user','roles','userRole'));
+        return view('users.edit',compact('user','roles','userRole'));
 
     }
 
@@ -199,8 +199,8 @@ class UserController extends Controller
 
         $user->assignRole($request->input('roles'));
 
-        return redirect()->route('admin.users.index')
-                        ->with('success','User updated successfully'); 
+        return redirect()->route('users.index')
+                        ->with('success','User updated successfully');
     }
 
 
@@ -221,7 +221,7 @@ class UserController extends Controller
 
     {
         User::find($id)->delete();
-        return redirect()->route('admin.users.index')
+        return redirect()->route('users.index')
                         ->with('success','User deleted successfully');
 
     }

@@ -7,7 +7,7 @@
     <h3 class="text-dark mb-1">Add patient</h3>
     </div><button class="btn btn-primary" type="button" style="padding: 5px 10px;margin-left: 20px;margin-top: 5px;"><a href="/patient_list"><span style="--bs-body-color: var(--bs-btn-color);padding-right: 0px;margin-left: 0px;margin-right: -5px;"><span style="color: rgb(255, 255, 255);">Patient list</span></span></a></button>
     <div class="card">
-        <form style="padding-left: 56px;margin-right: 68px;" method="post" action="patients">
+        <form style="padding-left: 56px;margin-right: 68px;" method="POST" action="patients">
          {{csrf_field()}}
             <div class="row">
                 <div class="col"><label class="col-form-label">First Name</label></div>
@@ -30,6 +30,15 @@
             <div class="row">
                 <div class="col"><label class="col-form-label">Password</label></div>
                 <div class="col"><input class="form-control" type="password" name="password" required></div>
+                @error('password')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+            </div>
+            <div class="row">
+                <div class="col"><label class="col-form-label">Confirm Password</label></div>
+                <div class="col"><input class="form-control" type="password" name="confirm-password" required></div>
                 @error('password')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>

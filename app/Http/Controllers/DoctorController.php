@@ -11,6 +11,7 @@ use App\Models\User;
 use App\Models\Doctor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 
 
@@ -101,7 +102,6 @@ class DoctorController extends Controller
     public function store(Request $request)
 
     {
-
         request()->validate([
             'f_name'=> 'required',
             'l_name'=> 'required',
@@ -110,13 +110,13 @@ class DoctorController extends Controller
             'city'=> 'required',
             'telno'=> 'required',
             'nic'=> 'required',
+            'blood_group'=> 'required',
             'age'=> 'required',
             'email'=> 'required',
-            'password' => 'required|string|min:8|confirmed',
-            'qualification'=> 'required',
-            'specialization'=> 'required',
-
+            'password' => 'required|same:confirm-password',
         ]);
+
+
 
         $user = new User;
 
@@ -136,14 +136,14 @@ class DoctorController extends Controller
         $doctor->nic = $request->nic;
         $doctor->age = $request->age;
         $doctor->qualification = $request->qualification;
-        $doctor->specialization = $request->specialization;
+        $doctor->speciality = $request->speciality;
 
 
         $user->doctor()->save($doctor);
 
         $user->assignRole('doctor');
 
-        return redirect()->route('doctor.index')
+        return redirect()->route('doctors.index')
                         ->with('success','Doctor created successfully.');
 
 
@@ -192,7 +192,7 @@ class DoctorController extends Controller
     {
 
         $doctor=Doctor::find($id);
-        return view('admin.doctors.edit',compact('doctor'));
+        return view('doctors.edit',compact('doctor'));
     }
 
 
@@ -219,28 +219,36 @@ class DoctorController extends Controller
             'f_name'=> 'required',
             'l_name'=> 'required',
             'email'=> 'required',
-            'tel_no'=> 'required',
-
-
+            'telno'=> 'required',
+            'password' => 'required|same:confirm-password',
+            'house_no'=> 'required',
+            'street_no'=> 'required',
+            'city'=> 'required',
+            'nic'=> 'required',
+            'age'=> 'required',
+            'speciality'=>'required',
+            'qualification'=>'required'
         ]);
 
         $user = User::find($id);
 
         $user->f_name = $request->f_name;
+        $user->l_name = $request->l_name;
         $user->email = $request->email;
+        $user->password = Hash::make($request->password);
 
         $user->update();
 
         $doctor = new Doctor;
 
-        $doctor->tel_no = $request->tel_no;
+        $doctor->telno = $request->telno;
         $patient->house_no = $request->house_no;
         $patient->street_no = $request->street_no;
         $patient->city = $request->city;
         $doctor->nic = $request->nic;
         $doctor->age = $request->age;
         $doctor->qualification = $request->qualification;
-        $doctor->specialization = $request->specialization;
+        $doctor->speciality = $request->speciality;
 
         return redirect()->route('doctor.index')
                         ->with('success','Doctor created successfully.');

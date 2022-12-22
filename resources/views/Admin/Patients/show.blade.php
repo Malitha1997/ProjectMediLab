@@ -15,7 +15,7 @@
 
         <div class="pull-right">
 
-            <a class="btn btn-primary" href="{{ route('roles.index') }}"> Back</a>
+            <a class="btn btn-primary" href="{{ route('patients.index') }}"> Back</a>
 
         </div>
 
@@ -32,7 +32,7 @@
 
             <strong>Name:</strong>
 
-            {{ $role->name }}
+            {{ $patient->f_name }}
 
         </div>
 

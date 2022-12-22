@@ -54,7 +54,7 @@
  @foreach ($data as $key => $user)
 
   <tr>
-
+ 
     <td>{{ ++$i }}</td>
 
     <td>{{ $user->f_name }}</td>
@@ -66,7 +66,7 @@
 
       @if(!empty($user->getRoleNames()))
             @foreach($user->getRoleNames() as $v)
-              <label>{{ $v }}</label> 
+              <label>{{ $v }}</label>
             @endforeach
           @endif
     </td>
