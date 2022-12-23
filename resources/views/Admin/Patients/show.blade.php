@@ -9,7 +9,7 @@
 
         <div class="pull-left">
 
-            <h2> Show Role</h2>
+            <h2> Show Patient</h2>
 
         </div>
 
@@ -32,7 +32,7 @@
 
             <strong>Name:</strong>
 
-            {{ $patient->f_name }}
+            {{ $user->f_name }}
 
         </div>
 
@@ -42,21 +42,15 @@
 
         <div class="form-group">
 
-            <strong>Permissions:</strong>
+            <strong>Email:</strong>
 
-            @if(!empty($rolePermissions))
-
-                @foreach($rolePermissions as $v)
-
-                    <label class="label label-success">{{ $v->name }},</label>
-
-                @endforeach
-
-            @endif
+            {{ $user->email }}
 
         </div>
 
     </div>
+
+
 
 </div>
 

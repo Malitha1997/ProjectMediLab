@@ -57,15 +57,13 @@
 
         <td>
 
-            <a class="btn btn-info" href="{{ route('patients.show',$patient->id) }}">Show</a>
+            <a class="btn btn-info" href="{{ route('patients.show',$patient->user_id )}}">Show</a>
 
-            @can('role-edit')
+
 
                 <a class="btn btn-primary" href="{{ route('patients.edit',$patient->id) }}">Edit</a>
 
-            @endcan
 
-            @can('role-delete')
 
                 {!! Form::open(['method' => 'DELETE','route' => ['patients.destroy', $patient->id],'style'=>'display:inline']) !!}
 
@@ -73,7 +71,7 @@
 
                 {!! Form::close() !!}
 
-            @endcan
+
 
         </td>
 

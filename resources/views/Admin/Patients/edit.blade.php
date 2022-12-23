@@ -9,13 +9,13 @@
 
         <div class="pull-left">
 
-            <h2>Edit Role</h2>
+            <h2>Edit Patient</h2>
 
         </div>
 
         <div class="pull-right">
 
-            <a class="btn btn-primary" href="{{ route('roles.index') }}"> Back</a>
+            <a class="btn btn-primary" href="{{ route('patients.index') }}"> Back</a>
 
         </div>
 
@@ -45,7 +45,7 @@
 @endif
 
 
-{!! Form::model($role, ['method' => 'PATCH','route' => ['roles.update', $role->id]]) !!}
+{!! Form::model($patient, ['method' => 'PATCH','route' => ['patients.update', $patient->id]]) !!}
 
 <div class="row">
 
@@ -65,23 +65,39 @@
 
         <div class="form-group">
 
-            <strong>Permission:</strong>
+            <strong>Email:</strong>
 
-            <br/>
-
-            @foreach($permission as $value)
-
-                <label>{{ Form::checkbox('permission[]', $value->id, in_array($value->id, $rolePermissions) ? true : false, array('class' => 'name')) }}
-
-                {{ $value->name }}</label>
-
-            <br/>
-
-            @endforeach
+            {!! Form::text('email', null, array('placeholder' => 'Email','class' => 'form-control')) !!}
 
         </div>
 
     </div>
+
+    <div class="col-xs-12 col-sm-12 col-md-12">
+
+        <div class="form-group">
+
+            <strong>Password:</strong>
+
+            {!! Form::password('password', array('placeholder' => 'Password','class' => 'form-control')) !!}
+
+        </div>
+
+    </div>
+
+    <div class="col-xs-12 col-sm-12 col-md-12">
+
+        <div class="form-group">
+
+            <strong>Confirm Password:</strong>
+
+            {!! Form::password('confirm-password', array('placeholder' => 'Confirm Password','class' => 'form-control')) !!}
+
+        </div>
+
+    </div>
+
+
 
     <div class="col-xs-12 col-sm-12 col-md-12 text-center">
 
@@ -92,6 +108,7 @@
 </div>
 
 {!! Form::close() !!}
+
 
 
 @endsection

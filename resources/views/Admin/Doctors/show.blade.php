@@ -32,7 +32,7 @@
 
             <strong>Name:</strong>
 
-            {{ $role->name }}
+            {{ $user->f_name }}
 
         </div>
 
@@ -42,17 +42,9 @@
 
         <div class="form-group">
 
-            <strong>Permissions:</strong>
+            <strong>Email:</strong>
 
-            @if(!empty($rolePermissions))
-
-                @foreach($rolePermissions as $v)
-
-                    <label class="label label-success">{{ $v->name }},</label>
-
-                @endforeach
-
-            @endif
+            {{ $user->email }}
 
         </div>
 

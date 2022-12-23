@@ -58,7 +58,7 @@ class DoctorController extends Controller
     {
         $user_doctors = DB::table('users')
         ->join('doctors', 'users.id', '=', 'doctors.user_id')
-        ->select('users.*', 'doctors.*')
+        ->select('users.*' ,'users.id as usr_id', 'doctors.*')
         ->paginate(5);
 
         return view('admin.doctors.index',compact('user_doctors'))
@@ -100,8 +100,8 @@ class DoctorController extends Controller
      */
 
     public function store(Request $request)
-
     {
+
         request()->validate([
             'f_name'=> 'required',
             'l_name'=> 'required',
@@ -110,12 +110,12 @@ class DoctorController extends Controller
             'city'=> 'required',
             'telno'=> 'required',
             'nic'=> 'required',
-            'blood_group'=> 'required',
             'age'=> 'required',
             'email'=> 'required',
             'password' => 'required|same:confirm-password',
+            'speciality' => 'required',
+            'qualification' => 'required',
         ]);
-
 
 
         $user = new User;
@@ -166,10 +166,10 @@ class DoctorController extends Controller
     public function show($id)
 
     {
-        $doctor=Doctor::find($id);
-        $duser=$doctor->user;
+        $user=User::find($id);
+        $duser=$user->user;
 
-        return view('admin.doctors.show',compact('doctor','duser'));
+        return view('admin.doctors.show',compact('user','duser'));
 
     }
 
@@ -187,12 +187,12 @@ class DoctorController extends Controller
 
      */
 
-    public function edit(Product $product)
+    public function edit($id)
 
     {
 
         $doctor=Doctor::find($id);
-        return view('doctors.edit',compact('doctor'));
+        return view('admin.doctors.edit',compact('doctor'));
     }
 
 

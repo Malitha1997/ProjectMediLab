@@ -16,7 +16,7 @@ class DoctorSeeder extends Seeder
     public function run()
     {
         DB::table('doctors')->insert([
-            'user_id' => 2,
+            'user_id' => 3,
             'house_no' => '1',
             'street_no' => '26',
             'city' => 'Moratuwa',

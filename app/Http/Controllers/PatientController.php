@@ -35,7 +35,7 @@ class PatientController extends Controller
     {
         $user_patients = DB::table('users')
         ->join('patients', 'users.id', '=', 'patients.user_id')
-        ->select('users.*', 'patients.*')
+        ->select('users.*','users.id as usr_id', 'patients.*')
         ->paginate(5);
 
         return view('admin.patients.index',compact('user_patients'))
@@ -142,10 +142,11 @@ class PatientController extends Controller
     public function show($id)
 
     {
-        $patient=Patient::find($id);
-        $p_user=$patient->user;
 
-        return view('admin.patients.show',compact('patient','p_user'));
+        $user=User::find($id);
+        $p_user=$user->patient;
+
+        return view('admin.patients.show',compact('user','p_user'));
 
     }
 
@@ -164,7 +165,7 @@ class PatientController extends Controller
      */
 
     public function edit($id)
-
+ 
     {
 
         $patient=Patient::find($id);

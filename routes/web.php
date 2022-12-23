@@ -41,9 +41,9 @@ Route::get('/add_appointment', function () {
     return view('add_appointment');
 });
 
-Route::get('/add_doctor', function () {
+/*Route::get('/add_doctor', function () {
     return view('Admin.Doctors.create');
-});
+});*/
 
 Route::get('/add_packege', function () {
     return view('add_packege');
@@ -95,8 +95,6 @@ Route::get('/service_list', function () {
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
-Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
-
 Route::group(['middleware' => ['auth']], function() {
     Route::resource('roles', RoleController::class);
     Route::resource('users', UserController::class);
@@ -105,11 +103,13 @@ Route::group(['middleware' => ['auth']], function() {
 
     Route::get('/add_user', [UserController::class, 'create']);
     Route::get('/add_patient', [PatientController::class, 'create']);
-    //Route::resource('/add_doctor', [DoctorController::class]);
+    Route::get('/add_doctor', [DoctorController::class, 'create']);
 
     Route::get('/patient_list', [PatientController::class, 'index'])->name('patient_list');
     Route::get('/user_list', [UserController::class, 'index'])->name('user_list');
     Route::get('/doctor_list', [DoctorController::class, 'index'])->name('doctor_list');
+
+    Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
 });
 
 
