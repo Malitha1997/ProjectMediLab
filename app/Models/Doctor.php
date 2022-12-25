@@ -3,6 +3,9 @@
 namespace App\Models;
 
 use App\Models\Doctor;
+use App\Models\Report;
+use App\Models\Schedule;
+use App\Models\Appointment;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -37,5 +40,9 @@ class Doctor extends Model
 
     public function reports(){
         return $this->hasMany(Report::class);
+    }
+
+    public function schedules(){
+        return $this->hasMany(Schedule::class);
     }
 }

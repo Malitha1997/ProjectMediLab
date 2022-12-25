@@ -7,6 +7,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\SignupController;
 use App\Http\Controllers\PatientController;
+use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\AdminDashboardController;
 
 
@@ -38,12 +39,9 @@ Route::get('/add_bill', function () {
 });
 
 Route::get('/add_appointment', function () {
-    return view('add_appointment');
+    return view('Admin.Appointments.create');
 });
 
-/*Route::get('/add_doctor', function () {
-    return view('Admin.Doctors.create');
-});*/
 
 Route::get('/add_packege', function () {
     return view('add_packege');
@@ -104,6 +102,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/add_user', [UserController::class, 'create']);
     Route::get('/add_patient', [PatientController::class, 'create']);
     Route::get('/add_doctor', [DoctorController::class, 'create']);
+    //Route::get('/add_appointment', [AppointmentController::class, 'create']);
 
     Route::get('/patient_list', [PatientController::class, 'index'])->name('patient_list');
     Route::get('/user_list', [UserController::class, 'index'])->name('user_list');

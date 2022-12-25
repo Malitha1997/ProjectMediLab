@@ -52,9 +52,9 @@
 
     <div class="col-xs-12 col-sm-12 col-md-12">
 
-        <div class="form-group">
+        <div class="form-group text-dark mb-1">
 
-            <strong>First Name:</strong>
+            First Name:
 
             {!! Form::text('f_name', null, array('placeholder' => 'First Name','class' => 'form-control')) !!}
 
@@ -64,9 +64,9 @@
 
     <div class="col-xs-12 col-sm-12 col-md-12">
 
-        <div class="form-group">
+        <div class="form-group text-dark mb-1">
 
-            <strong>Last Name:</strong>
+            Last Name:
 
             {!! Form::text('l_name', null, array('placeholder' => 'Last Name','class' => 'form-control')) !!}
 
@@ -76,9 +76,9 @@
 
     <div class="col-xs-12 col-sm-12 col-md-12">
 
-        <div class="form-group">
+        <div class="form-group text-dark mb-1">
 
-            <strong>Email:</strong>
+            Email:
 
             {!! Form::text('email', null, array('placeholder' => 'Email','class' => 'form-control')) !!}
 
@@ -88,9 +88,9 @@
 
     <div class="col-xs-12 col-sm-12 col-md-12">
 
-        <div class="form-group">
+        <div class="form-group text-dark mb-1">
 
-            <strong>Password:</strong>
+            Password:
 
             {!! Form::password('password', array('placeholder' => 'Password','class' => 'form-control')) !!}
 
@@ -100,9 +100,9 @@
 
     <div class="col-xs-12 col-sm-12 col-md-12">
 
-        <div class="form-group">
+        <div class="form-group text-dark mb-1">
 
-            <strong>Confirm Password:</strong>
+            Confirm Password:
 
             {!! Form::password('confirm-password', array('placeholder' => 'Confirm Password','class' => 'form-control')) !!}
 
@@ -112,9 +112,9 @@
 
     <div class="col-xs-12 col-sm-12 col-md-12">
 
-        <div class="form-group">
+        <div class="form-group text-dark mb-1">
 
-            <strong>Role:</strong>
+        Role:
 
             {!! Form::select('roles[]', $roles,[], array('class' => 'form-control','multiple')) !!}
 

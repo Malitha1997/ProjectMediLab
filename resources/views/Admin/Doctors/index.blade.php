@@ -35,13 +35,19 @@
 @endif
 
 
-<table class="table table-bordered">
+<table class="table table-bordered text-dark mb-1">
 
   <tr>
 
      <th>No</th>
 
      <th>Name</th>
+
+     <th>Contact No</th>
+
+     <th>Email Address</th>
+
+     <th>Speciality</th>
 
      <th width="280px">Action</th>
 
@@ -54,6 +60,12 @@
         <td>{{ ++$i }}</td>
 
         <td>{{ $doctor->f_name }}</td>
+
+        <td>{{ $doctor->telno}}</td>
+
+        <td>{{ $doctor->email}}</td>
+
+        <td>{{ $doctor->speciality }}</td>
 
         <td>
 

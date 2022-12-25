@@ -32,6 +32,38 @@ class UserSeeder extends Seeder
         ]);
         $user->assignRole('Doctor');
 
+        $user = User::create([
+            'f_name' => 'Rohan',
+            'l_name' => 'Sashika',
+            'email' => 'rohan@gmail.com',
+            'password' => bcrypt('rohan123'),
+        ]);
+        $user->assignRole('Doctor');
+
+        $user = User::create([
+            'f_name' => 'Niduka',
+            'l_name' => 'piyumantha',
+            'email' => 'niduka@gmail.com',
+            'password' => bcrypt('niduka123'),
+        ]);
+        $user->assignRole('Doctor');
+
+        $user = User::create([
+            'f_name' => 'Abhishek',
+            'l_name' => 'Premachandra',
+            'email' => 'abhishek@gmail.com',
+            'password' => bcrypt('abhishek123'),
+        ]);
+        $user->assignRole('Doctor');
+
+        $user = User::create([
+            'f_name' => 'Nishan',
+            'l_name' => 'Wickramasinghe',
+            'email' => 'nishan@gmail.com',
+            'password' => bcrypt('nishan123'),
+        ]);
+        $user->assignRole('Doctor');
+
         //Lab assistants
 
         $role = Role::create(['name' => 'Lab assistant']);
@@ -61,6 +93,38 @@ class UserSeeder extends Seeder
             'l_name' => 'Disanayake',
             'email' => 'nawanjana@gmail.com',
             'password' => bcrypt('nawanjana123'),
+        ]);
+        $user->assignRole('Patient');
+
+        $user = User::create([
+            'f_name' => 'Nihal',
+            'l_name' => 'Serasinghe',
+            'email' => 'nihal@gmail.com',
+            'password' => bcrypt('nihal123'),
+        ]);
+        $user->assignRole('Patient');
+
+        $user = User::create([
+            'f_name' => 'Akarsha',
+            'l_name' => 'Wimalaratne',
+            'email' => 'akarsha@gmail.com',
+            'password' => bcrypt('akarsha123'),
+        ]);
+        $user->assignRole('Patient');
+
+        $user = User::create([
+            'f_name' => 'Ranil',
+            'l_name' => 'Premaratne',
+            'email' => 'ranil@gmail.com',
+            'password' => bcrypt('ranil123'),
+        ]);
+        $user->assignRole('Patient');
+
+        $user = User::create([
+            'f_name' => 'Mahinda',
+            'l_name' => 'Rajapaksha',
+            'email' => 'mahinda@gmail.com',
+            'password' => bcrypt('mahinda123'),
         ]);
         $user->assignRole('Patient');
     }

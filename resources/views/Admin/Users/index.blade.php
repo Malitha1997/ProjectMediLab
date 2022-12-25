@@ -35,7 +35,7 @@
 @endif
 
 
-<table class="table table-bordered">
+<table class="table table-bordered text-dark mb-1">
 
  <tr>
 
@@ -54,7 +54,7 @@
  @foreach ($data as $key => $user)
 
   <tr>
- 
+
     <td>{{ ++$i }}</td>
 
     <td>{{ $user->f_name }}</td>
