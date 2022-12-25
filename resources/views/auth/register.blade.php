@@ -95,13 +95,53 @@
 
                         <div class="form-group">
                         <div class="row ">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
-                                </button>
+                            <label for="blood_group" class="col-md-4 col-form-label text-md-end">{{ __('Blood group') }}</label>
+                            <div class="col">
+                                <select id="blood_group" name="blood_group">
+                                    <option value="A+">A+</option>
+                                    <option value="A-">A-</option>
+                                    <option value="B+">B+</option>
+                                    <option value="B-">B-</option>
+                                    <option value="O+">O+</option>
+                                    <option value="O-">O-</option>
+                                </select>
                             </div>
                         </div>
                         </div>
+
+                        <div class="form-group">
+                        <div class="row ">
+                            <label for="age" class="col-md-4 col-form-label text-md-end">{{ __('Age') }}</label>
+                            <div class="col">
+                                <input class="form-control text-dark mb-1" type="text" name="age">
+                            </div>
+                        </div>
+                        </div>
+
+                        <div class="form-group">
+                        <div class="row ">
+                            <label for="telno" class="col-md-4 col-form-label text-md-end">{{ __('Contact No.') }}</label>
+                            <div class="col">
+                                <input class="form-control text-dark mb-1" type="text" name="telno">
+                                @error('telno')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        </div>
+
+                        <div class="form-group">
+                        <div class="row ">
+                            <label for="nic" class="col-md-4 col-form-label text-md-end">{{ __('NIC') }}</label>
+                            <div class="col">
+                                <input class="form-control text-dark mb-1" type="text" name="nic">
+                            </div>
+                        </div>
+                        </div>
+
+                        <button class="btn btn-primary" id="btn_save" type="submit">Done</button>
                     </form>
                 </div>
             </div>

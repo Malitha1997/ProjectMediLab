@@ -53,7 +53,7 @@ class DoctorController extends Controller
 
      */
 
-    public function index()
+    public function index(Request $request)
 
     {
         $user_doctors = DB::table('users')
@@ -62,7 +62,7 @@ class DoctorController extends Controller
         ->paginate(5);
 
         return view('admin.doctors.index',compact('user_doctors'))
-        ->with('i', (request()->input('page', 1) - 1) * 5);
+        ->with('i', ($request->input('page', 1) - 1) * 5);
 
     }
 
@@ -268,7 +268,7 @@ class DoctorController extends Controller
 
      */
 
-    public function destroy(Product $product)
+    public function destroy($id)
 
     {
 
@@ -277,7 +277,7 @@ class DoctorController extends Controller
         $user->doctor()->delete();
         $user->delete();
 
-        return redirect()->route('doctor.index')
+        return redirect()->route('doctors.index')
         ->with('success','Doctor deleted successfully');
     }
 

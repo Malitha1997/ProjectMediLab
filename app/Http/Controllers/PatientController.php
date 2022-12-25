@@ -30,7 +30,7 @@ class PatientController extends Controller
 
      */
 
-    public function index()
+    public function index(Request $request)
 
     {
         $user_patients = DB::table('users')
@@ -39,7 +39,7 @@ class PatientController extends Controller
         ->paginate(5);
 
         return view('admin.patients.index',compact('user_patients'))
-        ->with('i', (request()->input('page', 1) - 1) * 5);
+        ->with('i', ($request->input('page', 1) - 1) * 5);
 
     }
 
@@ -165,7 +165,7 @@ class PatientController extends Controller
      */
 
     public function edit($id)
- 
+
     {
 
         $patient=Patient::find($id);

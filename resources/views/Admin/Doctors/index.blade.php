@@ -53,7 +53,7 @@
 
   </tr>
 
-    @foreach ($user_doctors as $doctor)
+    @foreach ($user_doctors as $key => $doctor)
 
     <tr>
 
@@ -94,6 +94,6 @@
 
 </table>
 
-
+{!! $user_doctors->render() !!}
 
 @endsection

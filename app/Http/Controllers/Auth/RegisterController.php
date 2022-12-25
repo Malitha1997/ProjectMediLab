@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
-use App\Providers\RouteServiceProvider;
 use App\Models\User;
-use Illuminate\Foundation\Auth\RegistersUsers;
+use App\Models\Patient;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
+use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Foundation\Auth\RegistersUsers;
 
 class RegisterController extends Controller
 {
@@ -50,12 +51,21 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
+            'f_name' => ['required', 'string', 'max:255'],
+            'l_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'house_no'=> ['required','string', 'max:255'],
+            'street_no'=> ['required','string', 'max:255'],
+            'city'=> ['required','string', 'max:255'],
+            'telno'=> ['required','string', 'max:10'],
+            'nic'=> ['required','string', 'max:10'],
+            'blood_group'=> ['required','string'],
+            'age'=> ['required','string'],
         ]);
+
     }
- 
+
     /**
      * Create a new user instance after a valid registration.
      *
@@ -65,9 +75,20 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         return User::create([
-            'name' => $data['name'],
+            'f_name' => $data['f_name'],
+            'l_name' => $data['l_name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+        ]);
+
+        return Patient::create([
+            'house_no'=> $data['house_no'],
+            'street_no'=> $data['street_no'],
+            'city'=> $data['city'],
+            'blood_group'=> $data['blood_group'],
+            'age'=> $data['age'],
+            'telno'=> $data['telno'],
+            'nic'=> $data['nic']
         ]);
     }
 }

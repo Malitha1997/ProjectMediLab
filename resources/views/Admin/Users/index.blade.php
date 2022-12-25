@@ -54,7 +54,7 @@
  @foreach ($data as $key => $user)
 
   <tr>
-
+ 
     <td>{{ ++$i }}</td>
 
     <td>{{ $user->f_name }}</td>
