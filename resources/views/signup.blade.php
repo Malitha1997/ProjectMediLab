@@ -19,7 +19,7 @@
                         <div class="form-group">
                             <label for="lname">Last name</label>
                             <input type="lname" id="lname" class="form-control" name="" />
-                        </div>
+                        </div> 
                         <div class="form-group">
                             <label for="email">Email</label>
                             <input type="email" id="email" class="form-control" name="" />

@@ -3,7 +3,7 @@
 
 @section('content')
 
-<div class="row">
+<div class="row" data-aos="fade-down" data-aos-duration="1000">
 
     <div class="col-lg-12 margin-tb">
 
@@ -35,7 +35,7 @@
 @endif
 
 
-<table class="table table-bordered text-dark mb-1">
+<table class="table table-bordered text-dark mb-1" >
 
   <tr>
 
