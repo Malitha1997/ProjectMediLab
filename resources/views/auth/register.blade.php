@@ -95,9 +95,10 @@
 
                         <div class="form-group">
                         <div class="row ">
-                            <label for="blood_group" class="col-md-4 col-form-label text-md-end">{{ __('Blood group') }}</label>
+                            <label for="blood_group" class="col-md-4 col-form-label text-md-end ">{{ __('Blood group') }}</label>
                             <div class="col">
-                                <select id="blood_group" name="blood_group">
+                                <select id="blood_group" name="blood_group" class="form-control">
+                                    <option value="--Select option--">--Select option--</option>
                                     <option value="A+">A+</option>
                                     <option value="A-">A-</option>
                                     <option value="B+">B+</option>

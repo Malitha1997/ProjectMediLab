@@ -7,6 +7,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\SignupController;
 use App\Http\Controllers\PatientController;
+use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\AdminDashboardController;
 
@@ -47,9 +48,9 @@ Route::get('/add_packege', function () {
     return view('add_packege');
 });
 
-Route::get('/add_schedule', function () {
-    return view('add_schedule');
-});
+/*Route::get('/add_schedule', function () {
+    return view('Admin.Schedules.create');
+});*/
 
 Route::get('/add_service', function () {
     return view('add_service');
@@ -103,12 +104,19 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/add_patient', [PatientController::class, 'create']);
     Route::get('/add_doctor', [DoctorController::class, 'create']);
     //Route::get('/add_appointment', [AppointmentController::class, 'create']);
+    Route::get('/add_schedule', [ScheduleController::class, 'create']);
 
     Route::get('/patient_list', [PatientController::class, 'index'])->name('patient_list');
     Route::get('/user_list', [UserController::class, 'index'])->name('user_list');
     Route::get('/doctor_list', [DoctorController::class, 'index'])->name('doctor_list');
+    Route::get('/schedule_list', [ScheduleController::class, 'index'])->name('schedule_list');
 
     Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
+
+    //appointment routes
+    Route::resource('appointment', 'AppointmentController');
+    Route::post('/appointment/check', 'AppointmentController@check')->name('appointment.check');
+    Route::post('/appointment/update', 'AppointmentController@updateTime')->name('update');
 });
 
 

@@ -6,7 +6,7 @@
 <div class="container-fluid" data-aos="fade-down" data-aos-duration="1000">
     <h3 class="text-dark mb-1">Add patient</h3>
     </div><button class="btn btn-primary" data-aos="fade-down" data-aos-duration="1000" type="button" style="padding: 5px 10px;margin-left: 20px;margin-top: 5px;"><a href="/patient_list"><span style="--bs-body-color: var(--bs-btn-color);padding-right: 0px;margin-left: 0px;margin-right: -5px;"><span style="color: rgb(255, 255, 255);">Patient list</span></span></a></button>
-    <div class="card" data-aos="fade-down" data-aos-duration="1000">
+    <div class="card" data-aos="fade-in" data-aos-duration="1000">
         <form style="padding-left: 56px;margin-right: 68px;" method="POST" action="patients">
          {{csrf_field()}}
             <div class="row">
@@ -51,9 +51,9 @@
             </div>
             <div class="row">
                 <div class="col"><label class="col-form-label text-dark mb-1">Blood group</label></div>
-                <div class="col">
                     <div class="col">
-                        <select id="blood_group" name="blood_group">
+                        <select id="blood_group" name="blood_group" class="form-control">
+                            <option value="--Select option--">--Select option--</option>
                             <option value="A+">A+</option>
                             <option value="A-">A-</option>
                             <option value="B+">B+</option>
@@ -89,8 +89,10 @@
                 <div class="col"><label class="col-form-label text-dark mb-1">NIC</label></div>
                 <div class="col"><input class="form-control text-dark mb-1" type="text" name="nic"></div>
             </div>
-            <button class="btn btn-primary" id="btn_save" type="submit">Save</button>
-        </form>
+            <div class="row">
+                <div class="col"><button class="btn btn-primary" id="btn_save" type="submit">Save</button></div>
+            </div>
+            </form>
     </div>
 
 @endsection

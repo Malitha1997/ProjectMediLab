@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Appointment;
+use App\Time;
 
 class AppointmentController extends Controller
 {
@@ -13,7 +15,8 @@ class AppointmentController extends Controller
      */
     public function index()
     {
-
+        $myAppointments = Appointment::latest()->where('patient_id', auth()->patient()->id)->get();
+        return view('admin.appointments.index', compact('myAppointments'));
     }
 
     /**
@@ -34,7 +37,24 @@ class AppointmentController extends Controller
      */
     public function store(Request $request)
     {
-        
+        // validation, unique:table,column with the column id == patient_id
+        $this->validate($request, [
+            'date' => 'required|unique:appointments,date,NULL,id,patient_id,' . \Auth::id(),
+            'time' => 'required'
+        ]);
+
+        $appointment = Appointment::create([
+            'patient_id' => auth()->patient()->id,
+            'date' => $request->date
+        ]);
+        foreach ($request->time as $time) {
+            Time::create([
+                'appointment_id' => $appointment->id,
+                'time' => $time
+                // default status => 0
+            ]);
+        }
+        return redirect()->back()->with('message', 'An appointment created for ' . $request->date);
     }
 
     /**
@@ -80,5 +100,34 @@ class AppointmentController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    // Check specific date for appointment time
+    public function check(Request $request)
+    {
+        $date = $request->date;
+        $appointment = Appointment::where('date', $date)->where('patient_id', auth()->patient()->id)->first();
+        if (!$appointment) {
+            return redirect()->to('/appointment')->with('errMessage', 'Appointment time is not available for this date');
+        };
+        $appointmentId = $appointment->id;
+        $times = Time::where('appointment_id', $appointmentId)->get();
+        return view('admin.appointments.index', compact('times', 'appointmentId', 'date'));
+    }
+    // Update app time
+    // delete the old time array and create a new time array
+    public function updateTime(Request $request)
+    {
+        $appointmentId = $request->appointmentId;
+        $date = Appointment::where('id', $appointmentId)->get('date')->first()->date;
+        Time::where('appointment_id', $appointmentId)->delete();
+        foreach ($request->time as $time) {
+            Time::create([
+                'appointment_id' => $appointmentId,
+                'time' => $time,
+                'status' => 0
+            ]);
+        }
+        return redirect()->route('appointment.index')->with('message', 'Appointment time for ' . $date . ' is updated successfully!');
     }
 }

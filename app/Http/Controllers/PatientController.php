@@ -36,7 +36,7 @@ class PatientController extends Controller
         $user_patients = DB::table('users')
         ->join('patients', 'users.id', '=', 'patients.user_id')
         ->select('users.*','users.id as usr_id', 'patients.*')
-        ->paginate(5);
+        ->paginate(8);
 
         return view('admin.patients.index',compact('user_patients'))
         ->with('i', ($request->input('page', 1) - 1) * 5);

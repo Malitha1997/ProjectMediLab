@@ -10,11 +10,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Schedule extends Model
 {
     protected $fillable = [
-        
+            'id',
+            'available_day',
+            'available_time',
+
     ];
 
     public function doctor(){
-        return $this->belongsTo(Doctor::class,'foreign_key');
+        return $this->belongsTo(Doctor::class);
     }
 
     public function appointments(){
