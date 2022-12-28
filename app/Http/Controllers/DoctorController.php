@@ -60,7 +60,7 @@ class DoctorController extends Controller
         ->join('doctors', 'users.id', '=', 'doctors.user_id')
         ->select('users.*' ,'users.id as usr_id', 'doctors.*')
         ->paginate(8);
-
+//dd($user_doctors);
         return view('admin.doctors.index',compact('user_doctors'))
         ->with('i', ($request->input('page', 1) - 1) * 5);
 
@@ -275,7 +275,7 @@ class DoctorController extends Controller
 
     public function destroy($id)
 
-    {
+    { //dd($id);
 
         $user = User::find($id);
 

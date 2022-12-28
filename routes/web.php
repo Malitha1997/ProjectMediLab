@@ -99,6 +99,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('users', UserController::class);
     Route::resource('patients', PatientController::class);
     Route::resource('doctors', DoctorController::class);
+    Route::resource('schedules', ScheduleController::class);
 
     Route::get('/add_user', [UserController::class, 'create']);
     Route::get('/add_patient', [PatientController::class, 'create']);

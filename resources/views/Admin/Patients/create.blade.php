@@ -7,7 +7,7 @@
     <h3 class="text-dark mb-1">Add patient</h3>
     </div><button class="btn btn-primary" data-aos="fade-down" data-aos-duration="1000" type="button" style="padding: 5px 10px;margin-left: 20px;margin-top: 5px;"><a href="/patient_list"><span style="--bs-body-color: var(--bs-btn-color);padding-right: 0px;margin-left: 0px;margin-right: -5px;"><span style="color: rgb(255, 255, 255);">Patient list</span></span></a></button>
     <div class="card" data-aos="fade-in" data-aos-duration="1000">
-        <form style="padding-left: 56px;margin-right: 68px;" method="POST" action="patients">
+        <form style="padding-left: 56px;margin-right: 68px;" method="POST" action="{{ route('patients.store')}}">
          {{csrf_field()}}
             <div class="row">
                 <div class="col"><label class="col-form-label text-dark mb-1">First Name</label></div>

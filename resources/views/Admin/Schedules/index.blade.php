@@ -15,7 +15,7 @@
 
         <div class="pull-right">
 
-            <a class="btn btn-primary" href="{{ route('schedules.create') }}">Add Doctor</a>
+            <a class="btn btn-primary" href="{{ route('schedules.create') }}">Add Schedule</a>
 
           </div>
 
@@ -51,7 +51,7 @@
 
   </tr>
 
-    @foreach ($doctor_schedule as $key => $schedule)
+    @foreach ($doctor_schedules as $key => $schedule)
 
     <tr>
 
@@ -74,7 +74,7 @@
 
 
 
-                {!! Form::open(['method' => 'DELETE','route' => ['schedules.destroy', $schedule->id],'style'=>'display:inline']) !!}
+                {!! Form::open(['method' => 'DELETE','route' => ['schedules.destroy', $schedule->sched_id],'style'=>'display:inline']) !!}
 
                     {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
 

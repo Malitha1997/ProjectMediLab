@@ -36,7 +36,7 @@ class PatientController extends Controller
         $user_patients = DB::table('users')
         ->join('patients', 'users.id', '=', 'patients.user_id')
         ->select('users.*','users.id as usr_id', 'patients.*')
-        ->paginate(8);
+        ->paginate(5);
 
         return view('admin.patients.index',compact('user_patients'))
         ->with('i', ($request->input('page', 1) - 1) * 5);
@@ -229,7 +229,7 @@ class PatientController extends Controller
 
         $user->patient()->save($patient);
 
-        $user->assignRole('patient');
+        $user->assignRole('Patient');
 
         return redirect()->route('patients.index')
                             ->with('success','Patient created successfully.');

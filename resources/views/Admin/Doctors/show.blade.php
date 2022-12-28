@@ -9,13 +9,13 @@
 
         <div class="pull-left">
 
-            <h2> Show Role</h2>
+            <h2 class="text-dark mb-1"> Show Doctor</h2>
 
         </div>
 
         <div class="pull-right">
 
-            <a class="btn btn-primary" href="{{ route('roles.index') }}"> Back</a>
+            <a class="btn btn-primary" href="{{ route('doctors.index') }}"> Back</a>
 
         </div>
 
@@ -28,9 +28,9 @@
 
     <div class="col-xs-12 col-sm-12 col-md-12">
 
-        <div class="form-group">
+        <div class="form-group text-dark mb-1">
 
-            <strong>Name:</strong>
+            Name:
 
             {{ $user->f_name }}
 
@@ -40,9 +40,9 @@
 
     <div class="col-xs-12 col-sm-12 col-md-12">
 
-        <div class="form-group">
+        <div class="form-group text-dark mb-1">
 
-            <strong>Email:</strong>
+           Email:
 
             {{ $user->email }}
 

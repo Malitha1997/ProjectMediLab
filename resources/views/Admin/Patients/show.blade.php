@@ -9,7 +9,7 @@
 
         <div class="pull-left">
 
-            <h2> Show Patient</h2>
+            <h2 class="text-dark mb-1"> Show Patient</h2>
 
         </div>
 
@@ -28,9 +28,9 @@
 
     <div class="col-xs-12 col-sm-12 col-md-12">
 
-        <div class="form-group">
+        <div class="form-group text-dark mb-1">
 
-            <strong>Name:</strong>
+            Name:
 
             {{ $user->f_name }}
 
@@ -40,9 +40,9 @@
 
     <div class="col-xs-12 col-sm-12 col-md-12">
 
-        <div class="form-group">
+        <div class="form-group text-dark mb-1">
 
-            <strong>Email:</strong>
+          Email:
 
             {{ $user->email }}
 

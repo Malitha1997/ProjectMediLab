@@ -79,7 +79,7 @@
 
 
 
-                {!! Form::open(['method' => 'DELETE','route' => ['doctors.destroy', $doctor->id],'style'=>'display:inline']) !!}
+                {!! Form::open(['method' => 'DELETE','route' => ['doctors.destroy', $doctor->usr_id],'style'=>'display:inline']) !!}
 
                     {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
 
