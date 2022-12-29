@@ -9,7 +9,7 @@
 
         <div class="pull-left">
 
-            <h2> Show Schedule</h2>
+            <h2 class="text-dark mb-1"> Show Schedule</h2>
 
         </div>
 
@@ -28,23 +28,11 @@
 
     <div class="col-xs-12 col-sm-12 col-md-12">
 
-        <div class="form-group">
+        <div class="form-group text-dark mb-1">
 
-            <strong>Doctor Name:</strong>
+            Doctor Name :
 
-            {{ $doctor->f_name }}
-
-        </div>
-
-    </div>
-
-    <div class="col-xs-12 col-sm-12 col-md-12">
-
-        <div class="form-group">
-
-            <strong>Available Days:</strong>
-
-            {{ $schedule->available_days }}
+            Dr. {{ $schedule->doctor->user->f_name }} {{ $schedule->doctor->user->l_name }}
 
         </div>
 
@@ -52,9 +40,21 @@
 
     <div class="col-xs-12 col-sm-12 col-md-12">
 
-        <div class="form-group">
+        <div class="form-group text-dark mb-1">
 
-            <strong>Available Time :</strong>
+            Available Days :
+
+            {{ $schedule->available_day }}
+
+        </div>
+
+    </div>
+
+    <div class="col-xs-12 col-sm-12 col-md-12">
+
+        <div class="form-group text-dark mb-1">
+
+            Available Time :
 
             {{ $schedule->available_time }}
 

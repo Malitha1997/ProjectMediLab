@@ -50,6 +50,18 @@
 
     </div>
 
+    <div class="col-xs-12 col-sm-12 col-md-12">
+
+        <div class="form-group text-dark mb-1">
+
+          Email:
+
+            {{ $user->patient->telno }}
+
+        </div>
+
+    </div>
+
 
 
 </div>

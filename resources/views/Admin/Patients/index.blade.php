@@ -57,7 +57,7 @@
 
         <td>{{ ++$i }}</td>
 
-        <td>{{ $patient->f_name }}</td>
+        <td>{{ $patient->f_name }} {{ $patient->l_name }}</td>
 
         <td>{{ $patient->telno }}</td>
 

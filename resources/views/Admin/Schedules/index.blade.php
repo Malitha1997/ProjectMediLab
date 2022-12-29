@@ -57,7 +57,7 @@
 
         <td>{{ ++$i }}</td>
 
-        <td>{{ $schedule->f_name }}</td>
+        <td>Dr. {{ $schedule->doctor->user->f_name}} {{ $schedule->doctor->user->l_name}}</td>
 
         <td>{{ $schedule->available_day}}</td>
 
@@ -66,7 +66,7 @@
 
         <td>
 
-            <a class="btn btn-info" href="{{ route('schedules.show',$schedule->user_id) }}">Show</a>
+            <a class="btn btn-info" href="{{ route('schedules.show',$schedule->id) }}">Show</a>
 
 
 
@@ -74,7 +74,7 @@
 
 
 
-                {!! Form::open(['method' => 'DELETE','route' => ['schedules.destroy', $schedule->sched_id],'style'=>'display:inline']) !!}
+                {!! Form::open(['method' => 'DELETE','route' => ['schedules.destroy', $schedule->id],'style'=>'display:inline']) !!}
 
                     {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
 

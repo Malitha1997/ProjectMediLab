@@ -54,10 +54,10 @@
  @foreach ($data as $key => $user)
 
   <tr>
- 
+
     <td>{{ ++$i }}</td>
 
-    <td>{{ $user->f_name }}</td>
+    <td>{{ $user->f_name }} {{ $user->l_name }}</td>
 
     <td>{{ $user->email }}</td>
 

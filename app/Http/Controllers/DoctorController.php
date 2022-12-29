@@ -59,8 +59,8 @@ class DoctorController extends Controller
         $user_doctors = DB::table('users')
         ->join('doctors', 'users.id', '=', 'doctors.user_id')
         ->select('users.*' ,'users.id as usr_id', 'doctors.*')
-        ->paginate(8);
-//dd($user_doctors);
+        ->paginate(5);
+
         return view('admin.doctors.index',compact('user_doctors'))
         ->with('i', ($request->input('page', 1) - 1) * 5);
 
@@ -247,15 +247,17 @@ class DoctorController extends Controller
         $doctor = new Doctor;
 
         $doctor->telno = $request->telno;
-        $patient->house_no = $request->house_no;
-        $patient->street_no = $request->street_no;
-        $patient->city = $request->city;
+        $doctor->house_no = $request->house_no;
+        $doctor->street_no = $request->street_no;
+        $doctor->city = $request->city;
         $doctor->nic = $request->nic;
         $doctor->age = $request->age;
         $doctor->qualification = $request->qualification;
         $doctor->speciality = $request->speciality;
 
-        return redirect()->route('doctor.index')
+        $user->doctor()->update($doctor->toArray());
+
+        return redirect()->route('doctors.index')
                         ->with('success','Doctor created successfully.');
     }
 

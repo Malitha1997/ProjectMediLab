@@ -17,10 +17,7 @@ class ScheduleController extends Controller
      */
     public function index(Request $request)
     {
-        $doctor_schedules = DB::table('doctors')
-        ->join('schedules', 'doctors.id', '=', 'doctors.user_id')
-        ->select('schedules.*','schedules.id as sched_id', 'doctors.*')
-        ->paginate(5);
+        $doctor_schedules = Schedule::paginate(5);
 
         return view('Admin.Schedules.index',compact('doctor_schedules'))
         ->with('i', ($request->input('page', 1) - 1) * 5);
@@ -46,26 +43,20 @@ class ScheduleController extends Controller
     public function store(Request $request)
     {
         request()->validate([
-            'doctor_id'=> 'required',
+            'doctor_f_name'=> 'required',
             'available_day'=> 'required',
             'available_time'=> 'required',
 
 
         ]);
 
-
-
-
-        $user=Doctor::find($request->doctor_id)->user();
-dd($user);
-        $doctor->save();
-
         $schedule = new Schedule;
 
+        $schedule->doctor_id=$request->doctor_f_name;
         $schedule->available_day = $request->available_day;
         $schedule->available_time = $request->available_time;
 
-        $doctor->schedule()->save($schedule);
+        $schedule->save();
 
         return redirect()->route('schedules.index')
                             ->with('success','schedule created successfully.');
@@ -80,10 +71,10 @@ dd($user);
      */
     public function show($id)
     {
-        $doctor=Doctor::find($id);
-        $doc=$doctor->doctor;
+        $schedule=Schedule::find($id);
+        $sched=$schedule->schedule;
 
-        return view('Admin.Schedules.show',compact('doctor','doc'));
+        return view('Admin.Schedules.show',compact('schedule','sched'));
     }
 
     /**
@@ -95,7 +86,6 @@ dd($user);
     public function edit($id)
     {
         $schedule=Schedule::find($id);
-        //$all_users_with_all_their_roles = User::with('doctors')->get();
         return view('admin.schedules.edit',compact('schedule'));
     }
 
@@ -109,24 +99,20 @@ dd($user);
     public function update(Request $request, $id)
     {
         request()->validate([
-            'doctor_id'=> 'required',
+            'doctor_f_name'=> 'required',
             'available_day'=> 'required',
             'available_time'=> 'required',
 
 
         ]);
 
-
-        $doctor = new Doctor;
-
-        $doctor->doctor_id = $request->doctor_id;
-
-        $doctor->update();
-
         $schedule = new Schedule;
 
+        $schedule->doctor_id=$request->doctor_f_name;
         $schedule->available_day = $request->available_day;
         $schedule->available_time = $request->available_time;
+
+        $schedule->update();
 
         return redirect()->route('schedules.index')
                             ->with('success','schedule updated successfully.');
@@ -142,7 +128,7 @@ dd($user);
     {
         $doctor = Doctor::find($id);
 
-        $doctor->schedule()->delete();
+        $doctor->schedules()->delete();
         $doctor->delete();
 
         return redirect()->route('schedules.index')

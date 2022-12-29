@@ -169,7 +169,6 @@ class PatientController extends Controller
     {
 
         $patient=Patient::find($id);
-
         return view('admin.patients.edit',compact('patient'));
 
     }
@@ -215,7 +214,7 @@ class PatientController extends Controller
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
 
-        $user->save();
+        $user->update();
 
         $patient = new Patient;
 
@@ -227,9 +226,7 @@ class PatientController extends Controller
         $patient->nic = $request->nic;
         $patient->age = $request->age;
 
-        $user->patient()->save($patient);
-
-        $user->assignRole('Patient');
+        $user->patient()->update($patient->toArray());
 
         return redirect()->route('patients.index')
                             ->with('success','Patient created successfully.');

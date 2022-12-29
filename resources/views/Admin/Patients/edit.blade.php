@@ -3,112 +3,97 @@
 
 @section('content')
 
-<div class="row">
-
-    <div class="col-lg-12 margin-tb">
-
-        <div class="pull-left">
-
-            <h2>Edit Patient</h2>
-
-        </div>
-
-        <div class="pull-right">
-
-            <a class="btn btn-primary" href="{{ route('patients.index') }}"> Back</a>
-
-        </div>
-
+<div class="container-fluid" data-aos="fade-down" data-aos-duration="1000">
+    <h3 class="text-dark mb-1">Edit patient</h3>
+    </div><button class="btn btn-primary" data-aos="fade-down" data-aos-duration="1000" type="button" style="padding: 5px 10px;margin-left: 20px;margin-top: 5px;"><a href="/patient_list"><span style="--bs-body-color: var(--bs-btn-color);padding-right: 0px;margin-left: 0px;margin-right: -5px;"><span style="color: rgb(255, 255, 255);">Patient list</span></span></a></button>
+    <div class="card" data-aos="fade-in" data-aos-duration="1000">
+        <form style="padding-left: 56px;margin-right: 68px;" method="POST" action="{{route('patients.update',$patient->user->id)}}">
+         {{csrf_field()}}
+         @method('PUT')
+            <div class="row">
+                <div class="col"><label class="col-form-label text-dark mb-1">First Name</label></div>
+                <div class="col"><input class="form-control text-dark mb-1" type="text" name="f_name" value="{{ $patient->user->f_name }}" required></div>
+                @error('f_name')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+            </div>
+            <div class="row">
+                <div class="col"><label class="col-form-label text-dark mb-1">Last Name</label></div>
+                <div class="col"><input class="form-control text-dark mb-1" type="text" name="l_name" value="{{ $patient->user->l_name }}" required></div>
+                @error('l_name')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+            </div>
+            <div class="row">
+                <div class="col"><label class="col-form-label text-dark mb-1">Password</label></div>
+                <div class="col"><input class="form-control text-dark mb-1" type="password" name="password" required></div>
+                @error('password')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+            </div>
+            <div class="row">
+                <div class="col"><label class="col-form-label text-dark mb-1">Confirm Password</label></div>
+                <div class="col"><input class="form-control text-dark mb-1" type="password" name="confirm-password" required></div>
+                @error('password')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+            </div>
+            <div class="row">
+                <div class="col"><label class="col-form-label text-dark mb-1">Address</label></div>
+                <div class="col"><input class="form-control text-dark mb-1" type="text" placeholder="House No." name="house_no" value="{{ $patient->user->house_no }}"><input class="form-control text-dark mb-1" type="text" placeholder="Street No." name="street_no" value="{{ $patient->user->street_no }}"><input class="form-control text-dark mb-1" type="text" placeholder="City" name="city" value="{{ $patient->user->city }}"></div>
+            </div>
+            <div class="row">
+                <div class="col"><label class="col-form-label text-dark mb-1">Blood group</label></div>
+                    <div class="col">
+                        <select id="blood_group" name="blood_group" class="form-control">
+                            <option value="--Select option--">--Select option--</option>
+                            <option value="A+">A+</option>
+                            <option value="A-">A-</option>
+                            <option value="B+">B+</option>
+                            <option value="B-">B-</option>
+                            <option value="O+">O+</option>
+                            <option value="O-">O-</option>
+                        </select>
+                    </div>
+            </div>
+            <div class="row">
+                <div class="col"><label class="col-form-label text-dark mb-1">Age</label></div>
+                <div class="col"><input class="form-control text-dark mb-1" type="text" name="age" value="{{ $patient->user->age }}"></div>
+            </div>
+            <div class="row">
+                <div class="col"><label class="col-form-label text-dark mb-1">Email address</label></div>
+                <div class="col"><input class="form-control text-dark mb-1" type="text" name="email" value="{{ $user->email }}"required></div>
+                @error('email')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+            </div>
+            <div class="row">
+                <div class="col"><label class="col-form-label text-dark mb-1">Contact No.</label></div>
+                <div class="col"><input class="form-control text-dark mb-1" type="text" name="telno" value="{{ $patient->user->telno }}" required></div>
+                @error('telno')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+            </div>
+            <div class="row">
+                <div class="col"><label class="col-form-label text-dark mb-1">NIC</label></div>
+                <div class="col"><input class="form-control text-dark mb-1" type="text" name="nic" value="{{ $patient->user->nic }}"></div>
+            </div>
+            <div class="row">
+                <div class="col"><button class="btn btn-primary" id="btn_save" type="submit">Save</button></div>
+            </div>
+            </form>
     </div>
-
-</div>
-
-
-@if (count($errors) > 0)
-
-    <div class="alert alert-danger">
-
-        <strong>Whoops!</strong> There were some problems with your input.<br><br>
-
-        <ul>
-
-        @foreach ($errors->all() as $error)
-
-            <li>{{ $error }}</li>
-
-        @endforeach
-
-        </ul>
-
-    </div>
-
-@endif
-
-
-{!! Form::model($patient, ['method' => 'PATCH','route' => ['patients.update', $patient->id]]) !!}
-
-<div class="row">
-
-    <div class="col-xs-12 col-sm-12 col-md-12">
-
-        <div class="form-group">
-
-            <strong>Name:</strong>
-
-            {!! Form::text('name', null, array('placeholder' => 'Name','class' => 'form-control')) !!}
-
-        </div>
-
-    </div>
-
-    <div class="col-xs-12 col-sm-12 col-md-12">
-
-        <div class="form-group">
-
-            <strong>Email:</strong>
-
-            {!! Form::text('email', null, array('placeholder' => 'Email','class' => 'form-control')) !!}
-
-        </div>
-
-    </div>
-
-    <div class="col-xs-12 col-sm-12 col-md-12">
-
-        <div class="form-group">
-
-            <strong>Password:</strong>
-
-            {!! Form::password('password', array('placeholder' => 'Password','class' => 'form-control')) !!}
-
-        </div>
-
-    </div>
-
-    <div class="col-xs-12 col-sm-12 col-md-12">
-
-        <div class="form-group">
-
-            <strong>Confirm Password:</strong>
-
-            {!! Form::password('confirm-password', array('placeholder' => 'Confirm Password','class' => 'form-control')) !!}
-
-        </div>
-
-    </div>
-
-
-
-    <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-
-        <button type="submit" class="btn btn-primary">Submit</button>
-
-    </div>
-
-</div>
-
-{!! Form::close() !!}
-
-
 
 @endsection
