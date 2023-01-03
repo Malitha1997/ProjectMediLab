@@ -43,6 +43,8 @@
 
      <th>Doctor Name</th>
 
+     <th>Speciality</th>
+
      <th>Available Days</th>
 
      <th>Available Time</th>
@@ -59,6 +61,8 @@
 
         <td>Dr. {{ $schedule->doctor->user->f_name}} {{ $schedule->doctor->user->l_name}}</td>
 
+        <td>{{ $schedule->doctor->speciality}}</td>
+
         <td>{{ $schedule->available_day}}</td>
 
         <td>{{ $schedule->available_time}}</td>
@@ -70,7 +74,7 @@
 
 
 
-                <a class="btn btn-primary" href="{{ route('schedules.edit',$schedule->id) }}">Edit</a>
+                <a class="btn btn-success" href="{{ route('schedules.edit',$schedule->id) }}">Edit</a>
 
 
 

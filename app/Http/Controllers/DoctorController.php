@@ -59,7 +59,7 @@ class DoctorController extends Controller
         $user_doctors = DB::table('users')
         ->join('doctors', 'users.id', '=', 'doctors.user_id')
         ->select('users.*' ,'users.id as usr_id', 'doctors.*')
-        ->paginate(5);
+        ->paginate(10);
 
         return view('admin.doctors.index',compact('user_doctors'))
         ->with('i', ($request->input('page', 1) - 1) * 5);

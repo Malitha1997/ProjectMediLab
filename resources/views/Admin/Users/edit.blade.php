@@ -9,7 +9,7 @@
 
         <div class="pull-left">
 
-            <h2>Edit User</h2>
+            <h2 class="text-dark mb-1">Edit User</h2>
 
         </div>
 
@@ -51,9 +51,9 @@
 
     <div class="col-xs-12 col-sm-12 col-md-12">
 
-        <div class="form-group">
+        <div class="form-group text-dark mb-1">
 
-            <strong>Name:</strong>
+            Name:
 
             {!! Form::text('f_name', null, array('placeholder' => 'Name','class' => 'form-control')) !!}
 
@@ -63,9 +63,9 @@
 
     <div class="col-xs-12 col-sm-12 col-md-12">
 
-        <div class="form-group">
+        <div class="form-group text-dark mb-1">
 
-            <strong>Email:</strong>
+            Email:
 
             {!! Form::text('email', null, array('placeholder' => 'Email','class' => 'form-control')) !!}
 
@@ -75,9 +75,9 @@
 
     <div class="col-xs-12 col-sm-12 col-md-12">
 
-        <div class="form-group">
+        <div class="form-group text-dark mb-1">
 
-            <strong>Password:</strong>
+            Password:
 
             {!! Form::password('password', array('placeholder' => 'Password','class' => 'form-control')) !!}
 
@@ -87,9 +87,9 @@
 
     <div class="col-xs-12 col-sm-12 col-md-12">
 
-        <div class="form-group">
+        <div class="form-group text-dark mb-1">
 
-            <strong>Confirm Password:</strong>
+            Confirm Password:
 
             {!! Form::password('confirm-password', array('placeholder' => 'Confirm Password','class' => 'form-control')) !!}
 
@@ -99,9 +99,9 @@
 
     <div class="col-xs-12 col-sm-12 col-md-12">
 
-        <div class="form-group">
+        <div class="form-group text-dark mb-1">
 
-            <strong>Role:</strong>
+            Role:
 
             {!! Form::select('roles[]', $roles,$userRole, array('class' => 'form-control','multiple')) !!}
 

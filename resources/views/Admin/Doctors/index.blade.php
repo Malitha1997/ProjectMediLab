@@ -73,7 +73,7 @@
 
 
 
-                <a class="btn btn-primary" href="{{ route('doctors.edit',$doctor->id) }}">Edit</a>
+                <a class="btn btn-success" href="{{ route('doctors.edit',$doctor->id) }}">Edit</a>
 
 
 

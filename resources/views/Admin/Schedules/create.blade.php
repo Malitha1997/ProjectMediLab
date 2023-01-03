@@ -27,7 +27,7 @@
                     @enderror
                     </div>
                 </div>
-
+ 
                 <div class="row">
                     <div class="col"><label class="col-form-label text-dark mb-1">Available Days</lable></div>
                         <div class="col">

@@ -59,7 +59,7 @@ class ScheduleController extends Controller
         $schedule->save();
 
         return redirect()->route('schedules.index')
-                            ->with('success','schedule created successfully.');
+                            ->with('success','Schedule created successfully.');
 
     }
 
@@ -115,7 +115,7 @@ class ScheduleController extends Controller
         $schedule->update();
 
         return redirect()->route('schedules.index')
-                            ->with('success','schedule updated successfully.');
+                            ->with('success','Schedule updated successfully.');
     }
 
     /**

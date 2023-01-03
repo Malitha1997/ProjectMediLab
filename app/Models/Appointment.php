@@ -10,8 +10,17 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Appointment extends Model
 {
-    public function doctors(){
-        return $this->belongsToMany(Doctor::class, 'appointment_doctors');
+
+    protected $fillable = [
+        'patient_id',
+        'doctor_name',
+        'date',
+        'available_time',
+        'problem'
+    ];
+
+    public function doctor(){
+        return $this->belongsTo(Doctor::class,'foreign_key');
     }
 
     public function patient(){
