@@ -59,7 +59,7 @@
 
         <td>{{ ++$i }}</td>
 
-        <td>{{ $doctor->f_name }}</td>
+        <td>Dr.{{ $doctor->f_name }} {{ $doctor->l_name }}</td>
 
         <td>{{ $doctor->telno}}</td>
 

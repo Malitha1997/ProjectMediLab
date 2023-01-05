@@ -32,7 +32,7 @@
 
             Name:
 
-            {{ $user->f_name }}
+            Dr. {{ $user->f_name }} {{ $user->l_name }}
 
         </div>
 
@@ -49,6 +49,31 @@
         </div>
 
     </div>
+
+    <div class="col-xs-12 col-sm-12 col-md-12">
+
+        <div class="form-group text-dark mb-1">
+
+           Contact Number:
+
+            {{ $user->doctor->telno }}
+
+        </div>
+
+    </div>
+
+    <div class="col-xs-12 col-sm-12 col-md-12">
+
+        <div class="form-group text-dark mb-1">
+
+           Speciality:
+
+            {{ $user->doctor->speciality }}
+
+        </div>
+
+    </div>
+
 
 </div>
 

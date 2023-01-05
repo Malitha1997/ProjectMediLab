@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('qty');
             $table->string('drug_name');
             $table->string('issue_date');
+            $table->string('expire_date');
             $table->timestamps();
         });
     }

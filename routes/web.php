@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DoctorController;
+use App\Http\Controllers\SearchController;
 use App\Http\Controllers\SignupController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\ScheduleController;
@@ -28,21 +29,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/home', function () {
-    return view('Home.home');
-});
-
-Route::get('/signup', function () {
-    return view('signup');
-});
-
 Route::get('/add_bill', function () {
     return view('add_bill');
 });
-
-/*Route::get('/add_appointment', function () {
-    return view('Admin.Appointments.create');
-});*/
 
 Route::get('/add_packege', function () {
     return view('add_packege');
@@ -68,10 +57,6 @@ Route::get('/profile', function () {
     return view('profile');
 });
 
-Route::get('/register', function () {
-    return view('register');
-});
-
 Route::get('/schedule_list', function () {
     return view('schedule_list');
 });
@@ -89,6 +74,8 @@ Route::get('/service_list', function () {
 });
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+//Route::get('/search',SearchController::class,'doctorSearch');
 
 Route::group(['middleware' => ['auth']], function() {
     Route::resource('roles', RoleController::class);

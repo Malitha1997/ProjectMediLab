@@ -27,9 +27,18 @@ class AppointmentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
         return view('admin.appointments.create');
+
+        if($request->ajax()){
+            $data=User::where('doctor_name','LIKE',$request->f_name.'%')->get();
+            $output='';
+            if(count($data)>0){
+                $output='<ul class="list-group" style="display:block;position:relative;z-indez:1">';
+
+            }
+        }
     }
 
     /**

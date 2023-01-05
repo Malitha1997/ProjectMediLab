@@ -22,15 +22,25 @@
 
                 <div class="row">
                     <div class="col"><label class="col-form-label text-dark mb-1" >Doctor Name</lable></div>
-                    <div class="col"><input class="form-control text-dark mb-1" type="text" name="doctor_name" required>
-
-                    @error('doctor_name')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                    @enderror
-                    </div>
+                    <div class="col"><input class="form-control text-dark mb-1" type="text" name="doctor_name" placeholder="Search doctor.." required></div>
+                    <div id="doctor_name"></div>
                 </div>
+
+                <script>
+                    $(document).ready(function(){
+                        $("doctor_name").on('keyup',function()){
+                            var val=$(this).val();
+                            $.ajax({
+                                url:"{{ route('appointments.create') }}",
+                                type:"GET",
+                                data:{'doctor_name':value},
+                                success:function(data){
+                                    $(#doctor_name).html(data);
+                                }
+                            });
+                        }
+                    });
+                </script>
 
                 <div class="row">
                     <div class="col"><label class="col-form-label text-dark mb-1">Appointment Date</lable></div>
@@ -73,5 +83,6 @@
 
 </div>
 <button class="btn btn-primary" id="btn_save" type="submit">Book Appointment</button>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 </form>
 @endsection
