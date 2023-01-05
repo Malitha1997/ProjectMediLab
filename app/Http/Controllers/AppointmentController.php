@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Appointment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -27,18 +28,11 @@ class AppointmentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function create()
     {
+
+
         return view('admin.appointments.create');
-
-        if($request->ajax()){
-            $data=User::where('doctor_name','LIKE',$request->f_name.'%')->get();
-            $output='';
-            if(count($data)>0){
-                $output='<ul class="list-group" style="display:block;position:relative;z-indez:1">';
-
-            }
-        }
     }
 
     /**
@@ -144,5 +138,24 @@ class AppointmentController extends Controller
 
         return redirect()->route('appointments.index')
         ->with('success','Appointment deleted successfully');*/
+    }
+
+    public function livesearch(Request $request)
+    { //dd('hi');
+        $query = $request->get('query');
+          $users = User::where('f_name', 'LIKE', '%'. $query. '%')->get();
+          //dd($user->getRoleNames());
+
+
+          foreach($users as $user){
+            if($user->doctor != null){
+
+             $response[] = array("value"=>$user->doctor->id,"label"=>$user->f_name);
+
+                }
+            }
+
+          return response()->json($response);
+
     }
 }

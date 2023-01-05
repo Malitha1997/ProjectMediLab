@@ -103,9 +103,11 @@ Route::group(['middleware' => ['auth']], function() {
     //Route::resource('appointment', 'AppointmentController');
     //Route::post('/appointment/check', 'AppointmentController@check')->name('appointment.check');
     //Route::post('/appointment/update', 'AppointmentController@updateTime')->name('update');
+
+
 });
 
-
+Route::post('/livesearch', [AppointmentController::class, 'livesearch'])->name('livesearch');
 Auth::routes();
 
 
