@@ -53,9 +53,21 @@
 
         <div class="form-group text-dark mb-1">
 
-            Name:
+            First Name:
 
-            {!! Form::text('f_name', null, array('placeholder' => 'Name','class' => 'form-control')) !!}
+            {!! Form::text('f_name', null, array('placeholder' => 'First Name','class' => 'form-control')) !!}
+
+        </div>
+
+    </div>
+
+    <div class="col-xs-12 col-sm-12 col-md-12">
+
+        <div class="form-group text-dark mb-1">
+
+            Last Name:
+
+            {!! Form::text('l_name', null, array('placeholder' => 'Last Name','class' => 'form-control')) !!}
 
         </div>
 
@@ -111,7 +123,7 @@
 
     <div class="col-xs-12 col-sm-12 col-md-12 text-center">
 
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">Save</button>
 
     </div>
 

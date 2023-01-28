@@ -23,58 +23,48 @@
 
 </div>
 
+<table class="table text-dark">
+    <tr>
+        <th scope="col">Name</th>
+        <td>Dr. {{ $user->f_name }} {{ $user->l_name }}</td>
+    </tr>
 
-<div class="row">
+    <tr>
+        <th scope="col">Email</th>
+        <td>{{ $user->email }}</td>
+    </tr>
 
-    <div class="col-xs-12 col-sm-12 col-md-12">
+    <tr>
+        <th scope="col">Contact No</th>
+        <td>{{ $user->doctor->telno }}</td>
+    </tr>
 
-        <div class="form-group text-dark mb-1">
+    <tr>
+        <th scope="col">Address</th>
+        <td>{{ $user->doctor->house_no }} , {{ $user->doctor->street_no }} , {{ $user->doctor->city }}</td>
+    </tr>
 
-            Name:
+    <tr>
+        <th scope="col">Age</th>
+        <td>{{ $user->doctor->age }}</td>
+    </tr>
 
-            Dr. {{ $user->f_name }} {{ $user->l_name }}
+    <tr>
+        <th scope="col">NIC</th>
+        <td>{{ $user->doctor->nic }}</td>
+    </tr>
 
-        </div>
+    <tr>
+        <th scope="col">Speciality</th>
+        <td>{{ $user->doctor->speciality }}</td>
+    </tr>
 
-    </div>
+    <tr>
+        <th scope="col">Qualification</th>
+        <td>{{ $user->doctor->qualification }}</td>
+    </tr>
 
-    <div class="col-xs-12 col-sm-12 col-md-12">
+</table>
 
-        <div class="form-group text-dark mb-1">
-
-           Email:
-
-            {{ $user->email }}
-
-        </div>
-
-    </div>
-
-    <div class="col-xs-12 col-sm-12 col-md-12">
-
-        <div class="form-group text-dark mb-1">
-
-           Contact Number:
-
-            {{ $user->doctor->telno }}
-
-        </div>
-
-    </div>
-
-    <div class="col-xs-12 col-sm-12 col-md-12">
-
-        <div class="form-group text-dark mb-1">
-
-           Speciality:
-
-            {{ $user->doctor->speciality }}
-
-        </div>
-
-    </div>
-
-
-</div>
 
 @endsection

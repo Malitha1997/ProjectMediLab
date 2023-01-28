@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Schedule extends Model
 {
     protected $fillable = [
-            'id',
+            'id', 
             'available_day',
             'available_time',
 

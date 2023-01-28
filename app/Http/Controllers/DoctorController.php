@@ -63,9 +63,6 @@ class DoctorController extends Controller
 
         return view('admin.doctors.index',compact('user_doctors'))
         ->with('i', ($request->input('page', 1) - 1) * 5);
-
-
-
     }
 
 
@@ -83,7 +80,6 @@ class DoctorController extends Controller
     public function create()
 
     {
-
         return view('admin.doctors.create');
     }
 
@@ -103,22 +99,20 @@ class DoctorController extends Controller
 
     public function store(Request $request)
     {
-
         request()->validate([
-            'f_name'=> 'required',
-            'l_name'=> 'required',
-            'house_no'=> 'required',
-            'street_no'=> 'required',
-            'city'=> 'required',
-            'telno'=> 'required',
-            'nic'=> 'required',
-            'age'=> 'required',
-            'email'=> 'required',
+            'f_name'=> 'required|string|min:1|max:255',
+            'l_name'=> 'required|string|min:1|max:255',
+            'email'=> 'required|regex:/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/',
+            'telno'=> 'required|regex:/^(?:\+\d{1,3}[- ]?)?\d{10}$/',
             'password' => 'required|same:confirm-password',
-            'speciality' => 'required',
-            'qualification' => 'required',
+            'house_no'=> 'required|numeric',
+            'street_no'=> 'required|numeric',
+            'city'=> 'required',
+            'nic'=> 'required|min:9|max:12',
+            'age'=> 'required|numeric|min:1|max:120',
+            'speciality'=>'required',
+            'qualification'=>'required'
         ]);
-
 
         $user = new User;
 
@@ -140,18 +134,12 @@ class DoctorController extends Controller
         $doctor->qualification = $request->qualification;
         $doctor->speciality = $request->speciality;
 
-
         $user->doctor()->save($doctor);
-
-
 
         $user->assignRole('doctor');
 
-
         return redirect()->route('doctors.index')
                         ->with('success','Doctor created successfully.');
-
-
     }
 
 
@@ -175,7 +163,6 @@ class DoctorController extends Controller
         $duser=$user->user;
 
         return view('admin.doctors.show',compact('user','duser'));
-
     }
 
 
@@ -195,7 +182,6 @@ class DoctorController extends Controller
     public function edit($id)
 
     {
-
         $doctor=Doctor::find($id);
         return view('admin.doctors.edit',compact('doctor'));
     }
@@ -219,18 +205,17 @@ class DoctorController extends Controller
     public function update(Request $request, $id)
 
     {
-
         request()->validate([
-            'f_name'=> 'required',
+            'f_name'=> 'required|min:1|max:5',
             'l_name'=> 'required',
-            'email'=> 'required',
-            'telno'=> 'required',
+            'email'=> 'required|regex:/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/',
+            'telno'=> 'required|regex:/^(?:\+\d{1,3}[- ]?)?\d{10}$/',
             'password' => 'required|same:confirm-password',
-            'house_no'=> 'required',
-            'street_no'=> 'required',
+            'house_no'=> 'required|numeric',
+            'street_no'=> 'required|numeric',
             'city'=> 'required',
-            'nic'=> 'required',
-            'age'=> 'required',
+            'nic'=> 'required|numeric',
+            'age'=> 'required|numeric',
             'speciality'=>'required',
             'qualification'=>'required'
         ]);

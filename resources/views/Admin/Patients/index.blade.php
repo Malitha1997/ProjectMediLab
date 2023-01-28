@@ -67,7 +67,7 @@
 
             <a class="btn btn-info" href="{{ route('patients.show',$patient->user_id )}}">Show</a>
 
-            <a class="btn btn-primary" href="{{ route('patients.edit',$patient->id) }}">Edit</a>
+            <a class="btn btn-success" href="{{ route('patients.edit',$patient->id) }}">Edit</a>
 
                 {!! Form::open(['method' => 'DELETE','route' => ['patients.destroy', $patient->usr_id],'style'=>'display:inline']) !!}
 

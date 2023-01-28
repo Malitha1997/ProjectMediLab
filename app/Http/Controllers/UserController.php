@@ -91,7 +91,7 @@ class UserController extends Controller
 
             'f_name' => 'required',
             'l_name' => 'required',
-            'email' => 'required|email|unique:users,email',
+            'email' => 'required|regex:/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/',
             'password' => 'required|same:confirm-password',
             'roles' => 'required'
 
@@ -180,10 +180,9 @@ class UserController extends Controller
         $this->validate($request, [
             'f_name' => 'required',
             'l_name' => 'required',
-            'email' => 'required|email|unique:users,email,'.$id,
+            'email' => 'required|regex:/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/',
             'password' => 'same:confirm-password',
             'roles' => 'required'
-
         ]);
 
         $input = $request->all();

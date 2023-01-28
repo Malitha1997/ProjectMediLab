@@ -81,21 +81,21 @@ class PatientController extends Controller
     {
 
         request()->validate([
-            'f_name'=> 'required',
-            'l_name'=> 'required',
-            'house_no'=> 'required',
-            'street_no'=> 'required',
+            'f_name'=> 'required|string|min:1|max:255',
+            'l_name'=> 'required|string|min:1|max:255',
+            'house_no'=> 'required|numeric',
+            'street_no'=> 'required|numeric',
             'city'=> 'required',
-            'telno'=> 'required',
-            'nic'=> 'required',
+            'telno'=> 'required|regex:/^(?:\+\d{1,3}[- ]?)?\d{10}$/',
+            'nic'=> 'required|min:10|max:12',
             'blood_group'=> 'required',
-            'age'=> 'required',
-            'email'=> 'required',
+            'age'=> 'required|numeric|min:1|max:3',
+            'email'=> 'required|regex:/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/',
             'password' => 'required|same:confirm-password',
 
         ]);
 
-
+//dd($request);
         $user = new User;
 
         $user->f_name = $request->f_name;
@@ -167,10 +167,9 @@ class PatientController extends Controller
     public function edit($id)
 
     {
-
         $patient=Patient::find($id);
-        return view('admin.patients.edit',compact('patient'));
 
+        return view('admin.patients.edit',compact('patient'));
     }
 
 
@@ -192,18 +191,17 @@ class PatientController extends Controller
     public function update(Request $request, $id)
 
     {
-
         request()->validate([
-            'f_name'=> 'required',
-            'l_name'=> 'required',
-            'house_no'=> 'required',
-            'street_no'=> 'required',
+            'f_name'=> 'required|string|min:1|max:255',
+            'l_name'=> 'required|string|min:1|max:255',
+            'house_no'=> 'required|numeric',
+            'street_no'=> 'required|numeric',
             'city'=> 'required',
-            'telno'=> 'required',
-            'nic'=> 'required',
+            'telno'=> 'required|regex:/^(?:\+\d{1,3}[- ]?)?\d{10}$/',
+            'nic'=> 'required|min:9|max:12',
             'blood_group'=> 'required',
-            'age'=> 'required',
-            'email'=> 'required',
+            'age'=> 'required|numeric|min:1|max:120',
+            'email'=> 'required|regex:/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/',
             'password' => 'required|same:confirm-password',
         ]);
 

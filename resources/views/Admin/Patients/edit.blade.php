@@ -7,8 +7,10 @@
     <h3 class="text-dark mb-1">Edit patient</h3>
     </div><button class="btn btn-primary" data-aos="fade-down" data-aos-duration="1000" type="button" style="padding: 5px 10px;margin-left: 20px;margin-top: 5px;"><a href="/patient_list"><span style="--bs-body-color: var(--bs-btn-color);padding-right: 0px;margin-left: 0px;margin-right: -5px;"><span style="color: rgb(255, 255, 255);">Patient list</span></span></a></button>
     <div class="card" data-aos="fade-in" data-aos-duration="1000">
+
         <form style="padding-left: 56px;margin-right: 68px;" method="POST" action="{{route('patients.update',$patient->user->id)}}">
          {{csrf_field()}}
+
          @method('PUT')
             <div class="row">
                 <div class="col"><label class="col-form-label text-dark mb-1">First Name</label></div>
@@ -48,7 +50,7 @@
             </div>
             <div class="row">
                 <div class="col"><label class="col-form-label text-dark mb-1">Address</label></div>
-                <div class="col"><input class="form-control text-dark mb-1" type="text" placeholder="House No." name="house_no" value="{{ $patient->user->house_no }}"><input class="form-control text-dark mb-1" type="text" placeholder="Street No." name="street_no" value="{{ $patient->user->street_no }}"><input class="form-control text-dark mb-1" type="text" placeholder="City" name="city" value="{{ $patient->user->city }}"></div>
+                <div class="col"><input class="form-control text-dark mb-1" type="text" placeholder="House No." name="house_no" value="{{ $patient->house_no }}"><input class="form-control text-dark mb-1" type="text" placeholder="Street No." name="street_no" value="{{ $patient->street_no }}"><input class="form-control text-dark mb-1" type="text" placeholder="City" name="city" value="{{ $patient->city }}"></div>
             </div>
             <div class="row">
                 <div class="col"><label class="col-form-label text-dark mb-1">Blood group</label></div>
@@ -66,11 +68,11 @@
             </div>
             <div class="row">
                 <div class="col"><label class="col-form-label text-dark mb-1">Age</label></div>
-                <div class="col"><input class="form-control text-dark mb-1" type="text" name="age" value="{{ $patient->user->age }}"></div>
+                <div class="col"><input class="form-control text-dark mb-1" type="text" name="age" value="{{ $patient->age }}"></div>
             </div>
             <div class="row">
                 <div class="col"><label class="col-form-label text-dark mb-1">Email address</label></div>
-                <div class="col"><input class="form-control text-dark mb-1" type="text" name="email" value="{{ $user->email }}"required></div>
+                <div class="col"><input class="form-control text-dark mb-1" type="text" name="email" value="{{ $patient->user->email }}"required></div>
                 @error('email')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -79,7 +81,7 @@
             </div>
             <div class="row">
                 <div class="col"><label class="col-form-label text-dark mb-1">Contact No.</label></div>
-                <div class="col"><input class="form-control text-dark mb-1" type="text" name="telno" value="{{ $patient->user->telno }}" required></div>
+                <div class="col"><input class="form-control text-dark mb-1" type="text" name="telno" value="{{ $patient->telno }}" required></div>
                 @error('telno')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -88,7 +90,7 @@
             </div>
             <div class="row">
                 <div class="col"><label class="col-form-label text-dark mb-1">NIC</label></div>
-                <div class="col"><input class="form-control text-dark mb-1" type="text" name="nic" value="{{ $patient->user->nic }}"></div>
+                <div class="col"><input class="form-control text-dark mb-1" type="text" name="nic" value="{{ $patient->nic }}"></div>
             </div>
             <div class="row">
                 <div class="col"><button class="btn btn-primary" id="btn_save" type="submit">Save</button></div>

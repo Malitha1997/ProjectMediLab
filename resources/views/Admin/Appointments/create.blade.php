@@ -22,8 +22,9 @@
 
                 <div class="row">
                     <div class="col"><label class="col-form-label text-dark mb-1" >Doctor Name</lable></div>
-                    <div class="col"><input class="form-control text-dark mb-1" id="doctor_name" type="text" name="doctor_name" placeholder="Search doctor.." required></div>
-                    <div ></div>
+                    <div class="col"><input class="form-control text-dark mb-1" id="doctor_name" type="text" placeholder="Search doctor.." required>
+                        <input type="hidden" name="doctor_name" id="doctor_nameid">
+                    </div>
                 </div>
 
 
@@ -107,6 +108,7 @@
                     var id = event.target.id
                     $('#'+id).val(ui.item.label); // display the selected text
                     $('#'+id+'id').val(ui.item.value); // save selected id to input
+                    //console.log(ui.item.value);
                     return false;
                 }
             });

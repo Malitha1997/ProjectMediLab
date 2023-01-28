@@ -20,42 +20,22 @@
 
     </div>
 
-</div>
 
+<table class="table text-dark">
+        <tr>
+            <th scope="col">Name</th>
+            <td>{{ $user->f_name }}</td>
+        </tr>
 
-<div class="row">
+        <tr>
+            <th scope="col">Email</th>
+            <td>{{ $user->email }}</td>
+        </tr>
 
-    <div class="col-xs-12 col-sm-12 col-md-12">
-
-        <div class="form-group text-dark mb-1">
-
-            Name:
-
-            {{ $user->f_name }}
-
-        </div>
-
-    </div>
-
-    <div class="col-xs-12 col-sm-12 col-md-12">
-
-        <div class="form-group text-dark mb-1">
-
-            Email:
-
-            {{ $user->email }}
-
-        </div>
-
-    </div>
-
-    <div class="col-xs-12 col-sm-12 col-md-12">
-
-        <div class="form-group text-dark mb-1">
-
-            Roles:
-
-            @if(!empty($user->getRoleNames()))
+        <tr>
+            <th scope="col">Role</th>
+            <td>
+                @if(!empty($user->getRoleNames()))
 
                 @foreach($user->getRoleNames() as $v)
 
@@ -64,10 +44,10 @@
                 @endforeach
 
             @endif
+            </td>
+        </tr>
+</table>
 
-        </div>
-
-    </div>
 
 </div>
 

@@ -11,23 +11,9 @@
      {{csrf_field()}}
                 <div class="row">
                     <div class="col"><label class="col-form-label text-dark mb-1" >Doctor Name</lable></div>
-                    <div class="col">
-                        <select class="form-control" name="doctor_f_name" id="f_name">
-                            <option value="select doctor">--Select Doctor--</option>
-                            @foreach($doctors as $doctor)
-                                <option value="{{ $doctor->id }}">
-                                    Dr. {{ $doctor->user->f_name }} {{ $doctor->user->l_name }}
-                                </option>
-                            @endforeach
-                        </select>
-                    @error('f_name')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                    @enderror
-                    </div>
+                    <div class="col"><input class="form-control text-dark mb-1" id="doctor_name" type="text" name="doctor_name" placeholder="Search doctor.." required></div>
                 </div>
- 
+
                 <div class="row">
                     <div class="col"><label class="col-form-label text-dark mb-1">Available Days</lable></div>
                         <div class="col">
@@ -62,4 +48,50 @@
 </div>
 <button class="btn btn-primary" id="btn_save" type="submit">Done</button>
 </form>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+<script>
+    $(document).ready(function(){
+        $(document).on('click', '#doctor_name', function() {
+            var route = "{{ route('livesearch') }}";
+            $(this).autocomplete({
+                source: function( request, response ) {
+                    $.ajaxSetup({
+
+                        headers: {
+
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+
+                        }
+
+                    });
+                   // Fetch data
+                    $.ajax({
+                        url:route,
+                        type: 'post',
+                        dataType: "json",
+                        data: {
+                            query: request.term
+                        },
+                        success: function( data ) {
+                        response( data );
+
+                        }
+                    });
+                },
+                select: function (event, ui) {
+                    // Set selection
+                    var id = event.target.id
+                    $('#'+id).val(ui.item.label); // display the selected text
+                    $('#'+id+'id').val(ui.item.value); // save selected id to input
+                    return false;
+                }
+            });
+        });
+
+
+    });
+
+
+</script>
 @endsection

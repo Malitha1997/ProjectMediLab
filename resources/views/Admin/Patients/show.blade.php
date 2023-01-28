@@ -23,47 +23,43 @@
 
 </div>
 
+<table class="table text-dark">
+    <tr>
+        <th scope="col">Name</th>
+        <td>{{ $user->f_name }} {{ $user->l_name }}</td>
+    </tr>
 
-<div class="row">
+    <tr>
+        <th scope="col">Email</th>
+        <td>{{ $user->email }}</td>
+    </tr>
 
-    <div class="col-xs-12 col-sm-12 col-md-12">
+    <tr>
+        <th scope="col">Contact No</th>
+        <td>{{ $user->patient->telno }}</td>
+    </tr>
 
-        <div class="form-group text-dark mb-1">
+    <tr>
+        <th scope="col">Address</th>
+        <td>{{ $user->patient->house_no }} , {{ $user->patient->street_no }} , {{ $user->patient->city }}
+        </td>
+    </tr>
 
-            Name:
+    <tr>
+        <th scope="col">Age</th>
+        <td>{{ $user->patient->age }}</td>
+    </tr>
 
-            {{ $user->f_name }}
+    <tr>
+        <th scope="col">NIC</th>
+        <td>{{ $user->patient->nic }}</td>
+    </tr>
 
-        </div>
+    <tr>
+        <th scope="col">Blood group</th>
+        <td>{{ $user->patient->blood_group }}</td>
+    </tr>
+</table>
 
-    </div>
-
-    <div class="col-xs-12 col-sm-12 col-md-12">
-
-        <div class="form-group text-dark mb-1">
-
-          Email:
-
-            {{ $user->email }}
-
-        </div>
-
-    </div>
-
-    <div class="col-xs-12 col-sm-12 col-md-12">
-
-        <div class="form-group text-dark mb-1">
-
-          Email:
-
-            {{ $user->patient->telno }}
-
-        </div>
-
-    </div>
-
-
-
-</div>
 
 @endsection

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Appointment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 class AppointmentController extends Controller
@@ -16,10 +17,18 @@ class AppointmentController extends Controller
      */
     public function index()
     {
-        $appointments = Appointment::find(Auth::id())->doctor->appointment;
+        $appointment_doctors = DB::table('appoinrments')
+        ->join('doctors', 'appointments.doctor_id', '=', 'doctors.id')
+        ->join('patients', 'appointments.patient_id', '=', 'patients.id')
+        ->join('schedules', 'appointments.schedule_id', '=', 'schedules.id')
+        ->select('appointments.*' ,'schedules.*','patients.*', 'doctors.*');
+        //->paginate(10);
+        //$appointments = Appointment::get();
          //dd($appointments);
 
-        return view('admin.appointments.index',compact('appointments'))
+         //$drugs=User::find(Auth::id())->patient->drugs;
+
+        return view('admin.appointments.index',compact('appointment_doctors'))
         ->with('i', ($request->input('page', 1) - 1) * 5);
     }
 
@@ -43,8 +52,9 @@ class AppointmentController extends Controller
      */
     public function store(Request $request)
     {
+        //dd($request);
         request()->validate([
-            'id'=>'required',
+            'patient_id'=>'required',
             'doctor_name'=>'required',
             'date'=>'required',
             'available_time'=>'required',
@@ -53,10 +63,10 @@ class AppointmentController extends Controller
 
         $appointment = new Appointment;
 
-        $appointment->patient_id=$request->id;
+        $appointment->patient_id=$request->patient_id;
         $appointment->doctor_id=$request->doctor_name;
         $appointment->date=$request->date;
-        $appointment->time=$request->time;
+        $appointment->time=$request->available_time;
         $appointment->problem=$request->problem;
 
         $appointment->save();
@@ -114,7 +124,7 @@ class AppointmentController extends Controller
         $appointment->patient_id=$request->id;
         $appointment->doctor_id=$request->doctor_name;
         $appointment->date=$request->date;
-        $appointment->time=$request->time;
+        $appointment->time=$request->available_time;
         $appointment->problem=$request->problem;
 
         $appointment->update();
