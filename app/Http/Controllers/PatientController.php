@@ -89,7 +89,7 @@ class PatientController extends Controller
             'telno'=> 'required|regex:/^(?:\+\d{1,3}[- ]?)?\d{10}$/',
             'nic'=> 'required|min:10|max:12',
             'blood_group'=> 'required',
-            'age'=> 'required|numeric|min:1|max:3',
+            'age'=> 'required|numeric|min:1|max:120',
             'email'=> 'required|regex:/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/',
             'password' => 'required|same:confirm-password',
 
@@ -246,16 +246,26 @@ class PatientController extends Controller
 
      */
 
-    public function destroy($id)
+     public function destroy($id)
+     {
+         $user = User::find($id);
 
-    {
-        $user = User::find($id);
+         if (request()->ajax()) {
+             if (request()->has('confirm')) {
+                 $user->patient()->delete();
+                 $user->delete();
+                 return response()->json(['success' => 'Patient deleted successfully']);
+             } else {
+                 return response()->json(['confirm' => 'Are you sure you want to delete this patient?']);
+             }
+         }
 
-        $user->patient()->delete();
-        $user->delete();
+         $user->patient()->delete();
+         $user->delete();
 
-        return redirect()->route('patients.index')
-        ->with('success','Patient deleted successfully');
-    }
+         return redirect()->route('patients.index')
+         ->with('success','Patient deleted successfully');
+     }
+
 
 }

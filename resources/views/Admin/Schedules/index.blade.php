@@ -80,7 +80,7 @@
 
                 {!! Form::open(['method' => 'DELETE','route' => ['schedules.destroy', $schedule->id],'style'=>'display:inline']) !!}
 
-                    {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
+                    {!! Form::submit('Delete', ['class' => 'btn btn-danger ']) !!}
 
                 {!! Form::close() !!}
 
@@ -96,3 +96,5 @@
 {!! $doctor_schedules->render() !!}
 
 @endsection
+
+

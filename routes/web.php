@@ -10,6 +10,7 @@ use App\Http\Controllers\SignupController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\AppointmentController;
+use App\Http\Controllers\LabAssistantController;
 use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\AppointmentDoctorController;
 
@@ -84,18 +85,21 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('doctors', DoctorController::class);
     Route::resource('schedules', ScheduleController::class);
     Route::resource('appointments', AppointmentController::class);
+    Route::resource('lab_assistants', LabAssistantController::class);
 
     Route::get('/add_user', [UserController::class, 'create']);
     Route::get('/add_patient', [PatientController::class, 'create']);
     Route::get('/add_doctor', [DoctorController::class, 'create']);
     Route::get('/add_appointment', [AppointmentController::class, 'create']);
     Route::get('/add_schedule', [ScheduleController::class, 'create']);
+    Route::get('/add_lab_assistant', [LabAssistantController::class, 'create']);
 
     Route::get('/patient_list', [PatientController::class, 'index'])->name('patient_list');
     Route::get('/user_list', [UserController::class, 'index'])->name('user_list');
     Route::get('/doctor_list', [DoctorController::class, 'index'])->name('doctor_list');
     Route::get('/schedule_list', [ScheduleController::class, 'index'])->name('schedule_list');
     Route::get('/appointment_list', [AppointmentController::class, 'index'])->name('appointment_list');
+    Route::get('/lab_assistant_list', [LabAssistantController::class, 'index'])->name('lab_assistant_list');
 
     Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
 

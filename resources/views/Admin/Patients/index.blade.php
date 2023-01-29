@@ -69,11 +69,13 @@
 
             <a class="btn btn-success" href="{{ route('patients.edit',$patient->id) }}">Edit</a>
 
-                {!! Form::open(['method' => 'DELETE','route' => ['patients.destroy', $patient->usr_id],'style'=>'display:inline']) !!}
+            {!! Form::open(['method' => 'DELETE','route' => ['patients.destroy', $patient->usr_id],'style'=>'display:inline']) !!}
 
-                    {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
+            {!! Form::submit('Delete', ['class' => 'btn btn-danger patdeletebtn']) !!}
 
-                {!! Form::close() !!}
+        {!! Form::close() !!}
+
+
 
         </td>
 
@@ -88,3 +90,5 @@
 
 
 @endsection
+
+

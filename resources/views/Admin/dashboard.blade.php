@@ -52,6 +52,30 @@
                             </div>
                         </div>
 
+                        <div class="col-md-6 col-xl-3 mb-4" data-aos="zoom-in" data-aos-duration="1000">
+                            <div class="card shadow border-start-success py-2">
+                                <div class="card-body" data-aos="zoom-in" data-aos-duration="1000">
+                                    <div class="row align-items-center no-gutters">
+                                        <div class="col me-2">
+                                            <div class="text-uppercase text-warning fw-bold text-xs"><span>Lab Assistants</span></div>
+                                            <div class="text-dark mb-1">
+                                            <?php
+                                                $connection = mysqli_connect("localhost","root","","projectmedilab");
+
+                                                $query= "SELECT id FROM lab_assistants ORDER BY id";
+                                                $query_run = mysqli_query ($connection, $query);
+
+                                                $row = mysqli_num_rows($query_run);
+                                                echo '<h3>'.$row.'</h3>';
+                                            ?>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="col-md-6 col-xl-3 mb-4">
                             <div class="card shadow border-start-info py-2" data-aos="zoom-in" data-aos-duration="1000">
                                 <div class="card-body" data-aos="zoom-in" data-aos-duration="1000">
@@ -76,6 +100,7 @@
                                 </div>
                             </div>
                         </div>
+
                     </div>
 
                 </div>

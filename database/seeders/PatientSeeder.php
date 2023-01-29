@@ -16,7 +16,7 @@ class PatientSeeder extends Seeder
     public function run()
     {
         DB::table('patients')->insert([
-            'user_id' => 8,
+            'user_id' => 10,
             'house_no' => '10',
             'street_no' => '25',
             'city' => 'Alawwa',
@@ -27,7 +27,7 @@ class PatientSeeder extends Seeder
          ]);
 
          DB::table('patients')->insert([
-            'user_id' => 9,
+            'user_id' => 11,
             'house_no' => '11',
             'street_no' => '2',
             'city' => 'Jaffna',
@@ -38,7 +38,7 @@ class PatientSeeder extends Seeder
          ]);
 
          DB::table('patients')->insert([
-            'user_id' => 10,
+            'user_id' => 12,
             'house_no' => '51',
             'street_no' => '23',
             'city' => 'Kegalle',
@@ -49,7 +49,7 @@ class PatientSeeder extends Seeder
          ]);
 
          DB::table('patients')->insert([
-            'user_id' => 11,
+            'user_id' => 13,
             'house_no' => '65',
             'street_no' => '2',
             'city' => 'Aluthgama',
@@ -60,7 +60,7 @@ class PatientSeeder extends Seeder
          ]);
 
          DB::table('patients')->insert([
-            'user_id' => 12,
+            'user_id' => 14,
             'house_no' => '6',
             'street_no' => '26',
             'city' => 'Kalutara',

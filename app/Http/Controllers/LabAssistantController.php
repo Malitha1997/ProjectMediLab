@@ -9,13 +9,14 @@ namespace App\Http\Controllers;
 use App\Models\User;
 
 use App\Models\Doctor;
+use App\Models\Lab_assistant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 
 
-class DoctorController extends Controller
+class LabAssistantController extends Controller
 
 {
 
@@ -56,12 +57,12 @@ class DoctorController extends Controller
     public function index(Request $request)
 
     {
-        $user_doctors = DB::table('users')
-        ->join('doctors', 'users.id', '=', 'doctors.user_id')
-        ->select('users.*' ,'users.id as usr_id', 'doctors.*')
+        $user_lab_assistants = DB::table('users')
+        ->join('lab_assistants', 'users.id', '=', 'lab_assistants.user_id')
+        ->select('users.*' ,'users.id as usr_id', 'lab_assistants.*')
         ->paginate(10);
 
-        return view('admin.doctors.index',compact('user_doctors'))
+        return view('admin.lab_assistants.index',compact('user_lab_assistants'))
         ->with('i', ($request->input('page', 1) - 1) * 5);
     }
 
@@ -80,7 +81,7 @@ class DoctorController extends Controller
     public function create()
 
     {
-        return view('admin.doctors.create');
+        return view('admin.lab_assistants.create');
     }
 
 
@@ -110,7 +111,6 @@ class DoctorController extends Controller
             'city'=> 'required',
             'nic'=> 'required|min:9|max:12',
             'age'=> 'required|numeric|min:1|max:120',
-            'speciality'=>'required',
             'qualification'=>'required'
         ]);
 
@@ -123,23 +123,22 @@ class DoctorController extends Controller
 
         $user->save();
 
-        $doctor = new Doctor;
+        $lab_assistant = new Lab_assistant;
 
-        $doctor->house_no = $request->house_no;
-        $doctor->street_no = $request->street_no;
-        $doctor->city = $request->city;
-        $doctor->telno = $request->telno;
-        $doctor->nic = $request->nic;
-        $doctor->age = $request->age;
-        $doctor->qualification = $request->qualification;
-        $doctor->speciality = $request->speciality;
+        $lab_assistant->house_no = $request->house_no;
+        $lab_assistant->street_no = $request->street_no;
+        $lab_assistant->city = $request->city;
+        $lab_assistant->telno = $request->telno;
+        $lab_assistant->nic = $request->nic;
+        $lab_assistant->age = $request->age;
+        $lab_assistant->qualification = $request->qualification;
 
-        $user->doctor()->save($doctor);
+        $user->lab_assistant()->save($lab_assistant);
 
-        $user->assignRole('doctor');
+        $user->assignRole('Lab assistant');
 
-        return redirect()->route('doctors.index')
-                        ->with('success','Doctor created successfully.');
+        return redirect()->route('lab_assistants.index')
+                        ->with('success','Lab Assistant created successfully.');
     }
 
 
@@ -160,9 +159,9 @@ class DoctorController extends Controller
 
     {
         $user=User::find($id);
-        $duser=$user->user;
+        $luser=$user->user;
 
-        return view('admin.doctors.show',compact('user','duser'));
+        return view('admin.lab_assistants.show',compact('user','luser'));
     }
 
 
@@ -182,8 +181,8 @@ class DoctorController extends Controller
     public function edit($id)
 
     {
-        $doctor=Doctor::find($id);
-        return view('admin.doctors.edit',compact('doctor'));
+        $lab_assistant=Lab_assistant::find($id);
+        return view('admin.lab_assistants.edit',compact('lab_assistant'));
     }
 
 
@@ -216,7 +215,6 @@ class DoctorController extends Controller
             'city'=> 'required',
             'nic'=> 'required|min:9|max:12',
             'age'=> 'required|numeric',
-            'speciality'=>'required',
             'qualification'=>'required'
         ]);
 
@@ -231,19 +229,18 @@ class DoctorController extends Controller
 
         $doctor = new Doctor;
 
-        $doctor->telno = $request->telno;
-        $doctor->house_no = $request->house_no;
-        $doctor->street_no = $request->street_no;
-        $doctor->city = $request->city;
-        $doctor->nic = $request->nic;
-        $doctor->age = $request->age;
-        $doctor->qualification = $request->qualification;
-        $doctor->speciality = $request->speciality;
+        $lab_assistant->telno = $request->telno;
+        $lab_assistant->house_no = $request->house_no;
+        $lab_assistant->street_no = $request->street_no;
+        $lab_assistant->city = $request->city;
+        $lab_assistant->nic = $request->nic;
+        $lab_assistant->age = $request->age;
+        $lab_assistant->qualification = $request->qualification;
 
-        $user->doctor()->update($doctor->toArray());
+        $user->lab_assistant()->update($lab_assistant->toArray());
 
-        return redirect()->route('doctors.index')
-                        ->with('success','Doctor updated successfully.');
+        return redirect()->route('lab_assistants.index')
+                        ->with('success','Lab Assistant updated successfully.');
     }
 
 
@@ -266,11 +263,11 @@ class DoctorController extends Controller
 
         $user = User::find($id);
 
-        $user->doctor()->delete();
+        $user->lab_assistant()->delete();
         $user->delete();
 
-        return redirect()->route('doctors.index')
-        ->with('success','Doctor deleted successfully');
+        return redirect()->route('lab_assistants.index')
+        ->with('success','Lab Assistant deleted successfully');
     }
 
 }

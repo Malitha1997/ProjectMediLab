@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('date');
             $table->string('time');
-            $table->string('problem');
+            $table->string('description');
             $table->foreignId('patient_id')->constrained('patients');
             $table->foreignId('doctor_id')->constrained('doctors');
             $table->foreignId('schedule_id')->constrained('schedules');

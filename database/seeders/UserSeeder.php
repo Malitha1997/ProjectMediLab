@@ -80,6 +80,22 @@ class UserSeeder extends Seeder
         ]);
         $user->assignRole('Lab assistant');
 
+        $user = User::create([
+            'f_name' => 'Ranjith',
+            'l_name' => 'Somathilake',
+            'email' => 'ranjith@gmail.com',
+            'password' => bcrypt('ranjith123'),
+        ]);
+        $user->assignRole('Lab assistant');
+
+        $user = User::create([
+            'f_name' => 'Yasith',
+            'l_name' => 'Piumantha',
+            'email' => 'yasith@gmail.com',
+            'password' => bcrypt('yasith123'),
+        ]);
+        $user->assignRole('Lab assistant');
+
         //Patients
 
         $role = Role::create(['name' => 'Patient']);

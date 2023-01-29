@@ -16,7 +16,12 @@ return new class extends Migration
         Schema::create('lab_assistants', function (Blueprint $table) {
             $table->id();
             $table->string('telno');
-            $table->string('rep_issue_date');
+            $table->string('house_no');
+            $table->string('street_no');
+            $table->string('city');
+            $table->string('qualification');
+            $table->string('age');
+            $table->string('nic');
             $table->foreignId('user_id')->constrained('users');
             $table->timestamps();
         });
