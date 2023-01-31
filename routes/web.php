@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DoctorController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\SignupController;
 use App\Http\Controllers\PatientController;
@@ -86,6 +87,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('schedules', ScheduleController::class);
     Route::resource('appointments', AppointmentController::class);
     Route::resource('lab_assistants', LabAssistantController::class);
+    Route::resource('reports', ReportController::class);
 
     Route::get('/add_user', [UserController::class, 'create']);
     Route::get('/add_patient', [PatientController::class, 'create']);
@@ -93,6 +95,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/add_appointment', [AppointmentController::class, 'create']);
     Route::get('/add_schedule', [ScheduleController::class, 'create']);
     Route::get('/add_lab_assistant', [LabAssistantController::class, 'create']);
+    Route::get('/add_report', [ReportController::class, 'create']);
 
     Route::get('/patient_list', [PatientController::class, 'index'])->name('patient_list');
     Route::get('/user_list', [UserController::class, 'index'])->name('user_list');
@@ -100,6 +103,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/schedule_list', [ScheduleController::class, 'index'])->name('schedule_list');
     Route::get('/appointment_list', [AppointmentController::class, 'index'])->name('appointment_list');
     Route::get('/lab_assistant_list', [LabAssistantController::class, 'index'])->name('lab_assistant_list');
+    Route::get('/report_list', [ReportController::class, 'index'])->name('report_list');
 
     Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
 

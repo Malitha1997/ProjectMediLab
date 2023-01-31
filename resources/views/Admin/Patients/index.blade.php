@@ -69,13 +69,7 @@
 
             <a class="btn btn-success" href="{{ route('patients.edit',$patient->id) }}">Edit</a>
 
-            {!! Form::open(['method' => 'DELETE','route' => ['patients.destroy', $patient->usr_id],'style'=>'display:inline']) !!}
-
-            {!! Form::submit('Delete', ['class' => 'btn btn-danger patdeletebtn']) !!}
-
-        {!! Form::close() !!}
-
-
+            <button type="button" class="btn btn-danger confirmdelbtn" data-id="{{$patient->user_id}}">Delete</button>
 
         </td>
 
@@ -91,4 +85,44 @@
 
 @endsection
 
+@section('scripts')
+<script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $('.confirmdelbtn').click(function (e){
+            e.preventDefault();
+             id = $(this).data('id');
+            swal({
+                title: "Are you sure?",
+                text: "Once deleted, you will not be able to recover this imaginary file!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+              })
+              .then((willDelete) => {
+                if (willDelete) {
+                    $.ajax({
+                        url: '/patients/' + id ,
+                        type: 'DELETE',
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        success: function (data) {
+                            swal("Poof! Your imaginary file has been deleted!", {
+                            icon: "success",
+
+                        });
+                        window.location.href = '/patients';
+                        }
+                     });
+
+                } else {
+                  swal("Your imaginary file is safe!");
+                }
+              });
+        });
+    });
+</script>
+@endsection
 

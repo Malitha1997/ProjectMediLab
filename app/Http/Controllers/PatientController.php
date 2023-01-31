@@ -248,17 +248,8 @@ class PatientController extends Controller
 
      public function destroy($id)
      {
+        //dd($id);
          $user = User::find($id);
-
-         if (request()->ajax()) {
-             if (request()->has('confirm')) {
-                 $user->patient()->delete();
-                 $user->delete();
-                 return response()->json(['success' => 'Patient deleted successfully']);
-             } else {
-                 return response()->json(['confirm' => 'Are you sure you want to delete this patient?']);
-             }
-         }
 
          $user->patient()->delete();
          $user->delete();

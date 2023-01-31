@@ -31,7 +31,7 @@ class ScheduleController extends Controller
     public function create()
     {   $doctors=Doctor::get();
         //$all_users_with_all_their_roles = User::with('doctors')->get();
-        return view('Admin.Schedules.create',compact('doctors'));
+        return view('admin.Schedules.create',compact('doctors'));
     }
 
     /**
@@ -46,8 +46,6 @@ class ScheduleController extends Controller
             'doctor_f_name'=> 'required',
             'available_day'=> 'required',
             'available_time'=> 'required',
-
-
         ]);
 
         $schedule = new Schedule;

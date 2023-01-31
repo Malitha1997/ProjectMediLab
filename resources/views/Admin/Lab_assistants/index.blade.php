@@ -70,11 +70,7 @@
 
             <a class="btn btn-success" href="{{ route('lab_assistants.edit',$lab_assistant->id) }}">Edit</a>
 
-                {!! Form::open(['method' => 'DELETE','route' => ['lab_assistants.destroy', $lab_assistant->usr_id],'style'=>'display:inline']) !!}
-
-                    {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
-
-                {!! Form::close() !!}
+            <button type="button" class="btn btn-danger confirmdelbtn" data-id="{{$lab_assistant->user_id}}">Delete</button>
 
 
         </td>
@@ -88,3 +84,45 @@
 {!! $user_lab_assistants->render() !!}
 
 @endsection
+
+@section('scripts')
+<script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $('.confirmdelbtn').click(function (e){
+            e.preventDefault();
+             id = $(this).data('id');
+            swal({
+                title: "Are you sure?",
+                text: "Once deleted, you will not be able to recover this imaginary file!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+              })
+              .then((willDelete) => {
+                if (willDelete) {
+                    $.ajax({
+                        url: '/lab_assistants/' + id ,
+                        type: 'DELETE',
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        success: function (data) {
+                            swal("Poof! Your imaginary file has been deleted!", {
+                            icon: "success",
+
+                        });
+                        window.location.href = '/lab_assistants';
+                        }
+                     });
+
+                } else {
+                  swal("Your imaginary file is safe!");
+                }
+              });
+        });
+    });
+</script>
+@endsection
+

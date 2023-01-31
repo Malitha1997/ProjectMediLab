@@ -15,11 +15,14 @@ return new class extends Migration
     {
         Schema::create('reports', function (Blueprint $table) {
             $table->id();
+            $table->string('patient_name');
             $table->string('description');
             $table->foreignId('doctor_id')->constrained('doctors');
             $table->foreignId('test_bill_id')->constrained('test_bills');
             $table->foreignId('lab_assistant_id')->constrained('lab_assistants');
+            $table->string('report_file');
             $table->timestamps();
+
         });
     }
 

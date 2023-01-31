@@ -41,24 +41,44 @@ class SignupController extends Controller
         $patient=new Patient;
 
         $this->validate($request,[
-            'username'=>'required|max:100|min:5',
-            'email'=>'required|email|unique:patients,email',
-            'password' => ['required','string', 'min:8'],
+            'f_name'=> 'required|string|min:1|max:255',
+            'l_name'=> 'required|string|min:1|max:255',
+            'house_no'=> 'required|numeric',
+            'street_no'=> 'required|numeric',
+            'city'=> 'required',
+            'telno'=> 'required|regex:/^(?:\+\d{1,3}[- ]?)?\d{10}$/',
+            'nic'=> 'required|min:10|max:12',
+            'blood_group'=> 'required',
+            'age'=> 'required|numeric|min:1|max:120',
+            'email'=> 'required|regex:/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/',
+            'password' => 'required|same:confirm-password',
         ]);
 
-        $patient->p_f_name=$request->p_f_name;
-        $patient->p_l_name=$request->p_l_name; 
-        $patient->p_email=$request->p_email;
-        $patient->p_username=$request->p_username;
-        $patient->p_password=Hash::make($request->p_password);
-        $patient->house_no=$request->house_no;
-        $patient->street_no=$request->street_no;
-        $patient->city=$request->city;
-        $patient->p_telno=$request->p_telno;
-        $patient->age=$request->age;
-        $patient->nic=$request->nic;
-        $patient->save();
-        return redirect()->route('signup.index');
+        $user = new User;
+
+        $user->f_name = $request->f_name;
+        $user->l_name = $request->l_name;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
+
+        $user->save();
+
+        $patient = new Patient;
+
+        $patient->house_no = $request->house_no;
+        $patient->street_no = $request->street_no;
+        $patient->city = $request->city;
+        $patient->telno = $request->telno;
+        $patient->blood_group = $request->blood_group;
+        $patient->nic = $request->nic;
+        $patient->age = $request->age;
+
+        $user->patient()->save($patient);
+
+        $user->assignRole('patient');
+
+        return redirect()->route('patients.index')
+                            ->with('success','Patient created successfully.');
     }
 
     /**

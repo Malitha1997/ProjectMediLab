@@ -9,140 +9,103 @@
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('patients.store') }}">
-                        @csrf
-                        <div class="form-group">
-                        <div class="row ">
-                            <label for="f_name" class="col-md-4 col-form-label text-md-end">{{ __('First Name') }}</label>
-
-                            <div class="col">
-                                <input id="f_name" type="text" class="form-control @error('f_name') is-invalid @enderror" name="f_name" value="{{ old('f_name') }}" required autocomplete="f_name" autofocus>
-
-                                @error('f_name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-                        </div>
-
-                        <div class="form-group">
-                        <div class="row ">
-                            <label for="l_name" class="col-md-4 col-form-label text-md-end">{{ __('Last Name') }}</label>
-
-                            <div class="col">
-                                <input id="l_name" type="text" class="form-control @error('l_name') is-invalid @enderror" name="l_name" value="{{ old('l_name') }}" required autocomplete="l_name" autofocus>
-
-                                @error('l_name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-                        </div>
-
-                        <div class="form-group">
-                        <div class="row ">
-                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
-
-                            <div class="col">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-                        </div>
-
-                        <div class="form-group">
+                        {{csrf_field()}}
                         <div class="row">
-                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
-
-                            <div class="col">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                            <div class="col"><label class="col-form-label text-dark mb-1">First Name</label></div>
+                            <div class="col"><input class="form-control text-dark mb-1" type="text" name="f_name" value="{{ old('f_name') }}" required>
+                            @if($errors->has('f_name'))
+                            <p class="text-danger">{{ $errors->first('f_name') }}</p>
+                            @endif
                             </div>
                         </div>
-                        </div>
-
-                        <div class="form-group">
-                        <div class="row ">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-end">{{ __('Confirm Password') }}</label>
-
-                            <div class="col">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                        <div class="row">
+                            <div class="col"><label class="col-form-label text-dark mb-1">Last Name</label></div>
+                            <div class="col"><input class="form-control text-dark mb-1" type="text" name="l_name" value="{{ old('l_name') }}" required>
+                            @if($errors->has('l_name'))
+                            <p class="text-danger">{{ $errors->first('l_name') }}</p>
+                            @endif
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col"><label class="col-form-label text-dark mb-1">Password</label></div>
+                            <div class="col"><input class="form-control text-dark mb-1" type="password" name="password" value="{{ old('password') }}" required></div>
                         </div>
-
-                        <div class="form-group">
-                        <div class="row ">
-                            <label for="address" class="col-md-4 col-form-label text-md-end">{{ __('Address') }}</label>
-                            <div class="col">
-                                <div class="col"><input class="form-control text-dark mb-1" type="text" placeholder="House No." name="house_no"><input class="form-control text-dark mb-1" type="text" placeholder="Street No." name="street_no"><input class="form-control text-dark mb-1" type="text" placeholder="City" name="city"></div>
+                        <div class="row">
+                            <div class="col"><label class="col-form-label text-dark mb-1">Confirm Password</label></div>
+                            <div class="col"><input class="form-control text-dark mb-1" type="password" name="confirm-password" value="{{ old('confirm-password') }}" required>
+                            @if($errors->has('password'))
+                            <p class="text-danger">{{ $errors->first('password') }}</p>
+                            @endif
                             </div>
                         </div>
-                        </div>
+                        <div class="row">
+                            <div class="col"><label class="col-form-label text-dark mb-1">Address</label></div>
+                            <div class="col"><input class="form-control text-dark mb-1" type="text" placeholder="House No." name="house_no" value="{{ old('house_no') }}" required>
+                            @if($errors->has('house_no'))
+                            <p class="text-danger">{{ $errors->first('house_no') }}</p>
+                            @endif
 
-                        <div class="form-group">
-                        <div class="row ">
-                            <label for="blood_group" class="col-md-4 col-form-label text-md-end ">{{ __('Blood group') }}</label>
-                            <div class="col">
-                                <select id="blood_group" name="blood_group" class="form-control">
-                                    <option value="--Select option--">--Select option--</option>
-                                    <option value="A+">A+</option>
-                                    <option value="A-">A-</option>
-                                    <option value="B+">B+</option>
-                                    <option value="B-">B-</option>
-                                    <option value="O+">O+</option>
-                                    <option value="O-">O-</option>
-                                </select>
+                            <input class="form-control text-dark mb-1" type="text" placeholder="Street No." name="street_no" value="{{ old('street_no') }}" required>
+                            @if($errors->has('street_no'))
+                            <p class="text-danger">{{ $errors->first('street_no') }}</p>
+                            @endif
+
+                            <input class="form-control text-dark mb-1" type="text" placeholder="City" name="city" value="{{ old('city') }}" required>
+                            @if($errors->has('city'))
+                            <p class="text-danger">{{ $errors->first('city') }}</p>
+                            @endif
+
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col"><label class="col-form-label text-dark mb-1">Blood group</label></div>
+                                <div class="col">
+                                    <select id="blood_group" name="blood_group" class="form-control">
+                                        <option value="--Select option--">--Select option--</option>
+                                        <option value="A+">A+</option>
+                                        <option value="A-">A-</option>
+                                        <option value="B+">B+</option>
+                                        <option value="B-">B-</option>
+                                        <option value="O+">O+</option>
+                                        <option value="O-">O-</option>
+                                    </select>
+                                </div>
                         </div>
-
-                        <div class="form-group">
-                        <div class="row ">
-                            <label for="age" class="col-md-4 col-form-label text-md-end">{{ __('Age') }}</label>
-                            <div class="col">
-                                <input class="form-control text-dark mb-1" type="text" name="age">
+                        <div class="row">
+                            <div class="col"><label class="col-form-label text-dark mb-1">Age</label></div>
+                            <div class="col"><input class="form-control text-dark mb-1" type="text" name="age" value="{{ old('age') }}" required>
+                            @if($errors->has('age'))
+                            <p class="text-danger">{{ $errors->first('age') }}</p>
+                            @endif
                             </div>
                         </div>
-                        </div>
-
-                        <div class="form-group">
-                        <div class="row ">
-                            <label for="telno" class="col-md-4 col-form-label text-md-end">{{ __('Contact No.') }}</label>
-                            <div class="col">
-                                <input class="form-control text-dark mb-1" type="text" name="telno">
-                                @error('telno')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                        <div class="row">
+                            <div class="col"><label class="col-form-label text-dark mb-1">Email address</label></div>
+                            <div class="col"><input class="form-control text-dark mb-1" type="text" name="email" value="{{ old('email') }}" required>
+                            @if($errors->has('email'))
+                            <p class="text-danger">{{ $errors->first('email') }}</p>
+                            @endif
                             </div>
                         </div>
-                        </div>
-
-                        <div class="form-group">
-                        <div class="row ">
-                            <label for="nic" class="col-md-4 col-form-label text-md-end">{{ __('NIC') }}</label>
-                            <div class="col">
-                                <input class="form-control text-dark mb-1" type="text" name="nic">
+                        <div class="row">
+                            <div class="col"><label class="col-form-label text-dark mb-1">Contact No.</label></div>
+                            <div class="col"><input class="form-control text-dark mb-1" type="text" name="telno" value="{{ old('telno') }}" required>
+                            @if($errors->has('telno'))
+                            <p class="text-danger">{{ $errors->first('telno') }}</p>
+                            @endif
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col"><label class="col-form-label text-dark mb-1">NIC</label></div>
+                            <div class="col"><input class="form-control text-dark mb-1" type="text" name="nic" value="{{ old('nic') }}" required>
+                            @if($errors->has('nic'))
+                            <p class="text-danger">{{ $errors->first('nic') }}</p>
+                            @endif
+                            </div>
                         </div>
-
-                        <button class="btn btn-primary" id="btn_save" type="submit">Done</button>
+                        <div class="row">
+                            <div class="col"><button class="btn btn-primary" id="btn_save" type="submit">Done</button></div>
+                        </div>
                     </form>
                 </div>
             </div>
