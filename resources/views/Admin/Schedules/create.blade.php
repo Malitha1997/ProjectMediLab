@@ -17,7 +17,7 @@
                 <div class="row">
                     <div class="col"><label class="col-form-label text-dark mb-1">Available Days</lable></div>
                         <div class="col">
-                            <select id="available_day" name="available_day" class="form-control">
+                            <select id="available_day" name="available_day" class="form-control text-dark mb-1">
                                 <option value="select day">--Select Day--</option>
                                 <option value="Monday">Monday</option>
                                 <option value="Tuesday">Tuesday</option>
@@ -33,7 +33,7 @@
                 <div class="row">
                     <div class="col"><label class="col-form-label text-dark mb-1" >Available Time</label></div>
                     <div class="col">
-                    <select id="available_time" name="available_time" class="form-control">
+                    <select id="available_time" name="available_time" class="form-control text-dark mb-1">
                         <option value="select time ">--Select Time--</option>
                         <option value="from 8.00 AM to 10.00 AM ">from 8.00 AM to 10.00 AM </option>
                         <option value="from 10.00 AM to 12.00 PM">from 10.00 AM to 12.00 PM</option>
@@ -52,7 +52,7 @@
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 <script>
     $(document).ready(function(){
-        $(document).on('click', '#doctor_name', function() {
+        $(document).on('click','#doctor_name', function() {
             var route = "{{ route('livesearch') }}";
             $(this).autocomplete({
                 source: function( request, response ) {

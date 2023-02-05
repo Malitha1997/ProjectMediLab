@@ -52,7 +52,7 @@ class AppointmentController extends Controller
      */
     public function store(Request $request)
     {
-        //dd($request);
+        //dd($request); 
         request()->validate([
             'patient_id'=>'required',
             'doctor_name'=>'required',

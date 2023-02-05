@@ -208,7 +208,7 @@ class PatientController extends Controller
         $user = new User;
 
         $user->f_name = $request->f_name;
-        $user->l_name = $request->l_name;
+        $user->l_name = $request->l_name; 
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
 

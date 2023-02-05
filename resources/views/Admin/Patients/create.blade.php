@@ -59,7 +59,7 @@
             <div class="row">
                 <div class="col"><label class="col-form-label text-dark mb-1">Blood group</label></div>
                     <div class="col">
-                        <select id="blood_group" name="blood_group" class="form-control">
+                        <select id="blood_group" name="blood_group" class="form-control text-dark mb-1">
                             <option value="--Select option--">--Select option--</option>
                             <option value="A+">A+</option>
                             <option value="A-">A-</option>

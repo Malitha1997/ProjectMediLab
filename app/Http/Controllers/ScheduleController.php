@@ -17,9 +17,9 @@ class ScheduleController extends Controller
      */
     public function index(Request $request)
     {
-        $doctor_schedules = Schedule::paginate(5);
+    $doctor_schedules = Schedule::with('doctor')->paginate(5);
 
-        return view('Admin.Schedules.index',compact('doctor_schedules'))
+    return view('Admin.Schedules.index', compact('doctor_schedules'))
         ->with('i', ($request->input('page', 1) - 1) * 5);
     }
 
@@ -29,7 +29,8 @@ class ScheduleController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {   $doctors=Doctor::get();
+    {
+        $doctors=Doctor::get();
         //$all_users_with_all_their_roles = User::with('doctors')->get();
         return view('admin.Schedules.create',compact('doctors'));
     }
@@ -42,23 +43,22 @@ class ScheduleController extends Controller
      */
     public function store(Request $request)
     {
-        request()->validate([
-            'doctor_f_name'=> 'required',
-            'available_day'=> 'required',
-            'available_time'=> 'required',
-        ]);
+    request()->validate([
+        'doctor_name' => 'required',
+        'available_day' => 'required',
+        'available_time' => 'required',
+    ]);
 
-        $schedule = new Schedule;
+    $user = User::firstOrCreate(['f_name' => $request->doctor_name]);
 
-        $schedule->doctor_id=$request->doctor_f_name;
-        $schedule->available_day = $request->available_day;
-        $schedule->available_time = $request->available_time;
+    $schedule = new Schedule;
+    $schedule->doctor_id = $user->id;
+    $schedule->available_day = $request->available_day;
+    $schedule->available_time = $request->available_time;
+    $schedule->save();
 
-        $schedule->save();
-
-        return redirect()->route('schedules.index')
-                            ->with('success','Schedule created successfully.');
-
+    return redirect()->route('schedules.index')
+                     ->with('success', 'Schedule created successfully.');
     }
 
     /**
@@ -97,16 +97,18 @@ class ScheduleController extends Controller
     public function update(Request $request, $id)
     {
         request()->validate([
-            'doctor_f_name'=> 'required',
+            'doctor_name'=> 'required',
             'available_day'=> 'required',
             'available_time'=> 'required',
 
 
         ]);
 
-        $schedule = new Schedule;
+        $user=new User;
+        $user->f_name=$request->doctor_name;
 
-        $schedule->doctor_id=$request->doctor_f_name;
+        $schedule = new Schedule;
+        //$schedule->doctor_id=$request->doctor_name;
         $schedule->available_day = $request->available_day;
         $schedule->available_time = $request->available_time;
 
