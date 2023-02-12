@@ -17,9 +17,9 @@ class PatientSeeder extends Seeder
     {
         DB::table('patients')->insert([
             'user_id' => 10,
-            'house_no' => '10',
-            'street_no' => '25',
-            'city' => 'Alawwa',
+            'address_line1' => 'No.10',
+            'address_line2' => 'Akuressa',
+            'address_line3' => 'Matara',
             'telno' => '0714552231',
             'nic' => '973234422v',
             'age' => '25',
@@ -28,9 +28,9 @@ class PatientSeeder extends Seeder
 
          DB::table('patients')->insert([
             'user_id' => 11,
-            'house_no' => '11',
-            'street_no' => '2',
-            'city' => 'Jaffna',
+            'address_line1' => 'No.15/A',
+            'address_line2' => 'Hidellana',
+            'address_line3' => 'Ratnapura',
             'telno' => '0458822639',
             'nic' => '953234423v',
             'age' => '27',
@@ -39,9 +39,9 @@ class PatientSeeder extends Seeder
 
          DB::table('patients')->insert([
             'user_id' => 12,
-            'house_no' => '51',
-            'street_no' => '23',
-            'city' => 'Kegalle',
+            'address_line1' => 'No.1',
+            'address_line2' => 'Parakaduwa',
+            'address_line3' => 'Eheliyagoda',
             'telno' => '0758822630',
             'nic' => '963234423v',
             'age' => '26',
@@ -50,9 +50,9 @@ class PatientSeeder extends Seeder
 
          DB::table('patients')->insert([
             'user_id' => 13,
-            'house_no' => '65',
-            'street_no' => '2',
-            'city' => 'Aluthgama',
+            'address_line1' => 'No.5',
+            'address_line2' => 'Polgahawela Road',
+            'address_line3' => 'Alawwa',
             'telno' => '0758822651',
             'nic' => '983234423v',
             'age' => '24',
@@ -61,9 +61,9 @@ class PatientSeeder extends Seeder
 
          DB::table('patients')->insert([
             'user_id' => 14,
-            'house_no' => '6',
-            'street_no' => '26',
-            'city' => 'Kalutara',
+            'address_line1' => 'No.6/B',
+            'address_line2' => 'Rambukkana',
+            'address_line3' => 'Kegalle',
             'telno' => '0718822655',
             'nic' => '993234423v',
             'age' => '23',

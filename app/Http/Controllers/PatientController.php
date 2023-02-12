@@ -81,11 +81,11 @@ class PatientController extends Controller
     {
 
         request()->validate([
-            'f_name'=> 'required|string|min:1|max:255',
-            'l_name'=> 'required|string|min:1|max:255',
-            'house_no'=> 'required|numeric',
-            'street_no'=> 'required|numeric',
-            'city'=> 'required',
+            'f_name' => 'required', 'string', 'alpha', 'max:255','min:1',
+            'l_name' => 'required', 'string', 'alpha', 'max:255','min:1',
+            'address_line1'=> 'required',
+            'address_line2'=> 'required',
+            'address_line3'=> 'required',
             'telno'=> 'required|regex:/^(?:\+\d{1,3}[- ]?)?\d{10}$/',
             'nic'=> 'required|min:10|max:12',
             'blood_group'=> 'required',
@@ -107,9 +107,9 @@ class PatientController extends Controller
 
         $patient = new Patient;
 
-        $patient->house_no = $request->house_no;
-        $patient->street_no = $request->street_no;
-        $patient->city = $request->city;
+        $patient->address_line1 = $request->address_line1;
+        $patient->address_line2 = $request->address_line2;
+        $patient->address_line3 = $request->address_line3;
         $patient->telno = $request->telno;
         $patient->blood_group = $request->blood_group;
         $patient->nic = $request->nic;
@@ -192,23 +192,24 @@ class PatientController extends Controller
 
     {
         request()->validate([
-            'f_name'=> 'required|string|min:1|max:255',
-            'l_name'=> 'required|string|min:1|max:255',
-            'house_no'=> 'required|numeric',
-            'street_no'=> 'required|numeric',
-            'city'=> 'required',
+            'first_name' => 'required', 'string', 'alpha', 'max:255','min:1',
+            'last_name' => 'required', 'string', 'alpha', 'max:255','min:1',
+            'address_line1'=> 'required',
+            'address_line2'=> 'required',
+            'address_line3'=> 'required',
             'telno'=> 'required|regex:/^(?:\+\d{1,3}[- ]?)?\d{10}$/',
-            'nic'=> 'required|min:9|max:12',
+            'nic'=> 'required|min:10|max:12',
             'blood_group'=> 'required',
             'age'=> 'required|numeric|min:1|max:120',
             'email'=> 'required|regex:/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/',
             'password' => 'required|same:confirm-password',
+
         ]);
 
         $user = new User;
 
         $user->f_name = $request->f_name;
-        $user->l_name = $request->l_name; 
+        $user->l_name = $request->l_name;
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
 
@@ -216,9 +217,9 @@ class PatientController extends Controller
 
         $patient = new Patient;
 
-        $patient->house_no = $request->house_no;
-        $patient->street_no = $request->street_no;
-        $patient->city = $request->city;
+        $patient->address_line1 = $request->address_line1;
+        $patient->address_line2 = $request->address_line2;
+        $patient->address_line3 = $request->address_line3;
         $patient->telno = $request->telno;
         $patient->blood_group = $request->blood_group;
         $patient->nic = $request->nic;

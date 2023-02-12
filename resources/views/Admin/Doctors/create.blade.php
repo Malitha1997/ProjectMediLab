@@ -43,17 +43,17 @@
 
             <div class="row">
                 <div class="col"><label class="col-form-label text-dark mb-1" for="house_no">Address</label></div>
-                <div class="col"><input class="form-control text-dark mb-1" type="text" placeholder="House No." name="house_no" value="{{ old('house_no') }}" required>
-                @if($errors->has('house_no'))
-                <p class="text-danger">{{ $errors->first('house_no') }}</p>
+                <div class="col"><input class="form-control text-dark mb-1" type="text" placeholder="Address Line 1" name="address_line1" value="{{ old('address_line1') }}" required>
+                @if($errors->has('address_line1'))
+                <p class="text-danger">{{ $errors->first('address_line1') }}</p>
                 @endif
-                <input class="form-control text-dark mb-1" type="text" placeholder="Street No." name="street_no" value="{{ old('street_no') }}" required>
-                @if($errors->has('street_no'))
-                <p class="text-danger">{{ $errors->first('street_no') }}</p>
+                <input class="form-control text-dark mb-1" type="text" placeholder="Address Line 2" name="address_line2" value="{{ old('address_line2') }}" required>
+                @if($errors->has('address_line2'))
+                <p class="text-danger">{{ $errors->first('address_line2') }}</p>
                 @endif
-                <input class="form-control text-dark mb-1" type="text" placeholder="City" name="city" value="{{ old('city') }}" required>
-                @if($errors->has('city'))
-                <p class="text-danger">{{ $errors->first('city') }}</p>
+                <input class="form-control text-dark mb-1" type="text" placeholder="Address Line 3" name="address_line3" value="{{ old('address_line3') }}" required>
+                @if($errors->has('address_line3'))
+                <p class="text-danger">{{ $errors->first('address_line3') }}</p>
                 @endif
                 </div>
             </div>
@@ -93,7 +93,7 @@
             <div class="row">
                 <div class="col"><label class="col-form-label text-dark mb-1" for="speciality">Speciality</label></div>
                 <div class="col">
-                    <select id="speciality" name="speciality" class="form-control" required>
+                    <select id="speciality" name="speciality" class="form-control text-dark mb-1" required>
                         <option value="--Select option--">--Select option--</option>
                         <option value="Dermatologists">Dermatologists</option>
                         <option value="Cardiologists">Cardiologists</option>

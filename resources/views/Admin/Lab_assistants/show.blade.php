@@ -9,7 +9,7 @@
 
         <div class="pull-left">
 
-            <h2 class="text-dark mb-1"> Show Lab Assistant</h2>
+            <h2 class="text-dark mb-1">{{ $user->f_name }} {{ $user->l_name }}</h2>
 
         </div>
 
@@ -26,7 +26,7 @@
 <table class="table text-dark">
     <tr>
         <th scope="col">Name</th>
-        <td>Dr. {{ $user->f_name }} {{ $user->l_name }}</td>
+        <td>{{ $user->f_name }} {{ $user->l_name }}</td>
     </tr>
 
     <tr>
@@ -41,7 +41,7 @@
 
     <tr>
         <th scope="col">Address</th>
-        <td>{{ $user->lab_assistant->house_no }} , {{ $user->lab_assistant->street_no }} , {{ $user->lab_assistant->city }}</td>
+        <td>{{ $user->lab_assistant->address_line1 }} , {{ $user->lab_assistant->address_line2 }} , {{ $user->lab_assistant->address_line3 }}.</td>
     </tr>
 
     <tr>

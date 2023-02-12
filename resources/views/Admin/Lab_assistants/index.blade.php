@@ -66,7 +66,7 @@
 
         <td>
 
-            <a class="btn btn-info" href="{{ route('lab_assistants.show',$lab_assistant->user_id) }}">Show</a>
+            <a class="btn btn-info" href="{{ route('lab_assistants.show',$lab_assistant->user_id) }}">Profile</a>
 
             <a class="btn btn-success" href="{{ route('lab_assistants.edit',$lab_assistant->id) }}">Edit</a>
 

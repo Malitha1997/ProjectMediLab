@@ -9,7 +9,7 @@
 
         <div class="pull-left">
 
-            <h2 class="text-dark mb-1"> Show Doctor</h2>
+            <h2 class="text-dark mb-1">Dr. {{ $user->f_name }} {{ $user->l_name }}</h2>
 
         </div>
 
@@ -41,7 +41,7 @@
 
     <tr>
         <th scope="col">Address</th>
-        <td>{{ $user->doctor->house_no }} , {{ $user->doctor->street_no }} , {{ $user->doctor->city }}</td>
+        <td>{{ $user->doctor->address_line1 }} , {{ $user->doctor->address_line2 }} , {{ $user->doctor->address_line3 }}.</td>
     </tr>
 
     <tr>

@@ -17,9 +17,9 @@ class DoctorSeeder extends Seeder
     {
         DB::table('doctors')->insert([
             'user_id' => 2,
-            'house_no' => '1',
-            'street_no' => '26',
-            'city' => 'Moratuwa',
+            'address_line1' => 'No.10',
+            'address_line2' => 'Akkeypaththuwa',
+            'address_line3' => 'Jaffna',
             'telno' => '071455245',
             'nic' => '983234422v',
             'age' => '25',
@@ -30,9 +30,9 @@ class DoctorSeeder extends Seeder
 
          DB::table('doctors')->insert([
             'user_id' => 3,
-            'house_no' => '3',
-            'street_no' => '20',
-            'city' => 'Colombo',
+            'address_line1' => 'No.30/B',
+            'address_line2' => 'Iggashena',
+            'address_line3' => 'Kuruwita',
             'telno' => '077555245',
             'nic' => '91834422v',
             'age' => '26',
@@ -43,9 +43,9 @@ class DoctorSeeder extends Seeder
 
          DB::table('doctors')->insert([
             'user_id' => 4,
-            'house_no' => '5',
-            'street_no' => '34',
-            'city' => 'Ratnapura',
+            'address_line1' => 'No.6/A',
+            'address_line2' => 'Kandy Road',
+            'address_line3' => 'Mawathagama',
             'telno' => '078555245',
             'nic' => '95734422v',
             'age' => '30',
@@ -56,9 +56,9 @@ class DoctorSeeder extends Seeder
 
          DB::table('doctors')->insert([
             'user_id' => 5,
-            'house_no' => '15',
-            'street_no' => '4',
-            'city' => 'Anamaduwa',
+            'address_line1' => 'No.8',
+            'address_line2' => 'Waththegama',
+            'address_line3' => 'Digana',
             'telno' => '078456782',
             'nic' => '96734422v',
             'age' => '26',
@@ -69,9 +69,9 @@ class DoctorSeeder extends Seeder
 
          DB::table('doctors')->insert([
             'user_id' => 6,
-            'house_no' => '25',
-            'street_no' => '5',
-            'city' => 'Naththandiya',
+            'address_line1' => 'No.9',
+            'address_line2' => 'Thonigala',
+            'address_line3' => 'Anamaduwa',
             'telno' => '075456782',
             'nic' => '92734422v',
             'age' => '30',

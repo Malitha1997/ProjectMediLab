@@ -16,9 +16,9 @@ return new class extends Migration
         Schema::create('lab_assistants', function (Blueprint $table) {
             $table->id();
             $table->string('telno');
-            $table->string('house_no');
-            $table->string('street_no');
-            $table->string('city');
+            $table->string('address_line1');
+            $table->string('address_line2');
+            $table->string('address_line3');
             $table->string('qualification');
             $table->string('age');
             $table->string('nic');

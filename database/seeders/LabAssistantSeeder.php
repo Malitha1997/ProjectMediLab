@@ -17,9 +17,9 @@ class LabAssistantSeeder extends Seeder
     {
         DB::table('lab_assistants')->insert([
             'user_id' => 7,
-            'house_no' => '8',
-            'street_no' => '29',
-            'city' => 'Neluwa',
+            'address_line1' => 'No.8',
+            'address_line2' => 'Kebithigollawa',
+            'address_line3' => 'Anuradhapura',
             'telno' => '0714552451',
             'nic' => '933234422v',
             'age' => '29',
@@ -28,9 +28,9 @@ class LabAssistantSeeder extends Seeder
 
         DB::table('lab_assistants')->insert([
             'user_id' => 8,
-            'house_no' => '88',
-            'street_no' => '9',
-            'city' => 'Nawalapitiya',
+            'address_line1' => 'No.5',
+            'address_line2' => 'Angammana',
+            'address_line3' => 'Ratnapura',
             'telno' => '0724542451',
             'nic' => '943134425v',
             'age' => '28',
@@ -39,9 +39,9 @@ class LabAssistantSeeder extends Seeder
 
         DB::table('lab_assistants')->insert([
             'user_id' => 9,
-            'house_no' => '98',
-            'street_no' => '91',
-            'city' => 'Ratnapura',
+            'address_line1' => 'No.9/A',
+            'address_line2' => 'Thawalanthenna',
+            'address_line3' => 'Nuwaraeliya',
             'telno' => '0784542452',
             'nic' => '903134425v',
             'age' => '33',

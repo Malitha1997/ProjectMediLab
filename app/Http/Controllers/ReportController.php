@@ -72,6 +72,7 @@ class ReportController extends Controller
         'test_bill_id' => 'required|numeric',
         'report_file' => 'required',
     ]);
+    //dd($request);
 
     $user = User::where('name', $request->patient_name)->first();
         if ($user) {
@@ -93,7 +94,7 @@ class ReportController extends Controller
         $report->doctor_id = $request->doctor_id;
         $report->lab_assistant_id = $request->lab_assistant_id;
         $report->test_bill_id = $request->test_bill_id;
-        $report->patient_id = $patient->id;
+        $report->patient_id = $request->patient_name;
         $report->save();
         return redirect()->route('reports.index')
         ->with('success','Report created successfully.');

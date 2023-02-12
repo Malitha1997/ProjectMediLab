@@ -105,9 +105,9 @@ class DoctorController extends Controller
             'email'=> 'required|regex:/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/',
             'telno'=> 'required|regex:/^(?:\+\d{1,3}[- ]?)?\d{10}$/',
             'password' => 'required|same:confirm-password',
-            'house_no'=> 'required|numeric',
-            'street_no'=> 'required|numeric',
-            'city'=> 'required',
+            'address_line1'=> 'required',
+            'address_line2'=> 'required',
+            'address_line3'=> 'required',
             'nic'=> 'required|min:9|max:12',
             'age'=> 'required|numeric|min:1|max:120',
             'speciality'=>'required',
@@ -125,9 +125,9 @@ class DoctorController extends Controller
 
         $doctor = new Doctor;
 
-        $doctor->house_no = $request->house_no;
-        $doctor->street_no = $request->street_no;
-        $doctor->city = $request->city;
+        $doctor->address_line1 = $request->address_line1;
+        $doctor->address_line2 = $request->address_line2;
+        $doctor->address_line3 = $request->address_line3;
         $doctor->telno = $request->telno;
         $doctor->nic = $request->nic;
         $doctor->age = $request->age;
@@ -206,16 +206,16 @@ class DoctorController extends Controller
 
     {
         request()->validate([
-            'f_name'=> 'required|min:1|max:255',
-            'l_name'=> 'required|min:1|max:255',
+            'f_name'=> 'required|string|min:1|max:255',
+            'l_name'=> 'required|string|min:1|max:255',
             'email'=> 'required|regex:/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/',
             'telno'=> 'required|regex:/^(?:\+\d{1,3}[- ]?)?\d{10}$/',
             'password' => 'required|same:confirm-password',
-            'house_no'=> 'required|numeric',
-            'street_no'=> 'required|numeric',
-            'city'=> 'required',
+            'address_line1'=> 'required',
+            'address_line2'=> 'required',
+            'address_line3'=> 'required',
             'nic'=> 'required|min:9|max:12',
-            'age'=> 'required|numeric',
+            'age'=> 'required|numeric|min:1|max:120',
             'speciality'=>'required',
             'qualification'=>'required'
         ]);
@@ -232,9 +232,9 @@ class DoctorController extends Controller
         $doctor = new Doctor;
 
         $doctor->telno = $request->telno;
-        $doctor->house_no = $request->house_no;
-        $doctor->street_no = $request->street_no;
-        $doctor->city = $request->city;
+        $doctor->address_line1 = $request->address_line1;
+        $doctor->address_line2 = $request->address_line2;
+        $doctor->address_line3 = $request->address_line3;
         $doctor->nic = $request->nic;
         $doctor->age = $request->age;
         $doctor->qualification = $request->qualification;

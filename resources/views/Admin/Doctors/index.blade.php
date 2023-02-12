@@ -69,7 +69,7 @@
 
         <td>
 
-            <a class="btn btn-info" href="{{ route('doctors.show',$doctor->user_id) }}">Show</a>
+            <a class="btn btn-info" href="{{ route('doctors.show',$doctor->user_id) }}">Profile</a>
 
             <a class="btn btn-success" href="{{ route('doctors.edit',$doctor->id) }}">Edit</a>
 

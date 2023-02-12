@@ -15,9 +15,9 @@ return new class extends Migration
     {
         Schema::create('doctors', function (Blueprint $table) {
             $table->id();
-            $table->string('house_no');
-            $table->string('street_no');
-            $table->string('city');
+            $table->string('address_line1');
+            $table->string('address_line2');
+            $table->string('address_line3');
             $table->string('age');
             $table->string('telno');
             $table->string('nic');

@@ -106,9 +106,9 @@ class LabAssistantController extends Controller
             'email'=> 'required|regex:/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/',
             'telno'=> 'required|regex:/^(?:\+\d{1,3}[- ]?)?\d{10}$/',
             'password' => 'required|same:confirm-password',
-            'house_no'=> 'required|numeric',
-            'street_no'=> 'required|numeric',
-            'city'=> 'required',
+            'address_line1'=> 'required',
+            'address_line2'=> 'required',
+            'address_line3'=> 'required',
             'nic'=> 'required|min:9|max:12',
             'age'=> 'required|numeric|min:1|max:120',
             'qualification'=>'required'
@@ -125,9 +125,9 @@ class LabAssistantController extends Controller
 
         $lab_assistant = new Lab_assistant;
 
-        $lab_assistant->house_no = $request->house_no;
-        $lab_assistant->street_no = $request->street_no;
-        $lab_assistant->city = $request->city;
+        $lab_assistant->address_line1 = $request->address_line1;
+        $lab_assistant->address_line2 = $request->address_line2;
+        $lab_assistant->address_line3 = $request->address_line3;
         $lab_assistant->telno = $request->telno;
         $lab_assistant->nic = $request->nic;
         $lab_assistant->age = $request->age;
@@ -210,9 +210,9 @@ class LabAssistantController extends Controller
             'email'=> 'required|regex:/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/',
             'telno'=> 'required|regex:/^(?:\+\d{1,3}[- ]?)?\d{10}$/',
             'password' => 'required|same:confirm-password',
-            'house_no'=> 'required|numeric',
-            'street_no'=> 'required|numeric',
-            'city'=> 'required',
+            'address_line1'=> 'required',
+            'address_line2'=> 'required',
+            'address_line3'=> 'required',
             'nic'=> 'required|min:9|max:12',
             'age'=> 'required|numeric',
             'qualification'=>'required'
@@ -229,9 +229,9 @@ class LabAssistantController extends Controller
 
         $doctor = new Doctor;
 
-        $lab_assistant->telno = $request->telno;
-        $lab_assistant->house_no = $request->house_no;
-        $lab_assistant->street_no = $request->street_no;
+        $lab_assistant->address_line1 = $request->address_line1;
+        $lab_assistant->address_line2 = $request->address_line2;
+        $lab_assistant->address_line3 = $request->address_line3;
         $lab_assistant->city = $request->city;
         $lab_assistant->nic = $request->nic;
         $lab_assistant->age = $request->age;
