@@ -40,13 +40,31 @@ class PermissionTableSeeder extends Seeder
 
            'role-delete',
 
-           'patient-list',
+           'role-navbar',
 
-           'patient-create',
+           'Patient-list',
 
-           'patient-edit',
+           'Patient-create',
 
-           'patient-delete'
+           'Patient-edit',
+
+           'Patient-delete',
+
+           'patient-navbar',
+
+           'Admin-index',
+
+           'Admin-create',
+
+           'Doctor-create',
+
+           'Doctor-list',
+
+           'doctor-edit',
+
+           'doctor-delete',
+
+
 
         ];
 

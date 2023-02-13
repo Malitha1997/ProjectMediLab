@@ -8,6 +8,10 @@ use Illuminate\Support\Facades\Auth;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Spatie\Permission\Traits\HasRoles;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 class LoginController extends Controller
 {
@@ -29,7 +33,26 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+  //  protected $redirectTo = RouteServiceProvider::HOME;
+        protected function redirectTo()
+        {
+           $role = auth::user()->getRoleNames();
+
+            if($role[0] == 'Admin'){
+                return '/dashboard';
+            }
+            elseif($role[0] == 'Patient'){
+                return '/patientDashboard';
+            }
+            elseif($role[0] == 'Doctor'){
+                return '/doctorDashboard';
+            }
+            elseif($role[0] == 'Lab assistant'){
+                return '/labassistantDashboard';
+            }
+            return '/home';
+        }
+
 
     /**
      * Create a new controller instance.
@@ -49,20 +72,20 @@ class LoginController extends Controller
         return redirect()->route('home');
     }
 
-    public function login(Request $request){
-        $request->validate([
-            'email' => 'required',
-            'password' => 'required',
-        ]);
+    // public function login(Request $request){
+    //     $request->validate([
+    //         'email' => 'required',
+    //         'password' => 'required',
+    //     ]);
 
-        $credentials = $request->only('email', 'password');
-        if (Auth::attempt($credentials)) {
-            return redirect()->route('dashboard');
-        }
+    //     $credentials = $request->only('email', 'password');
+    //     if (Auth::attempt($credentials)) {
+    //         //return redirect()->route('dashboard');
+    //     }
 
-        return redirect("login")->withSuccess('Login details are not valid');
+    //     return redirect("login")->withSuccess('Login details are not valid');
 
-    }
+    // }
 
 
 }

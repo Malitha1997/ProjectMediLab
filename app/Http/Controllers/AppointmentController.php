@@ -52,7 +52,7 @@ class AppointmentController extends Controller
      */
     public function store(Request $request)
     {
-        //dd($request); 
+        //dd($request);
         request()->validate([
             'patient_id'=>'required',
             'doctor_name'=>'required',
@@ -168,4 +168,9 @@ class AppointmentController extends Controller
           return response()->json($response);
 
     }
+    public function patientCreate()
+    {
+        return view('patient.appointments.create');
+    }
+
 }

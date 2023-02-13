@@ -273,4 +273,25 @@ class DoctorController extends Controller
         ->with('success','Doctor deleted successfully');
     }
 
+    public function patientIndex(Request $request)
+
+    {
+        $user_doctors = DB::table('users')
+        ->join('doctors', 'users.id', '=', 'doctors.user_id')
+        ->select('users.*' ,'users.id as usr_id', 'doctors.*')
+        ->paginate(10);
+
+        return view('patient.doctors.index',compact('user_doctors'))
+        ->with('i', ($request->input('page', 1) - 1) * 5);
+    }
+
+    public function doctorShow($id)
+
+    {
+        $user=User::find($id);
+        $duser=$user->user;
+
+        return view('patient.doctors.show',compact('user','duser'));
+    }
+
 }

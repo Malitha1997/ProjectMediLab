@@ -1,4 +1,4 @@
-@extends('Layout.navbar')
+@extends('Layout.patientNavbar')
 
 @section('content')
 

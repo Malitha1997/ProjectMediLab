@@ -25,6 +25,14 @@ class UserSeeder extends Seeder
         $role->syncPermissions($permissions);
 
         $user = User::create([
+            'f_name' => 'Doctor',
+            'l_name' => 'MediLab',
+            'email' => 'doctor@gmail.com',
+            'password' => bcrypt('doctor123'),
+        ]);
+        $user->assignRole('Doctor');
+
+        $user = User::create([
             'f_name' => 'Madushan',
             'l_name' => 'Samudhika',
             'email' => 'madushan@gmail.com',
@@ -73,6 +81,14 @@ class UserSeeder extends Seeder
         $role->syncPermissions($permissions);
 
         $user = User::create([
+            'f_name' => 'Lab Assistant',
+            'l_name' => 'MediLab',
+            'email' => 'labassistant@gmail.com',
+            'password' => bcrypt('labassistant123'),
+        ]);
+        $user->assignRole('Lab assistant');
+
+        $user = User::create([
             'f_name' => 'Priyanka',
             'l_name' => 'Chopra',
             'email' => 'priyanka@gmail.com',
@@ -103,6 +119,14 @@ class UserSeeder extends Seeder
         $permissions = Permission::pluck('id','id')->all();
 
         $role->syncPermissions($permissions);
+
+        $user = User::create([
+            'f_name' => 'Patient',
+            'l_name' => 'MediLab',
+            'email' => 'patient@gmail.com',
+            'password' => bcrypt('patient123'),
+        ]);
+        $user->assignRole('Patient');
 
         $user = User::create([
             'f_name' => 'Nawanjana',

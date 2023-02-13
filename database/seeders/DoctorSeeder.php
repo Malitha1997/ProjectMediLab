@@ -15,8 +15,22 @@ class DoctorSeeder extends Seeder
      */
     public function run()
     {
+
         DB::table('doctors')->insert([
             'user_id' => 2,
+            'address_line1' => 'No.11',
+            'address_line2' => 'Mawatagama',
+            'address_line3' => 'Kurunegala',
+            'telno' => '070455245',
+            'nic' => '903234422v',
+            'age' => '32',
+            'speciality' => 'Cardiologists',
+            'qualification'=> 'PHd done'
+
+         ]);
+
+        DB::table('doctors')->insert([
+            'user_id' => 3,
             'address_line1' => 'No.10',
             'address_line2' => 'Akkeypaththuwa',
             'address_line3' => 'Jaffna',
@@ -29,7 +43,7 @@ class DoctorSeeder extends Seeder
          ]);
 
          DB::table('doctors')->insert([
-            'user_id' => 3,
+            'user_id' => 4,
             'address_line1' => 'No.30/B',
             'address_line2' => 'Iggashena',
             'address_line3' => 'Kuruwita',
@@ -42,7 +56,7 @@ class DoctorSeeder extends Seeder
          ]);
 
          DB::table('doctors')->insert([
-            'user_id' => 4,
+            'user_id' => 5,
             'address_line1' => 'No.6/A',
             'address_line2' => 'Kandy Road',
             'address_line3' => 'Mawathagama',
@@ -55,7 +69,7 @@ class DoctorSeeder extends Seeder
          ]);
 
          DB::table('doctors')->insert([
-            'user_id' => 5,
+            'user_id' => 6,
             'address_line1' => 'No.8',
             'address_line2' => 'Waththegama',
             'address_line3' => 'Digana',
@@ -68,7 +82,7 @@ class DoctorSeeder extends Seeder
          ]);
 
          DB::table('doctors')->insert([
-            'user_id' => 6,
+            'user_id' => 7,
             'address_line1' => 'No.9',
             'address_line2' => 'Thonigala',
             'address_line3' => 'Anamaduwa',

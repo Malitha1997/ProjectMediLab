@@ -15,8 +15,20 @@ class PatientSeeder extends Seeder
      */
     public function run()
     {
+
         DB::table('patients')->insert([
-            'user_id' => 10,
+            'user_id' => 12,
+            'address_line1' => 'No.6',
+            'address_line2' => 'Hanwella',
+            'address_line3' => 'Avissawella',
+            'telno' => '0774552221',
+            'nic' => '963234436v',
+            'age' => '26',
+            'blood_group' => 'A+',
+         ]);
+
+        DB::table('patients')->insert([
+            'user_id' => 13,
             'address_line1' => 'No.10',
             'address_line2' => 'Akuressa',
             'address_line3' => 'Matara',
@@ -27,7 +39,7 @@ class PatientSeeder extends Seeder
          ]);
 
          DB::table('patients')->insert([
-            'user_id' => 11,
+            'user_id' => 14,
             'address_line1' => 'No.15/A',
             'address_line2' => 'Hidellana',
             'address_line3' => 'Ratnapura',
@@ -38,7 +50,7 @@ class PatientSeeder extends Seeder
          ]);
 
          DB::table('patients')->insert([
-            'user_id' => 12,
+            'user_id' => 15,
             'address_line1' => 'No.1',
             'address_line2' => 'Parakaduwa',
             'address_line3' => 'Eheliyagoda',
@@ -49,7 +61,7 @@ class PatientSeeder extends Seeder
          ]);
 
          DB::table('patients')->insert([
-            'user_id' => 13,
+            'user_id' => 16,
             'address_line1' => 'No.5',
             'address_line2' => 'Polgahawela Road',
             'address_line3' => 'Alawwa',
@@ -60,7 +72,7 @@ class PatientSeeder extends Seeder
          ]);
 
          DB::table('patients')->insert([
-            'user_id' => 14,
+            'user_id' => 17,
             'address_line1' => 'No.6/B',
             'address_line2' => 'Rambukkana',
             'address_line3' => 'Kegalle',

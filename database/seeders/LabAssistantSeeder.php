@@ -16,7 +16,18 @@ class LabAssistantSeeder extends Seeder
     public function run()
     {
         DB::table('lab_assistants')->insert([
-            'user_id' => 7,
+            'user_id' => 8,
+            'address_line1' => 'No.18',
+            'address_line2' => 'Batuhena',
+            'address_line3' => 'Ratnapura',
+            'telno' => '0754552451',
+            'nic' => '933234252v',
+            'age' => '29',
+            'qualification'=> 'Successfully completed BSc degree'
+         ]);
+
+        DB::table('lab_assistants')->insert([
+            'user_id' => 9,
             'address_line1' => 'No.8',
             'address_line2' => 'Kebithigollawa',
             'address_line3' => 'Anuradhapura',
@@ -27,7 +38,7 @@ class LabAssistantSeeder extends Seeder
          ]);
 
         DB::table('lab_assistants')->insert([
-            'user_id' => 8,
+            'user_id' => 10,
             'address_line1' => 'No.5',
             'address_line2' => 'Angammana',
             'address_line3' => 'Ratnapura',
@@ -38,7 +49,7 @@ class LabAssistantSeeder extends Seeder
          ]);
 
         DB::table('lab_assistants')->insert([
-            'user_id' => 9,
+            'user_id' => 11,
             'address_line1' => 'No.9/A',
             'address_line2' => 'Thawalanthenna',
             'address_line3' => 'Nuwaraeliya',

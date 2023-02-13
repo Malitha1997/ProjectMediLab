@@ -1,4 +1,4 @@
-@extends('Layout.navbar')
+@extends('Layout.labassistantNavbar')
 
 
 @section('content')

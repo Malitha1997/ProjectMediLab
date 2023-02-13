@@ -2,6 +2,7 @@
 
 use App\User;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DrugController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DoctorController;
@@ -13,7 +14,10 @@ use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\LabAssistantController;
 use App\Http\Controllers\AdminDashboardController;
+use App\Http\Controllers\DoctorDashboardController;
+use App\Http\Controllers\PatientDashboardController;
 use App\Http\Controllers\AppointmentDoctorController;
+use App\Http\Controllers\LabAssistantDashboardController;
 
 
 /*
@@ -88,6 +92,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('appointments', AppointmentController::class);
     Route::resource('lab_assistants', LabAssistantController::class);
     Route::resource('reports', ReportController::class);
+    Route::resource('drugs', DrugController::class);
 
     Route::get('/add_user', [UserController::class, 'create']);
     Route::get('/add_patient', [PatientController::class, 'create']);
@@ -96,6 +101,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/add_schedule', [ScheduleController::class, 'create']);
     Route::get('/add_lab_assistant', [LabAssistantController::class, 'create']);
     Route::get('/add_report', [ReportController::class, 'create']);
+    Route::get('/add_drug', [DrugController::class, 'create']);
 
     Route::get('/patient_list', [PatientController::class, 'index'])->name('patient_list');
     Route::get('/user_list', [UserController::class, 'index'])->name('user_list');
@@ -104,8 +110,21 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/appointment_list', [AppointmentController::class, 'index'])->name('appointment_list');
     Route::get('/lab_assistant_list', [LabAssistantController::class, 'index'])->name('lab_assistant_list');
     Route::get('/report_list', [ReportController::class, 'index'])->name('report_list');
+    Route::get('/drug_list', [DrugController::class, 'index'])->name('drug_list');
 
     Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
+    Route::get('/patientDashboard', [PatientDashboardController::class, 'index'])->name('patientDashboard');
+    Route::get('/doctorDashboard', [DoctorDashboardController::class, 'index'])->name('doctorDashboard');
+    Route::get('/labassistantDashboard', [LabAssistantDashboardController::class, 'index'])->name('labassistantDashboard');
+
+    //patient
+    Route::get('/doctor_list-patient', [DoctorController::class, 'patientIndex'])->name('doctor_list-patient');
+    Route::get('/add_appointment-patient', [AppointmentController::class, 'patientCreate'])->name('add_appointment-patient');
+    Route::get('/show_doctor-patient', [AppointmentController::class, 'patientShow'])->name('show_doctor-patient');
+
+    //lab assistant
+    Route::get('/add_report-labassistant', [ReportController::class, 'labassistantCreate'])->name('add_report-labassistant');
+    Route::get('/report_list-labassistant', [ReportController::class, 'labassistantIndex'])->name('report_list-labassistant');
 
     //appointment routes
     //Route::resource('appointment', 'AppointmentController');
