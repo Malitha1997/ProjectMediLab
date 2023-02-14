@@ -270,4 +270,6 @@ class LabAssistantController extends Controller
         ->with('success','Lab Assistant deleted successfully');
     }
 
+    
+
 }

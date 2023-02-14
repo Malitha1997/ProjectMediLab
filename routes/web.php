@@ -11,6 +11,7 @@ use App\Http\Controllers\SearchController;
 use App\Http\Controllers\SignupController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\ScheduleController;
+use App\Http\Controllers\TestBillController;
 use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\LabAssistantController;
 use App\Http\Controllers\AdminDashboardController;
@@ -102,6 +103,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/add_lab_assistant', [LabAssistantController::class, 'create']);
     Route::get('/add_report', [ReportController::class, 'create']);
     Route::get('/add_drug', [DrugController::class, 'create']);
+    Route::get('/add_test_bill', [TestBillController::class, 'create']);
 
     Route::get('/patient_list', [PatientController::class, 'index'])->name('patient_list');
     Route::get('/user_list', [UserController::class, 'index'])->name('user_list');
@@ -125,6 +127,14 @@ Route::group(['middleware' => ['auth']], function() {
     //lab assistant
     Route::get('/add_report-labassistant', [ReportController::class, 'labassistantCreate'])->name('add_report-labassistant');
     Route::get('/report_list-labassistant', [ReportController::class, 'labassistantIndex'])->name('report_list-labassistant');
+    Route::get('/doctor_list-labassistant', [DoctorController::class, 'labassistantIndex'])->name('doctor_list-labassistant');
+
+    //drug
+    Route::get('/drug_list-patient', [DrugController::class, 'patientIndex'])->name('drug_list-patient');
+    Route::get('/show_drug-patient', [DrugController::class, 'patientShow'])->name('show_drug-patient');
+
+    //doctor
+    Route::get('/doctor_list-doctor', [DoctorController::class, 'doctorIndex'])->name('doctor_list-doctor');
 
     //appointment routes
     //Route::resource('appointment', 'AppointmentController');

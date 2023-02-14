@@ -294,4 +294,28 @@ class DoctorController extends Controller
         return view('patient.doctors.show',compact('user','duser'));
     }
 
+    public function labassistantIndex(Request $request)
+
+    {
+        $user_doctors = DB::table('users')
+        ->join('doctors', 'users.id', '=', 'doctors.user_id')
+        ->select('users.*' ,'users.id as usr_id', 'doctors.*')
+        ->paginate(10);
+
+        return view('Lab Assistant.doctors.index',compact('user_doctors'))
+        ->with('i', ($request->input('page', 1) - 1) * 5);
+    }
+
+    public function doctorIndex(Request $request)
+
+    {
+        $user_doctors = DB::table('users')
+        ->join('doctors', 'users.id', '=', 'doctors.user_id')
+        ->select('users.*' ,'users.id as usr_id', 'doctors.*')
+        ->paginate(10);
+
+        return view('Doctor.doctors.index',compact('user_doctors'))
+        ->with('i', ($request->input('page', 1) - 1) * 5);
+    }
+
 }

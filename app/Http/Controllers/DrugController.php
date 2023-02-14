@@ -20,7 +20,7 @@ class DrugController extends Controller
     {
         $drugs = Drug::with('patients')->get();
 
-    return view('Drug.index',compact('drugs'))
+    return view('admin.drugs.index',compact('drugs'))
     ->with('i', ($request->input('page',1)-1)*5);
 
     }
@@ -32,7 +32,7 @@ class DrugController extends Controller
      */
     public function create()
     {
-        return view('Drug.create');
+        return view('admin.drugs.create');
     }
 
     /**
@@ -51,28 +51,14 @@ class DrugController extends Controller
             'qty'=>'required|numeric|min:1|max:100',
             'issue_date' => 'required|date',
             'expire_date' => 'required|date',
-
-
-
-
-
-
-    // process the valid drug quantity
-    // ...
-
-
-
-
-
-
         ]);
 //dd($request);
-        $drug->drug_name=$request->drug_name;
-        $drug->qty=$request->qty;
-        $drug->issue_date=$request->issue_date;
-        $drug->expire_date=$request->expire_date;
+        $drugs->drug_name=$request->drug_name;
+        $drugs->qty=$request->qty;
+        $drugs->issue_date=$request->issue_date;
+        $drugs->expire_date=$request->expire_date;
 
-        $drug->save();
+        $drugs->save();
 
         //$data=Drug::all();
         return redirect()->route('drugs.index')
@@ -88,12 +74,9 @@ class DrugController extends Controller
      */
     public function show($id)
     {
-        $drugs=Drug::find($id);
-        $drugs=$drug;
+        $drug = Drug::find($id);
 
-        return view('Drug.show',compact('drug','drugs'));
-
-        //
+        return view('admin.drugs.show', compact('drug'));
     }
 
     /**
@@ -104,8 +87,8 @@ class DrugController extends Controller
      */
     public function edit($id)
     {
-         $drug=Drug::find($id);
-        return view('Drug.edit',compact('drug'));
+         $drugs=Drug::find($id);
+        return view('admin.drugs.edit',compact('drugs'));
 
     }
 
@@ -127,13 +110,13 @@ class DrugController extends Controller
             'expire_date' => ['required|date']
         ]);
 
-        $drug->drug_name=$request->drug_name;
-        $drug->qty=$request->qty;
-        $drug->issue_date=Hash::make($request->issue_date);
-        $drug->expire_date=$request->expire_date;
+        $drugs->drug_name=$request->drug_name;
+        $drugs->qty=$request->qty;
+        $drugs->issue_date=Hash::make($request->issue_date);
+        $drugs->expire_date=$request->expire_date;
 
 
-        $drug->drug()->update($drug->toArray());
+        $drugs->drug()->update($drugs->toArray());
 
         return redirect()->route('drugs.index')
                         ->with('success','Drug updated successfully.');
@@ -152,8 +135,26 @@ class DrugController extends Controller
         $drug->drug()->delete();
         $drug->delete();
 
-        return redirect()->route('drugs.index')
+        return redirect()->route('admin.drugs.index')
         ->with('success','Drug deleted successfully');
-        //
+
+    }
+
+    public function patientIndex(Request $request)
+    {
+        $drugs = Drug::with('patients')->get();
+
+    return view('patient.drugs.index',compact('drugs'))
+    ->with('i', ($request->input('page',1)-1)*5);
+
+    }
+
+    public function patientShow($id)
+    {
+        $drugs=Drug::find($id);
+        $drugs=$drug;
+
+        return view('patient.drugs.show',compact('drug','drugs'));
+
     }
 }

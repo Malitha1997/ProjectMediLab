@@ -1,4 +1,4 @@
-@extends('Layout.navbar')
+@extends('Layout.patientNavbar')
 
 
 @section('content')
@@ -53,31 +53,24 @@
 
   </tr>
 
-    @foreach ($drugs as $key => $drug)
+    @foreach ($drugs as $key => $drugs)
 
     <tr>
 
         <td>{{ ++$i }}</td>
 
-        <td>{{ $drug->drug_name }}</td>
+        <td>{{ $drugs->drug_name }}</td>
 
-        <td>{{ $drug->qty}}</td>
+        <td>{{ $drugs->qty}}</td>
 
-        <td>{{ $drug->issue_date}}</td>
+        <td>{{ $drugs->issue_date}}</td>
 
-        <td>{{ $drug->expire_date }}</td>
+        <td>{{ $drugs->expire_date }}</td>
 
         <td>
 
-            <a class="btn btn-info" href="{{ route('drugs.show',$drug->drug_id) }}">Show</a>
+            <a class="btn btn-info" href="{{ route('drugs.show',$drugs->drug_id) }}">Show</a>
 
-            <a class="btn btn-success" href="{{ route('drugs.edit',$drug->drug_id) }}">Edit</a>
-
-            {!! Form::open(['method' => 'DELETE','route' => ['drugs.destroy', $drug->drug_id],'style'=>'display:inline']) !!}
-
-                {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
-
-            {!! Form::close() !!}
 
 
         </td>
@@ -88,6 +81,6 @@
 
 </table>
 
-
+{!! $drugs->render() !!}
 
 @endsection
