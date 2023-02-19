@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Report;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Auth\Authenticatable;
 use Spatie\Permission\Traits\HasRoles;
@@ -31,7 +32,6 @@ class Patient extends Model
     ];
 
     public function user(){
-
         return $this->belongsTo(User::class);
     }
 
@@ -53,5 +53,9 @@ class Patient extends Model
 
     public function histories(){
         return $this->hasMany(History::class);
+    }
+
+    public function reports(){
+        return $this->hasMany(Report::class);
     }
 }

@@ -19,24 +19,24 @@
                     @endif</div>
             </div>
             <div class="row">
-                <div class="col"><label class="col-form-label text-dark mb-1">Description</label></div>
-                <div class="col"><input class="form-control text-dark mb-1" type="text" name="description" value="{{ old('description') }}" required>
-                    @if($errors->has('description'))
-                    <p class="text-danger">{{ $errors->first('description') }}</p>
-                    @endif</div>
-            </div>
-            <div class="row">
                 <div class="col"><label class="col-form-label text-dark mb-1">Doctor Name</label></div>
                 <div class="col"><input class="form-control text-dark mb-1" type="text" id="doctor_name" name="doctor_name" required>
-                    @if($errors->has('doctor_id'))
-                    <p class="text-danger">{{ $errors->first('doctor_id') }}</p>
+                    @if($errors->has('doctor_name'))
+                    <p class="text-danger">{{ $errors->first('doctor_name') }}</p>
                     @endif</div>
             </div>
             <div class="row">
                 <div class="col"><label class="col-form-label text-dark mb-1">Lab Assistant Name</label></div>
                 <div class="col"><input class="form-control text-dark mb-1" type="text" id="lab_assistant_name" name="lab_assistant_name"  required>
-                    @if($errors->has('lab_assistant_id'))
-                    <p class="text-danger">{{ $errors->first('lab_assistant_id') }}</p>
+                    @if($errors->has('lab_assistant_name'))
+                    <p class="text-danger">{{ $errors->first('lab_assistant_name') }}</p>
+                    @endif</div>
+            </div>
+            <div class="row">
+                <div class="col"><label class="col-form-label text-dark mb-1">Description</label></div>
+                <div class="col"><input class="form-control text-dark mb-1" type="text" name="description" value="{{ old('description') }}" required>
+                    @if($errors->has('description'))
+                    <p class="text-danger">{{ $errors->first('description') }}</p>
                     @endif</div>
             </div>
             <div class="row">

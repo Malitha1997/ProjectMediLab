@@ -12,22 +12,22 @@ class Appointment extends Model
 {
 
     protected $fillable = [
-        'patient_id',
+        'patient_name',
         'doctor_name',
         'date',
-        'available_time',
-        'problem'
+        'time',
+        'description'
     ];
 
     public function doctor(){
-        return $this->belongsTo(Doctor::class,'foreign_key');
+        return $this->belongsTo(Doctor::class);
     }
 
     public function patient(){
-        return $this->belongsTo(Patient::class,'foreign_key');
+        return $this->belongsTo(Patient::class);
     }
 
     public function schedule(){
-        return $this->belongsTo(Schedule::class,'foreign_key');
+        return $this->belongsTo(Schedule::class);
     }
 }

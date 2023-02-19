@@ -40,8 +40,8 @@ class ReportController extends Controller
      */
     public function index(Request $request)
     {
-        $reports = Report::with(['testBill.doctor.labAssistant'])->get();
-        return view('reports.index', compact('reports'));
+        $reports = Report::with(['test_bill.doctor.lab_assistant.patient'])->get();
+        return view('admin.reports.index', compact('reports'));
 
     }
 
@@ -74,33 +74,33 @@ class ReportController extends Controller
     ]);
     //dd($request);
 
-    $user = User::where('name', $request->patient_name)->first();
-        if ($user) {
-        $patient = Patient::firstOrCreate(['user_id' => $user->id]);
-        } else {
-        // handle error or redirect with error message
-        }
+    // $user = User::where('patient_name', $request->patient_name)->first();
+    //     if ($user) {
+    //     $patient = Patient::firstOrCreate(['user_id' => $user->id]);
+    //     } else {
+    //     // handle error or redirect with error message
+    //     }
 
-        $report = new Report;
-        $report->description = $request->description;
+        $user=new User;
+        $user->f_name=$request->patient_name;
+        $user->f_name=$request->doctor_name;
+        $user->f_name=$request->lab_assistant_name;
+        $user->save();
 
+        $test_bill=new Test_bill;
+        $test_bill->test_bill_id=$request->test_bill_id;
+        $test_bill->save();
+
+        $report=new Report;
         if ($request->hasFile('report_file')) {
         $file = $request->file('report_file');
         $fileName = time().'.'.$file->extension();
         $file->storeAs('public/reports', $fileName);
         $report->photo_path = 'public/reports/'.$fileName;
         }
-
-        $user = User::firstOrCreate(['f_name' => $request->doctor_name]);
-        $user = User::firstOrCreate(['f_name' => $request->patient_name]);
-        $user = User::firstOrCreate(['f_name' => $request->lab_assistant_name]);
-
-        $report->doctor_id = $user->id;
-        $report->lab_assistant_id = $user->id;
-        $report->test_bill_id = $request->test_bill_id;
-        $report->patient_id = $user->id;
+        $report->description=$request->description;
         $report->save();
-        return redirect()->route('reports.index')
+        return redirect()->route('admin.reports.index')
         ->with('success','Report created successfully.');
         }
 

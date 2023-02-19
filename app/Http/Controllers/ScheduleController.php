@@ -15,7 +15,7 @@ class ScheduleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index(Request $request) 
     {
     $doctor_schedules = Schedule::with('doctor')->paginate(5);
 

@@ -318,4 +318,14 @@ class DoctorController extends Controller
         ->with('i', ($request->input('page', 1) - 1) * 5);
     }
 
+    public function appointmentIndex(Request $request)
+    {
+
+        $user_doctors = Doctor::with('user')->paginate(10);
+
+
+        return view('admin.appointments.create',compact('user_doctors'))
+        ->with('i', ($request->input('page', 1) - 1) * 5);
+    }
+
 }

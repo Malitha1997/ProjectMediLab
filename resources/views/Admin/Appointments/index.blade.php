@@ -1,6 +1,5 @@
 @extends('Layout.navbar')
 
-
 @section('content')
 
 <div class="row" data-aos="fade-down" data-aos-duration="1000">
@@ -17,7 +16,7 @@
 
             <a class="btn btn-primary" href="{{ route('appointments.create') }}">Add Appointment</a>
 
-          </div>
+        </div>
 
     </div>
 
@@ -41,7 +40,7 @@
 
      <th>No</th>
 
-     <th>Patient ID</th>
+     <th>Patient name</th>
 
      <th>Doctor name</th>
 
@@ -53,18 +52,18 @@
 
   </tr>
 
-    @foreach ($appointment_doctors as $key => $appointments)
+    @foreach ($appointment_users as $key => $appointments)
 
     <tr>
 
         <td>{{ ++$i }}</td>
 
-        <td>{{ $appointments->patient_id }}</td>
-s
-        <td>{{ $appointments->doctor_id}}</td>
-s
+        <td>{{ $appointments->patient->user->f_name }}</td>
+
+        <td>{{ $appointments->doctor->user->f_name}}</td>
+
         <td>{{ $appointments->date}}</td>
-s
+
         <td>{{ $appointments->time }}</td>
 
         <td>
@@ -88,6 +87,6 @@ s
 
 </table>
 
-{!! $appointment_doctors->render() !!}
+{!! $appointment_users->render() !!}
 
 @endsection

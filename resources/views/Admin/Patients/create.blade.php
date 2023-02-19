@@ -95,7 +95,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col"><label class="col-form-label text-dark mb-1">NIC</label></div>
+                <div class="col"><label class="col-form-label text-dark mb-1">NIC or passport No.</label></div>
                 <div class="col"><input class="form-control text-dark mb-1" type="text" name="nic" value="{{ old('nic') }}" required>
                 @if($errors->has('nic'))
                 <p class="text-danger">{{ $errors->first('nic') }}</p>

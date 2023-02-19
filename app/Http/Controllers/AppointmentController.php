@@ -15,21 +15,11 @@ class AppointmentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $appointment_doctors = DB::table('appoinrments')
-        ->join('doctors', 'appointments.doctor_id', '=', 'doctors.id')
-        ->join('patients', 'appointments.patient_id', '=', 'patients.id')
-        ->join('schedules', 'appointments.schedule_id', '=', 'schedules.id')
-        ->select('appointments.*' ,'schedules.*','patients.*', 'doctors.*');
-        //->paginate(10);
-        //$appointments = Appointment::get();
-         //dd($appointments);
+    $appointment_users = Appointment::with(['doctor.patient.schedule'])->paginate(10);
 
-         //$drugs=User::find(Auth::id())->patient->drugs;
-
-        return view('admin.appointments.index',compact('appointment_doctors'))
-        ->with('i', ($request->input('page', 1) - 1) * 5);
+    return view('admin.appointments.index', compact('appointment_users'));
     }
 
     /**
@@ -39,9 +29,7 @@ class AppointmentController extends Controller
      */
     public function create()
     {
-
-
-        return view('admin.appointments.create');
+        return view('admin.appointments.booking');
     }
 
     /**
@@ -52,27 +40,28 @@ class AppointmentController extends Controller
      */
     public function store(Request $request)
     {
-        //dd($request);
         request()->validate([
-            'patient_id'=>'required',
+            'patient_name'=>'required',
             'doctor_name'=>'required',
             'date'=>'required',
-            'available_time'=>'required',
-            'problem'=>'required',
+            'time'=>'required',
+            'description'=>'required',
+            'schedule_id' => 'nullable'
         ]);
-
+        //dd($request);
         $appointment = new Appointment;
 
-        $appointment->patient_id=$request->patient_id;
-        $appointment->doctor_id=$request->doctor_name;
+        $appointment->patient_id=$request->patient_name;
+        $appointment->doctor_id=$request->id;
         $appointment->date=$request->date;
-        $appointment->time=$request->available_time;
-        $appointment->problem=$request->problem;
+        $appointment->time=$request->time;
+        $appointment->description=$request->description;
+
 
         $appointment->save();
 
-        return redirect()->route('appointments.index')
-                            ->with('success','Appointment saved successfully.');
+        return redirect()->route('admin.appointments.index')
+                            ->with('success','Appointment created successfully.');
 
     }
 
@@ -112,24 +101,24 @@ class AppointmentController extends Controller
     public function update(Request $request, $id)
     {
         request()->validate([
-            'id'=>'required',
+            'patient_name'=>'required',
             'doctor_name'=>'required',
             'date'=>'required',
-            'available_time'=>'required',
-            'problem'=>'required',
+            'time'=>'required',
+            'description'=>'required',
         ]);
 
         $appointment = new Appointment;
 
-        $appointment->patient_id=$request->id;
-        $appointment->doctor_id=$request->doctor_name;
+        $appointment->patient_id=$request->patient_name;
+        $appointment->doctor_id=$request->id;
         $appointment->date=$request->date;
-        $appointment->time=$request->available_time;
-        $appointment->problem=$request->problem;
+        $appointment->time=$request->time;
+        $appointment->description=$request->description;
 
         $appointment->update();
 
-        return redirect()->route('appointments.index')
+        return redirect()->route('admin.appointments.index')
                             ->with('success','Appointment updated successfully.');
     }
 
@@ -168,9 +157,32 @@ class AppointmentController extends Controller
           return response()->json($response);
 
     }
+
+    public function livesearch2(Request $request)
+    { //dd('hi');
+        $query = $request->get('query');
+          $users = User::where('f_name', 'LIKE', '%'. $query. '%')->get();
+          //dd($user->getRoleNames());
+
+
+          foreach($users as $user){
+            if($user->patient != null){
+
+             $response[] = array("value"=>$user->patient->id,"label"=>$user->f_name);
+
+                }
+            }
+
+          return response()->json($response);
+
+    }
+
+
     public function patientCreate()
     {
         return view('patient.appointments.create');
     }
+
+
 
 }

@@ -36,56 +36,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/add_bill', function () {
-    return view('add_bill');
-});
-
-Route::get('/add_packege', function () {
-    return view('add_packege');
-});
-
-Route::get('/add_service', function () {
-    return view('add_service');
-});
-
-Route::get('/appointment_assign_by_all', function () {
-    return view('appointment_assign_by_all');
-});
-
-Route::get('/appointment_assign_by_doctor', function () {
-    return view('appointment_assign_by_doctor');
-});
-
-Route::get('/package_list', function () {
-    return view('package_list');
-});
-
-Route::get('/profile', function () {
-    return view('profile');
-});
-
-Route::get('/schedule_list', function () {
-    return view('schedule_list');
-});
-
-Route::get('/send_email', function () {
-    return view('send_email');
-});
-
-Route::get('/send_sms', function () {
-    return view('send_sms');
-});
-
-Route::get('/service_list', function () {
-    return view('service_list');
-});
-
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 //Route::get('/search',SearchController::class,'doctorSearch');
 
 Route::group(['middleware' => ['auth']], function() {
-    Route::resource('roles', RoleController::class);
+   // Route::resource('roles', RoleController::class);
     Route::resource('users', UserController::class);
     Route::resource('patients', PatientController::class);
     Route::resource('doctors', DoctorController::class);
@@ -104,6 +60,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/add_report', [ReportController::class, 'create']);
     Route::get('/add_drug', [DrugController::class, 'create']);
     Route::get('/add_test_bill', [TestBillController::class, 'create']);
+    Route::get('/add_appointment', [AppointmentController::class, 'create']);
 
     Route::get('/patient_list', [PatientController::class, 'index'])->name('patient_list');
     Route::get('/user_list', [UserController::class, 'index'])->name('user_list');
@@ -113,6 +70,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/lab_assistant_list', [LabAssistantController::class, 'index'])->name('lab_assistant_list');
     Route::get('/report_list', [ReportController::class, 'index'])->name('report_list');
     Route::get('/drug_list', [DrugController::class, 'index'])->name('drug_list');
+    Route::get('/doctor_appointment_list', [DoctorController::class, 'appointmentIndex'])->name('doctor_appointment_list');
 
     Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
     Route::get('/patientDashboard', [PatientDashboardController::class, 'index'])->name('patientDashboard');
@@ -145,6 +103,7 @@ Route::group(['middleware' => ['auth']], function() {
 });
 
 Route::post('/livesearch', [AppointmentController::class, 'livesearch'])->name('livesearch');
+Route::post('/livesearch2', [AppointmentController::class, 'livesearch2'])->name('livesearch2');
 Auth::routes();
 
 
