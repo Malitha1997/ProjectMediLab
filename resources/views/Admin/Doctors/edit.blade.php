@@ -42,15 +42,15 @@
 
             <div class="row">
                 <div class="col"><label class="col-form-label text-dark mb-1">Address</label></div>
-                <div class="col"><input class="form-control text-dark mb-1" type="text" placeholder="House No." name="house_no" value="{{ $doctor->house_no}}">
+                <div class="col"><input class="form-control text-dark mb-1" type="text" placeholder="House No." name="house_no" value="{{ $doctor->address_line1}}">
                     @if($errors->has('house_no'))
                     <p class="text-danger">{{ $errors->first('house_no') }}</p>
                     @endif
-                    <input class="form-control text-dark mb-1" type="text" placeholder="Street No." name="street_no" value="{{ $doctor->street_no}}">
+                    <input class="form-control text-dark mb-1" type="text" placeholder="Street No." name="street_no" value="{{ $doctor->address_line2}}">
                     @if($errors->has('street_no'))
                     <p class="text-danger">{{ $errors->first('street_no') }}</p>
                     @endif
-                    <input class="form-control text-dark mb-1" type="text" placeholder="City" name="city" value="{{ $doctor->city}}">
+                    <input class="form-control text-dark mb-1" type="text" placeholder="City" name="city" value="{{ $doctor->address_line3}}">
                     @if($errors->has('city'))
                     <p class="text-danger">{{ $errors->first('city') }}</p>
                     @endif

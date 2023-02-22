@@ -13,7 +13,6 @@ class Report extends Model
         'description',
         'doctor_name',
         'lab_assistant_name',
-        'test_bill_id',
         'report_file'
     ];
     public function doctor(){
@@ -22,10 +21,6 @@ class Report extends Model
 
     public function lab_assistant(){
         return $this->belongsTo(Lab_assistant::class);
-    }
-
-    public function test_bill(){
-        return $this->belongsTo(Test_bill::class);
     }
 
     public function patient(){

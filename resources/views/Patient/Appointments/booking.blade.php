@@ -1,4 +1,4 @@
-@extends('Layout.navbar')
+@extends('Layout.patientNavbar')
 
 @section('content')
 
@@ -14,25 +14,28 @@
                 <div class="row">
                     <div class="col"><label class="col-form-label text-dark mb-1">Patient Name</lable></div>
                     <div class="col"><input class="form-control text-dark mb-1" type="text" id="patient_name" name="patient_name" required>
-                        <input type="hidden" name="patient_name" id="patient_nameid" >
+                        <input type="hidden" name="patient_name" id="patient_nameid">
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col"><label class="col-form-label text-dark mb-1" >Doctor Name</lable></div>
-                    <div class="col"><input class="form-control text-dark mb-1"  name="doctor_name" id="doctor_name" type="text" value="Dr. {{ $doctor->user->f_name }} {{ $doctor->user->l_name }}" readonly required>
+                    <div class="col"><input class="form-control text-dark mb-1" id="doctor_name" type="text" value="{{ $doctor->user->f_name }}" required>
+                        <input type="hidden" name="doctor_name" id="doctor_nameid" >
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col"><label class="col-form-label text-dark mb-1">Appointment Date</lable></div>
-                    <div class="col"><input class="form-control text-dark mb-1" id="date" name="date" type="text" value="{{ $doctor->available_day }}" required>
+                    <div class="col"><input class="form-control text-dark mb-1" id="date" type="date" value="{{ $schedule->available_day }}" required>
+                        <input type="hidden" name="date" id="date">
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col"><label class="col-form-label text-dark mb-1" >Appointment Time</label></div>
-                    <div class="col"><input class="form-control text-dark mb-1" id="time" name="time" type="text" value="{{ $doctor->available_time }}" required>
+                    <div class="col"><input class="form-control text-dark mb-1" id="time" type="time" value="{{ $schedule->available_time }}" required>
+                        <input type="hidden" name="time" id="time">
                     </div>
                 </div>
 

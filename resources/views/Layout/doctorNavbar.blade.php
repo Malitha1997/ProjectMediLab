@@ -35,8 +35,8 @@
                 <hr class="sidebar-divider my-0">
                 <ul class="navbar-nav text-light" id="accordionSidebar">
                     <li class="nav-item"><a class="nav-link" href="/doctorDashboard"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
-                    <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#"><i class="far fa-list-alt" style="font-size: 17px;"></i><span>Appointments</span></a>
-                        <div class="dropdown-menu"><a class="dropdown-item" data-aos="fade" href="DP_Assign_Date.html"><span class="text-center" data-aos="fade">Assign by Date</span></a><a class="dropdown-item" data-aos="fade" href="DP_Assign_Week.html"><span class="text-center" data-aos="fade">Assign by Week</span></a></div>
+                    <li class="nav-item"><a class="nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#"><i class="far fa-list-alt" style="font-size: 17px;"></i><span>Appointments</span></a>
+
                     </li>
                     <li class="nav-item"><a class="nav-link" href="/doctor_list-doctor" style="margin-top: -1px;margin-left: 0px;margin-right: 0px;padding-left: 15px;"><i class="fas fa-tachometer-alt"></i><span>Doctor list</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="#" style="padding-left: 14px;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="1em" height="1em" fill="currentColor">

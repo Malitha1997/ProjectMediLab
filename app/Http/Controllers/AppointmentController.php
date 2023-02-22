@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Doctor;
+use App\Models\Schedule;
 use App\Models\Appointment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -49,10 +51,11 @@ class AppointmentController extends Controller
             'schedule_id' => 'nullable'
         ]);
         //dd($request);
+
         $appointment = new Appointment;
 
         $appointment->patient_id=$request->patient_name;
-        $appointment->doctor_id=$request->id;
+        $appointment->doctor_id=$request->doctor_id;
         $appointment->date=$request->date;
         $appointment->time=$request->time;
         $appointment->description=$request->description;
@@ -99,7 +102,7 @@ class AppointmentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
+    {//dd($request);
         request()->validate([
             'patient_name'=>'required',
             'doctor_name'=>'required',
@@ -110,15 +113,15 @@ class AppointmentController extends Controller
 
         $appointment = new Appointment;
 
-        $appointment->patient_id=$request->patient_name;
-        $appointment->doctor_id=$request->id;
+        $appointment->patient_id=$request->patient_id;
+        $appointment->doctor_id=$request->doctor_id;
         $appointment->date=$request->date;
         $appointment->time=$request->time;
         $appointment->description=$request->description;
 
         $appointment->update();
 
-        return redirect()->route('admin.appointments.index')
+        return redirect()->route('appointments.index')
                             ->with('success','Appointment updated successfully.');
     }
 
@@ -178,11 +181,22 @@ class AppointmentController extends Controller
     }
 
 
-    public function patientCreate()
+    public function patientCreate(Request $request)
     {
-        return view('patient.appointments.create');
+        $user_doctors = Doctor::with('user')->paginate(10);
+
+        return view('patient.appointments.create',compact('user_doctors'))
+        ->with('i', ($request->input('page', 1) - 1) * 5);
     }
 
 
+    public function booking($id){
+
+        $doctor=Doctor::find($id);
+        $schedule=$doctor->schedules;
+        //dd($doctor);
+
+        return view('admin.appointments.booking', compact('doctor','schedule'));
+    }
 
 }

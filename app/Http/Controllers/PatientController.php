@@ -259,5 +259,7 @@ class PatientController extends Controller
          ->with('success','Patient deleted successfully');
      }
 
+     
+
 
 }

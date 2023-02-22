@@ -18,7 +18,7 @@ class DrugController extends Controller
      */
     public function index(Request $request)
     {
-        $drugs = Drug::with('patients')->get();
+    $drugs = Drug::with('patients')->get();
 
     return view('admin.drugs.index',compact('drugs'))
     ->with('i', ($request->input('page',1)-1)*5);
@@ -43,11 +43,10 @@ class DrugController extends Controller
      */
     public function store(Request $request)
     {
-
-        $drug=new Drug;
+        $drugs=new Drug;
 
         $this->validate($request,[
-            'drug_name'=>'required|max:100|min:5',
+            'drug_name'=>'required|max:100|min:2',
             'qty'=>'required|numeric|min:1|max:100',
             'issue_date' => 'required|date',
             'expire_date' => 'required|date',
@@ -59,6 +58,8 @@ class DrugController extends Controller
         $drugs->expire_date=$request->expire_date;
 
         $drugs->save();
+
+        $drugs->patients()->attach($request->patient);
 
         //$data=Drug::all();
         return redirect()->route('drugs.index')
@@ -74,9 +75,8 @@ class DrugController extends Controller
      */
     public function show($id)
     {
-        $drug = Drug::find($id);
-
-        return view('admin.drugs.show', compact('drug'));
+        $drugs = Drug::find($id);
+        return view('admin.drugs.show', compact('drugs'));
     }
 
     /**

@@ -28,52 +28,34 @@
 @endif
 
 
-<table class="table table-bordered text-dark mb-1" >
+<table class="table table-bordered text-dark mb-1">
 
-  <tr>
-
-     <th>No</th>
-
-     <th>Name</th>
-
-     <th>Contact No</th>
-
-     <th>Email Address</th>
-
-     <th>Speciality</th>
-
-     <th>Action</th>
-
-  </tr>
 
     @foreach ($user_doctors as $key => $doctor)
 
-    <tr>
+    <tr data-aos="zoom-in" data-aos-duration="1000">
 
-        <td>{{ ++$i }}</td>
+        <td width="380px"><h4 class="text-primary" font-size="150px"><b>Dr.{{ $doctor->user->f_name }} {{ $doctor->user->l_name }}</b></h4>
 
-        <td>Dr.{{ $doctor->user->f_name }} {{ $doctor->user->l_name }}</td>
+        <b data-aos="zoom-in" data-aos-duration="1000">{{ $doctor->speciality }}</b><br>
 
-        <td>{{ $doctor->telno}}</td>
+        {{ $doctor->telno}} <br>
 
-        <td>{{ $doctor->user->email}}</td>
+        {{ $doctor->user->email}}</td>
+ 
 
-        <td>{{ $doctor->speciality }}</td>
 
         <td>
 
             <a class="btn btn-info" href="{{ route('doctors.show',$doctor->user_id) }}">Profile</a>
 
-            <a class="btn btn-danger" href="/add_appointment">Bood Now</a>
-
-
-
-
-
+            <a class="btn btn-outline-danger" href="{{ route('add_appointment',$doctor->id) }}">Book Appointment</a>
 
         </td>
 
     </tr>
+
+
 
     @endforeach
 

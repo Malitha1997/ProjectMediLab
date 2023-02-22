@@ -50,17 +50,17 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('lab_assistants', LabAssistantController::class);
     Route::resource('reports', ReportController::class);
     Route::resource('drugs', DrugController::class);
+    Route::resource('signup', SignupController::class);
 
     Route::get('/add_user', [UserController::class, 'create']);
     Route::get('/add_patient', [PatientController::class, 'create']);
     Route::get('/add_doctor', [DoctorController::class, 'create']);
-    Route::get('/add_appointment', [AppointmentController::class, 'create']);
     Route::get('/add_schedule', [ScheduleController::class, 'create']);
     Route::get('/add_lab_assistant', [LabAssistantController::class, 'create']);
     Route::get('/add_report', [ReportController::class, 'create']);
     Route::get('/add_drug', [DrugController::class, 'create']);
     Route::get('/add_test_bill', [TestBillController::class, 'create']);
-    Route::get('/add_appointment', [AppointmentController::class, 'create']);
+    Route::get('/add_appointment/{id}', [AppointmentController::class, 'booking'])->name('add_appointment');
 
     Route::get('/patient_list', [PatientController::class, 'index'])->name('patient_list');
     Route::get('/user_list', [UserController::class, 'index'])->name('user_list');
@@ -104,6 +104,7 @@ Route::group(['middleware' => ['auth']], function() {
 
 Route::post('/livesearch', [AppointmentController::class, 'livesearch'])->name('livesearch');
 Route::post('/livesearch2', [AppointmentController::class, 'livesearch2'])->name('livesearch2');
+Route::post('/livesearch3', [ReportController::class, 'livesearch3'])->name('livesearch3');
 Auth::routes();
 
 

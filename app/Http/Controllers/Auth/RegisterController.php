@@ -55,14 +55,15 @@ class RegisterController extends Controller
             'l_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'house_no'=> ['required','string', 'max:255'],
-            'street_no'=> ['required','string', 'max:255'],
-            'city'=> ['required','string', 'max:255'],
+            'address_line1'=> ['required','string', 'max:255'],
+            'address_line2'=> ['required','string', 'max:255'],
+            'address_line3'=> ['required','string', 'max:255'],
             'telno'=> ['required','string', 'max:10'],
             'nic'=> ['required','string', 'max:10'],
             'blood_group'=> ['required','string'],
             'age'=> ['required','string'],
         ]);
+        //dd($data);
 
     }
 
@@ -82,9 +83,9 @@ class RegisterController extends Controller
         ]);
 
         return Patient::create([
-            'house_no'=> $data['house_no'],
-            'street_no'=> $data['street_no'],
-            'city'=> $data['city'],
+            'address_line1'=> $data['address_line1'],
+            'address_line2'=> $data['address_line2'],
+            'address_line3'=> $data['address_line3'],
             'blood_group'=> $data['blood_group'],
             'age'=> $data['age'],
             'telno'=> $data['telno'],

@@ -29,7 +29,7 @@
 
             <div class="row">
                 <div class="col"><label class="col-form-label text-dark mb-1">Issued date</label></div>
-                <div class="col"><input class="form-control text-dark mb-1" type="text" name="issue_date" value="{{ old('issue_date') }}" required>
+                <div class="col"><input class="form-control text-dark mb-1" type="date" name="issue_date" value="{{ old('issue_date') }}" required>
                 @if($errors->has('issue_date'))
                 <p class="text-danger">{{ $errors->first('issue_date') }}</p>
                 @endif
@@ -38,7 +38,7 @@
 
             <div class="row">
                 <div class="col"><label class="col-form-label text-dark mb-1">Expire date</label></div>
-                <div class="col"><input class="form-control text-dark mb-1" type="text" name="expire_date" value="{{ old('expire_date') }}" required>
+                <div class="col"><input class="form-control text-dark mb-1" type="date" name="expire_date" value="{{ old('expire_date') }}" required>
                 @if($errors->has('expire_date'))
                 <p class="text-danger">{{ $errors->first('expire_date') }}</p>
                 @endif

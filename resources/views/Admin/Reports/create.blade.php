@@ -13,21 +13,24 @@
 
             <div class="row">
                 <div class="col"><label class="col-form-label text-dark mb-1">Patient Name</label></div>
-                <div class="col"><input class="form-control text-dark mb-1" type="text" name="patient_name" value="{{ old('patient_name') }}" required>
+                <div class="col"><input class="form-control text-dark mb-1" type="text"  id="patient_name" value="{{ old('patient_name') }}" required>
+                    <input type="hidden" name="patient_name" id='patient_nameid' >
                     @if($errors->has('patient_name'))
                     <p class="text-danger">{{ $errors->first('patient_name') }}</p>
                     @endif</div>
             </div>
             <div class="row">
                 <div class="col"><label class="col-form-label text-dark mb-1">Doctor Name</label></div>
-                <div class="col"><input class="form-control text-dark mb-1" type="text" id="doctor_name" name="doctor_name" required>
+                <div class="col"><input class="form-control text-dark mb-1" type="text" id="doctor_name" value="{{ old('doctor_name') }}"  required>
+                    <input type="hidden" name="doctor_name" id='doctor_nameid' >
                     @if($errors->has('doctor_name'))
                     <p class="text-danger">{{ $errors->first('doctor_name') }}</p>
                     @endif</div>
             </div>
             <div class="row">
                 <div class="col"><label class="col-form-label text-dark mb-1">Lab Assistant Name</label></div>
-                <div class="col"><input class="form-control text-dark mb-1" type="text" id="lab_assistant_name" name="lab_assistant_name"  required>
+                <div class="col"><input class="form-control text-dark mb-1" type="text" id="lab_assistant_name" value="{{ old('lab_assistant_name') }}" required>
+                    <input type="hidden" name="lab_assistant_name" id='lab_assistant_nameid' >
                     @if($errors->has('lab_assistant_name'))
                     <p class="text-danger">{{ $errors->first('lab_assistant_name') }}</p>
                     @endif</div>
@@ -39,16 +42,10 @@
                     <p class="text-danger">{{ $errors->first('description') }}</p>
                     @endif</div>
             </div>
-            <div class="row">
-                <div class="col"><label class="col-form-label text-dark mb-1">Test Bill Id</label></div>
-                <div class="col"><input class="form-control text-dark mb-1" type="text" name="test_bill_id" value="{{ old('test_bill_id') }}" required>
-                    @if($errors->has('test_bill_id'))
-                    <p class="text-danger">{{ $errors->first('test_bill_id') }}</p>
-                    @endif</div>
-            </div>
+
 
             <div class="row">
-                <div class="col"><label class="col-form-label text-dark mb-1">Uplaod Report File </label></div>
+                <div class="col"><label class="col-form-label text-dark mb-1">Report File </label></div>
 
 
                     <div class="col">
@@ -105,40 +102,86 @@
 
     });
 
-
-</script>
-
-<script>
     $(document).ready(function(){
-        var searchRoute = "{{ route('livesearch') }}";
-        var csrf_token = $('meta[name="csrf-token"]').attr('content');
-
-        $(document).on('click', '.lab_assistant_name', function() {
-            var $input = $(this);
-            $input.autocomplete({
+        $(document).on('click','#patient_name', function() {
+            var route = "{{ route('livesearch2') }}";
+            $(this).autocomplete({
                 source: function( request, response ) {
+                    $.ajaxSetup({
+
+                        headers: {
+
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+
+                        }
+
+                    });
+                   // Fetch data
                     $.ajax({
-                        url: searchRoute,
+                        url:route,
                         type: 'post',
                         dataType: "json",
-                        headers: {
-                            'X-CSRF-TOKEN': csrf_token
-                        },
                         data: {
                             query: request.term
                         },
                         success: function( data ) {
-                            response( data );
+                        response( data );
+
                         }
                     });
                 },
                 select: function (event, ui) {
-                    $input.val(ui.item.label);
-                    $input.siblings('.lab_assistant_id').val(ui.item.value);
+                    // Set selection
+                    var id = event.target.id
+                    $('#'+id).val(ui.item.label); // display the selected text
+                    $('#'+id+'id').val(ui.item.value); // save selected id to input
                     return false;
                 }
             });
         });
+
+
+    });
+
+    $(document).ready(function(){
+        $(document).on('click','#lab_assistant_name', function() {
+            var route = "{{ route('livesearch3') }}";
+            $(this).autocomplete({
+                source: function( request, response ) {
+                    $.ajaxSetup({
+
+                        headers: {
+
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+
+                        }
+
+                    });
+                   // Fetch data
+                    $.ajax({
+                        url:route,
+                        type: 'post',
+                        dataType: "json",
+                        data: {
+                            query: request.term
+                        },
+                        success: function( data ) {
+                        response( data );
+
+                        }
+                    });
+                },
+                select: function (event, ui) {
+                    // Set selection
+                    var id = event.target.id
+                    $('#'+id).val(ui.item.label); // display the selected text
+                    $('#'+id+'id').val(ui.item.value); // save selected id to input
+                    return false;
+                }
+            });
+        });
+
+
     });
 </script>
     </div>

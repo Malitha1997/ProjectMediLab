@@ -38,14 +38,13 @@ class SignupController extends Controller
      */
     public function store(Request $request)
     {
-        $patient=new Patient;
-
+dd($request);
         $this->validate($request,[
             'f_name'=> 'required|string|min:1|max:255',
             'l_name'=> 'required|string|min:1|max:255',
-            'house_no'=> 'required|numeric',
-            'street_no'=> 'required|numeric',
-            'city'=> 'required',
+            'address_line1'=> 'required|numeric',
+            'address_line2'=> 'required|numeric',
+            'address_line3'=> 'required',
             'telno'=> 'required|regex:/^(?:\+\d{1,3}[- ]?)?\d{10}$/',
             'nic'=> 'required|min:10|max:12',
             'blood_group'=> 'required',
@@ -53,6 +52,7 @@ class SignupController extends Controller
             'email'=> 'required|regex:/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/',
             'password' => 'required|same:confirm-password',
         ]);
+
 
         $user = new User;
 
@@ -65,9 +65,9 @@ class SignupController extends Controller
 
         $patient = new Patient;
 
-        $patient->house_no = $request->house_no;
-        $patient->street_no = $request->street_no;
-        $patient->city = $request->city;
+        $patient->address_line1 = $request->address_line1;
+        $patient->address_line2 = $request->address_line2;
+        $patient->address_line3 = $request->address_line3;
         $patient->telno = $request->telno;
         $patient->blood_group = $request->blood_group;
         $patient->nic = $request->nic;
@@ -77,8 +77,8 @@ class SignupController extends Controller
 
         $user->assignRole('patient');
 
-        return redirect()->route('patients.index')
-                            ->with('success','Patient created successfully.');
+        return redirect()->route('login')
+                            ->with('success','User created successfully.');
     }
 
     /**

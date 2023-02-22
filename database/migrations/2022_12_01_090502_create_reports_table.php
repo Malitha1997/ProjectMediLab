@@ -18,9 +18,8 @@ return new class extends Migration
             $table->foreignId('patient_id')->constrained('patients');
             $table->string('description');
             $table->foreignId('doctor_id')->constrained('doctors');
-            $table->foreignId('test_bill_id')->constrained('test_bills');
             $table->foreignId('lab_assistant_id')->constrained('lab_assistants');
-            $table->string('report_file');
+            $table->string('report_file')->nullable();
             $table->timestamps();
 
         });

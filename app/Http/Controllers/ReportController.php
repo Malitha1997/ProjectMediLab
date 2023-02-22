@@ -40,7 +40,7 @@ class ReportController extends Controller
      */
     public function index(Request $request)
     {
-        $reports = Report::with(['test_bill.doctor.lab_assistant.patient'])->get();
+        $reports = Report::with(['doctor.lab_assistant.patient'])->paginate(10);
         return view('admin.reports.index', compact('reports'));
 
     }
@@ -63,41 +63,28 @@ class ReportController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-{
+{dd($request);
     $this->validate($request, [
         'patient_name' => 'required|min:1|max:255',
         'description' => 'required',
         'doctor_name' => 'required',
         'lab_assistant_name' => 'required',
-        'test_bill_id' => 'required|numeric',
         'report_file' => 'required',
     ]);
-    //dd($request);
 
-    // $user = User::where('patient_name', $request->patient_name)->first();
-    //     if ($user) {
-    //     $patient = Patient::firstOrCreate(['user_id' => $user->id]);
-    //     } else {
-    //     // handle error or redirect with error message
-    //     }
-
-        $user=new User;
-        $user->f_name=$request->patient_name;
-        $user->f_name=$request->doctor_name;
-        $user->f_name=$request->lab_assistant_name;
-        $user->save();
-
-        $test_bill=new Test_bill;
-        $test_bill->test_bill_id=$request->test_bill_id;
-        $test_bill->save();
 
         $report=new Report;
+
         if ($request->hasFile('report_file')) {
         $file = $request->file('report_file');
         $fileName = time().'.'.$file->extension();
         $file->storeAs('public/reports', $fileName);
         $report->photo_path = 'public/reports/'.$fileName;
         }
+
+        $report->patient_id=$request->patient_id;
+        $report->doctor_id=$request->doctor_id;
+        $report->lab_assistant_id=$request->lab_assistant_id;
         $report->description=$request->description;
         $report->save();
         return redirect()->route('admin.reports.index')
@@ -191,6 +178,25 @@ class ReportController extends Controller
     {
         $reports = Report::with(['testBill.doctor.labAssistant'])->get();
         return view('Lab Assistant.reports.index', compact('reports'));
+
+    }
+
+    public function livesearch3(Request $request)
+    { //dd('hi');
+        $query = $request->get('query');
+          $users = User::where('f_name', 'LIKE', '%'. $query. '%')->get();
+          //dd($user->getRoleNames());
+
+
+          foreach($users as $user){
+            if($user->lab_assistant != null){
+
+             $response[] = array("value"=>$user->lab_assistant->id,"label"=>$user->f_name);
+
+                }
+            }
+
+          return response()->json($response);
 
     }
 }

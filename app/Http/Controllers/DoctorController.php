@@ -122,7 +122,7 @@ class DoctorController extends Controller
         $user->password = Hash::make($request->password);
 
         $user->save();
-
+ 
         $doctor = new Doctor;
 
         $doctor->address_line1 = $request->address_line1;
@@ -322,7 +322,6 @@ class DoctorController extends Controller
     {
 
         $user_doctors = Doctor::with('user')->paginate(10);
-
 
         return view('admin.appointments.create',compact('user_doctors'))
         ->with('i', ($request->input('page', 1) - 1) * 5);
