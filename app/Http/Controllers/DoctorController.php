@@ -122,7 +122,7 @@ class DoctorController extends Controller
         $user->password = Hash::make($request->password);
 
         $user->save();
- 
+
         $doctor = new Doctor;
 
         $doctor->address_line1 = $request->address_line1;
@@ -291,7 +291,7 @@ class DoctorController extends Controller
         $user=User::find($id);
         $duser=$user->user;
 
-        return view('patient.doctors.show',compact('user','duser'));
+        return view('doctor.doctors.show',compact('user','duser'));
     }
 
     public function labassistantIndex(Request $request)
@@ -326,5 +326,15 @@ class DoctorController extends Controller
         return view('admin.appointments.create',compact('user_doctors'))
         ->with('i', ($request->input('page', 1) - 1) * 5);
     }
+
+    public function patientShow($id)
+
+    {
+        $user=User::find($id);
+        $duser=$user->user;
+
+        return view('patient.doctors.show',compact('user','duser'));
+    }
+
 
 }

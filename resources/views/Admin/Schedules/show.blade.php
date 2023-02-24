@@ -56,7 +56,7 @@
 
             Available Time :
 
-            {{ $schedule->available_time }}
+            {{ $schedule->start_time }} to {{ $schedule->end_time }}
 
         </div>
 

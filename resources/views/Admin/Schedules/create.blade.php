@@ -31,18 +31,13 @@
                 </div>
 
                 <div class="row">
-                    <div class="col"><label class="col-form-label text-dark mb-1" >Available Time</label></div>
-                    <div class="col">
-                    <select id="available_time" name="available_time" class="form-control text-dark mb-1">
-                        <option value="select time ">--Select Time--</option>
-                        <option value="from 8.00 AM to 10.00 AM ">from 8.00 AM to 10.00 AM </option>
-                        <option value="from 10.00 AM to 12.00 PM">from 10.00 AM to 12.00 PM</option>
-                        <option value="from 12.00 PM to 2.00 PM">from 12.00 PM to 2.00 PM</option>
-                        <option value="from 2.00 PM to 4.00 PM">from 2.00 PM to 4.00 PM</option>
-                        <option value="from 4.00 PM to 6.00 PM">from 4.00 PM to 6.00 PM</option>
-                        <option value="from 6.00 PM to 8.00 PM">from 6.00 PM to 8.00 PM</option>
-                        <option value="from 8.00 PM to 10.00 PM">from 8.00 PM to 10.00 PM</option>
-                    </select>
+                    <div class="col"><label class="col-form-label text-dark mb-1" >Start Time</label></div>
+                    <div class="col"><input class="form-control text-dark mb-1" id="start_time" type="time" name="start_time" required></div>
+                </div>
+
+                <div class="row">
+                    <div class="col"><label class="col-form-label text-dark mb-1" >End Time</label></div>
+                    <div class="col"><input class="form-control text-dark mb-1" id="end_time" type="time" name="end_time" required></div>
                 </div>
 
 </div>

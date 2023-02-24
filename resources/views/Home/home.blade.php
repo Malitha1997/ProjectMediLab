@@ -37,7 +37,7 @@
                     <li class="nav-item dropdown" data-aos="zoom-in-down" style="overflow: visible;transition: ease-in-out;backdrop-filter: opacity(1);"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#">Services</a>
                         <div class="dropdown-menu" data-aos="fade-down"><a class="dropdown-item" data-aos="fade-down" href="#">Appointment for doctor&nbsp;</a><a class="dropdown-item" data-aos="fade-down" href="#">Pharmacy</a><a class="dropdown-item" data-aos="fade-down" href="#">Laboratory</a></div>
                     </li>
-                </ul><button class="btn btn-primary" type="button"><a href="{{ route('register') }}"><span><span style="color: rgb(255, 255, 255);">Signup</span></span></a></button>
+                </ul><button class="btn btn-primary" type="button"><a href="/register"><span style="color: rgb(255, 255, 255);">Signup</span></a></button>
             </div><button class="btn btn-primary" id="btn_login" type="button"><a href="/login"><span><span style="color: rgb(255, 255, 255);">Login</span></span></a></button>
         </div>
     </nav>

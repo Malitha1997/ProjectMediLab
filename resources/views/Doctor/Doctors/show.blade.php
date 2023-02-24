@@ -1,4 +1,4 @@
-@extends('Layout.patientNavbar')
+@extends('Layout.doctorNavbar')
 
 
 @section('content')
@@ -15,7 +15,7 @@
 
         <div class="pull-right">
 
-            <a class="btn btn-primary" href="{{ route('doctor_list-patient') }}"> Back</a>
+            <a class="btn btn-primary" href="{{ route('doctor_list-doctor') }}"> Back</a>
 
         </div>
 
@@ -50,7 +50,7 @@
     </tr>
 
     <tr>
-        <th scope="col">NIC</th>
+        <th scope="col">NIC or Passport No.</th>
         <td>{{ $user->doctor->nic }}</td>
     </tr>
 

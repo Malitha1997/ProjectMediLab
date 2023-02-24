@@ -15,7 +15,7 @@
 
         <div class="pull-right">
 
-            <a class="btn btn-primary" href="{{ route('reports.create') }}">Add report</a>
+            <a class="btn btn-primary" href="{{ route('add_report-labassistant') }}">Add report</a>
 
           </div>
 
@@ -39,7 +39,7 @@
 
   <tr>
 
-     <th>No</th>
+
 
      <th>Patient Name</th>
 
@@ -47,7 +47,7 @@
 
      <th>Email Address</th>
 
-     <th>File</th>
+
 
      <th width="280px">Action</th>
 
@@ -57,35 +57,32 @@
 
     <tr>
 
-        <td>{{ ++$i }}</td>
+        <td>{{ $rep->patient->user->f_name }}</td>
 
-        <td>{{ $rep->f_name }}</td>
+        <td>{{ $rep->patient->telno}}</td>
 
-        <td>{{ $rep->telno}}</td>
+        <td>{{ $rep->patient->user->email}}</td>
 
-        <td>{{ $rep->email}}</td>
-
-        <td>{{ $rep->report_file}}</td>
 
 
         <td>
 
-            <a class="btn btn-info" href="{{ route('reports.show',$rep->user_id) }}">Show</a>
+            <a class="btn btn-info" href="{{ route('reports.show',$rep->id) }}">Show</a>
 
 
-            @if(auth::user()->getRoleNames()[0]=='Admin')
+
                 <a class="btn btn-primary" href="{{ route('reports.edit',$rep->id) }}">Edit</a>
-            @endif
 
 
 
-            @if(auth::user()->getRoleNames()[0]=='Admin')
+
+
                 {!! Form::open(['method' => 'DELETE','route' => ['reports.destroy', $rep->id],'style'=>'display:inline']) !!}
 
                     {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
 
                 {!! Form::close() !!}
-            @endif
+
 
         </td>
 

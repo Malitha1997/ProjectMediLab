@@ -19,9 +19,15 @@ class AppointmentController extends Controller
      */
     public function index(Request $request)
     {
-    $appointment_users = Appointment::with(['doctor.patient.schedule'])->paginate(10);
+        $appointment_users = DB::table('appointments')
+        ->join('users as doctors', 'appointments.doctor_id', '=', 'doctors.id')
+        ->join('users as patients', 'appointments.patient_id', '=', 'patients.id')
+        ->join('schedules', 'appointments.schedule_id', '=', 'schedules.id')
+        ->select('appointments.*', 'doctors.*', 'patients.*', 'schedules.*')
+        ->paginate(10);
 
-    return view('admin.appointments.index', compact('appointment_users'));
+        return view('admin.appointments.index', compact('appointment_users'));
+
     }
 
     /**
@@ -42,6 +48,7 @@ class AppointmentController extends Controller
      */
     public function store(Request $request)
     {
+        dd($request);
         request()->validate([
             'patient_name'=>'required',
             'doctor_name'=>'required',
@@ -76,10 +83,9 @@ class AppointmentController extends Controller
      */
     public function show($id)
     {
-        $appointment=Appointment::find($id);
-        $app=$appointment->appointment;
+        $appointments=Appointment::get();
 
-        return view('admin.appointments.show',compact('appointment','app'));
+        return view('admin.appointments.show',compact('appointments'));
     }
 
     /**
@@ -112,9 +118,9 @@ class AppointmentController extends Controller
         ]);
 
         $appointment = new Appointment;
-
-        $appointment->patient_id=$request->patient_id;
-        $appointment->doctor_id=$request->doctor_id;
+dd($appointment);
+        $appointment->patient_id=$request->patient_name;
+        $appointment->doctor_id=$request->doctor_name;
         $appointment->date=$request->date;
         $appointment->time=$request->time;
         $appointment->description=$request->description;
@@ -122,7 +128,7 @@ class AppointmentController extends Controller
         $appointment->update();
 
         return redirect()->route('appointments.index')
-                            ->with('success','Appointment updated successfully.');
+                            ->with('success','Appointment created successfully.');
     }
 
     /**
@@ -194,9 +200,30 @@ class AppointmentController extends Controller
 
         $doctor=Doctor::find($id);
         $schedule=$doctor->schedules;
-        //dd($doctor);
+        //dd($schedule);
 
-        return view('admin.appointments.booking', compact('doctor','schedule'));
+        return view('admin.appointments.booking', compact('schedule','doctor'));
     }
 
+    public function patientBooking($id){
+
+        $doctor=Doctor::find($id);
+        $schedule=$doctor->schedules;
+        //dd($doctor);
+
+        return view('patient.appointments.booking', compact('schedule','doctor'));
+    }
+
+    public function doctorIndex(Request $request)
+    {
+        $appointment_users = DB::table('appointments')
+        ->join('users as doctors', 'appointments.doctor_id', '=', 'doctors.id')
+        ->join('users as patients', 'appointments.patient_id', '=', 'patients.id')
+        ->join('schedules', 'appointments.schedule_id', '=', 'schedules.id')
+        ->select('appointments.*', 'doctors.*', 'patients.*', 'schedules.*')
+        ->paginate(10);
+
+        return view('doctor.appointments.index', compact('appointment_users'));
+
+    }
 }

@@ -1,9 +1,13 @@
 <?php
 
 use App\User;
+use App\Models\Sms;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SmsController;
 use App\Http\Controllers\DrugController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\MailController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\ReportController;
@@ -14,6 +18,7 @@ use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\TestBillController;
 use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\LabAssistantController;
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\DoctorDashboardController;
 use App\Http\Controllers\PatientDashboardController;
@@ -41,7 +46,7 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 //Route::get('/search',SearchController::class,'doctorSearch');
 
 Route::group(['middleware' => ['auth']], function() {
-   // Route::resource('roles', RoleController::class);
+    Route::resource('roles', RoleController::class);
     Route::resource('users', UserController::class);
     Route::resource('patients', PatientController::class);
     Route::resource('doctors', DoctorController::class);
@@ -50,7 +55,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('lab_assistants', LabAssistantController::class);
     Route::resource('reports', ReportController::class);
     Route::resource('drugs', DrugController::class);
-    Route::resource('signup', SignupController::class);
+    Route::resource('register', RegisterController::class);
 
     Route::get('/add_user', [UserController::class, 'create']);
     Route::get('/add_patient', [PatientController::class, 'create']);
@@ -60,6 +65,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/add_report', [ReportController::class, 'create']);
     Route::get('/add_drug', [DrugController::class, 'create']);
     Route::get('/add_test_bill', [TestBillController::class, 'create']);
+    Route::get('/calender', [AppointmentController::class, 'calender']);
     Route::get('/add_appointment/{id}', [AppointmentController::class, 'booking'])->name('add_appointment');
 
     Route::get('/patient_list', [PatientController::class, 'index'])->name('patient_list');
@@ -79,8 +85,9 @@ Route::group(['middleware' => ['auth']], function() {
 
     //patient
     Route::get('/doctor_list-patient', [DoctorController::class, 'patientIndex'])->name('doctor_list-patient');
-    Route::get('/add_appointment-patient', [AppointmentController::class, 'patientCreate'])->name('add_appointment-patient');
-    Route::get('/show_doctor-patient', [AppointmentController::class, 'patientShow'])->name('show_doctor-patient');
+    Route::get('/appointment-patient', [AppointmentController::class, 'patientCreate'])->name('appointment-patient');
+    Route::get('/show_doctor-patient/{id}', [DoctorController::class, 'patientShow'])->name('show_doctor-patient');
+    Route::get('/add_appointment-patient/{id}', [AppointmentController::class, 'patientBooking'])->name('add_appointment-patient');
 
     //lab assistant
     Route::get('/add_report-labassistant', [ReportController::class, 'labassistantCreate'])->name('add_report-labassistant');
@@ -93,6 +100,15 @@ Route::group(['middleware' => ['auth']], function() {
 
     //doctor
     Route::get('/doctor_list-doctor', [DoctorController::class, 'doctorIndex'])->name('doctor_list-doctor');
+    Route::get('/doctor_show-doctor/{id}', [DoctorController::class, 'doctorShow'])->name('doctor_show-doctor');
+    Route::get('/appointment_list-doctor', [AppointmentController::class, 'doctorIndex'])->name('appointment_list-doctor');
+
+    //Email
+    Route::get('send-mail', [MailController::class, 'index'])->name('send-mail');
+
+    //SMS
+    Route::get('/send_sms', [SmsController::class, 'send'])->name('send_sms');
+
 
     //appointment routes
     //Route::resource('appointment', 'AppointmentController');
@@ -106,6 +122,9 @@ Route::post('/livesearch', [AppointmentController::class, 'livesearch'])->name('
 Route::post('/livesearch2', [AppointmentController::class, 'livesearch2'])->name('livesearch2');
 Route::post('/livesearch3', [ReportController::class, 'livesearch3'])->name('livesearch3');
 Auth::routes();
+
+//Route::match(['get','post'],'/send_sms', [SmsController::class, 'send'])->name('send_sms');
+
 
 
 

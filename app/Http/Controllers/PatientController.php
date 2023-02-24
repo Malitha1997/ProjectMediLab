@@ -8,11 +8,13 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 
+use App\Mail\DemoMail;
 use App\Models\Patient;
 use App\Models\Patients;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 
 
@@ -115,9 +117,28 @@ class PatientController extends Controller
         $patient->nic = $request->nic;
         $patient->age = $request->age;
 
+
+
+
+
+
         $user->patient()->save($patient);
 
         $user->assignRole('patient');
+
+        $email=$request->email;
+
+        $mailData = [
+
+            'title' => 'Mail from Medilab',
+
+            'body' => 'Dear Sir/Madam,'
+
+            ];
+
+            Mail::to($email)->send(new DemoMail($mailData,$email));
+
+            //dd("Email is sent successfully.");
 
         return redirect()->route('patients.index')
                             ->with('success','Patient created successfully.');
@@ -259,7 +280,7 @@ class PatientController extends Controller
          ->with('success','Patient deleted successfully');
      }
 
-     
+
 
 
 }

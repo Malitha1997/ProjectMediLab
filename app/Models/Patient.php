@@ -2,7 +2,12 @@
 
 namespace App\Models;
 
+use App\Models\Drug;
+use App\Models\User;
 use App\Models\Report;
+use App\Models\Disease;
+use App\Models\History;
+use App\Models\Appointment;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Auth\Authenticatable;
 use Spatie\Permission\Traits\HasRoles;
@@ -58,4 +63,5 @@ class Patient extends Model
     public function reports(){
         return $this->hasMany(Report::class);
     }
+
 }

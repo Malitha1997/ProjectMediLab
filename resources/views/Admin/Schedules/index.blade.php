@@ -65,7 +65,7 @@
 
         <td>{{ $schedule->available_day}}</td>
 
-        <td>{{ $schedule->available_time}}</td>
+        <td>{{ $schedule->start_time}} to {{ $schedule->end_time}}</td>
 
 
         <td>

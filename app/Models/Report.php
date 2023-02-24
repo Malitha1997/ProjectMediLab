@@ -2,7 +2,9 @@
 
 namespace App\Models;
 
+use App\Models\Doctor;
 use App\Models\Patient;
+use App\Models\Lab_assistant;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 

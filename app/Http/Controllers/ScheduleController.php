@@ -15,7 +15,7 @@ class ScheduleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request) 
+    public function index(Request $request)
     {
     $doctor_schedules = Schedule::with('doctor')->paginate(5);
 
@@ -43,10 +43,12 @@ class ScheduleController extends Controller
      */
     public function store(Request $request)
     {
+        //dd($request);
     request()->validate([
         'doctor_name' => 'required',
         'available_day' => 'required',
-        'available_time' => 'required',
+        'start_time' => 'required',
+        'end_time' => 'required',
     ]);
 
     $user = User::firstOrCreate(['f_name' => $request->doctor_name]);
@@ -54,7 +56,8 @@ class ScheduleController extends Controller
     $schedule = new Schedule;
     $schedule->doctor_id = $user->id;
     $schedule->available_day = $request->available_day;
-    $schedule->available_time = $request->available_time;
+    $schedule->start_time = $request->start_time;
+    $schedule->end_time = $request->end_time;
     $schedule->save();
 
     return redirect()->route('schedules.index')
@@ -104,13 +107,13 @@ class ScheduleController extends Controller
 
         ]);
 
-        $user=new User;
-        $user->f_name=$request->doctor_name;
+        $user = User::firstOrCreate(['f_name' => $request->doctor_name]);
 
         $schedule = new Schedule;
-        //$schedule->doctor_id=$request->doctor_name;
+        $schedule->doctor_id = $user->id;
         $schedule->available_day = $request->available_day;
-        $schedule->available_time = $request->available_time;
+        $schedule->start_time = $request->start_time;
+        $schedule->end_time = $request->end_time;
 
         $schedule->update();
 

@@ -13,13 +13,17 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('schedules', function (Blueprint $table) {
-            $table->id();
-            $table->String('available_day');
-            $table->String('start_time');
-            $table->String('end_time');
-            $table->foreignId('doctor_id')->constrained('doctors');
+        Schema::create('sms_models', function (Blueprint $table) {
+
+
+
+            $table->integer('Patient Id');
+            $table->String('Patient Name');
+            $table->integer('Contact Number');
+            $table->integer('Description');
+
             $table->timestamps();
+
         });
     }
 
@@ -30,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('schedules');
+        Schema::dropIfExists('sms_models');
     }
 };

@@ -9,7 +9,7 @@
 
         <div class="pull-left">
 
-            <h2> Show Role</h2>
+            <h2 class="text-dark mb-1">Report</h2>
 
         </div>
 
@@ -23,33 +23,33 @@
 
 </div>
 
+<table class="table text-dark">
+    <tr>
+        <th scope="col">Name</th>
+        <td>{{ $reports->patient->user->f_name }} {{ $reports->patient->user->l_name }}</td>
+    </tr>
+    <tr>
+        <th scope="col">Contact No.</th>
+        <td>{{ $reports->patient->telno }} </td>
+    </tr>
+    <tr>
+        <th scope="col">Email</th>
+        <td>{{ $reports->patient->user->email }} </td>
+    </tr>
+    <tr>
+        <th scope="col">Address</th>
+        <td>{{ $reports->patient->address_line1}} , {{ $reports->patient->address_line2}} , {{ $reports->patient->address_line3}}.</td>
+    </tr>
+    <tr>
+        <th scope="col">Description</th>
+        <td>{{ $reports->description }}</td>
+    </tr>
+    <tr>
+        <th scope="col">File</th>
+        <td>{{ $reports->report_file }}</td>
+    </tr>
 
-<div class="row">
+</table>
 
-    <div class="col-xs-12 col-sm-12 col-md-12">
-
-        <div class="form-group">
-
-            <strong>Name:</strong>
-
-            {{ $user->f_name }}
-
-        </div>
-
-    </div>
-
-    <div class="col-xs-12 col-sm-12 col-md-12">
-
-        <div class="form-group">
-
-            <strong>Email:</strong>
-
-            {{ $user->email }}
-
-        </div>
-
-    </div>
-
-</div>
 
 @endsection

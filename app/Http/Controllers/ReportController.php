@@ -40,7 +40,8 @@ class ReportController extends Controller
      */
     public function index(Request $request)
     {
-        $reports = Report::with(['doctor.lab_assistant.patient'])->paginate(10);
+        $reports = Report::get();
+       // dd($reports);
         return view('admin.reports.index', compact('reports'));
 
     }
@@ -63,7 +64,7 @@ class ReportController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-{dd($request);
+{//dd($request);
     $this->validate($request, [
         'patient_name' => 'required|min:1|max:255',
         'description' => 'required',
@@ -79,15 +80,15 @@ class ReportController extends Controller
         $file = $request->file('report_file');
         $fileName = time().'.'.$file->extension();
         $file->storeAs('public/reports', $fileName);
-        $report->photo_path = 'public/reports/'.$fileName;
+        $report->report_file = 'public/reports/'.$fileName;
         }
 
-        $report->patient_id=$request->patient_id;
-        $report->doctor_id=$request->doctor_id;
-        $report->lab_assistant_id=$request->lab_assistant_id;
+        $report->patient_id=$request->patient_name;
+        $report->doctor_id=$request->doctor_name;
+        $report->lab_assistant_id=$request->lab_assistant_name;
         $report->description=$request->description;
         $report->save();
-        return redirect()->route('admin.reports.index')
+        return redirect()->route('reports.index')
         ->with('success','Report created successfully.');
         }
 
@@ -99,8 +100,8 @@ class ReportController extends Controller
      */
     public function show($id)
     {
-        $Reports =reports::find($id);
-        return view('admin.reports.show',compact('Reports'));
+        $reports =Report::find($id);
+        return view('admin.reports.show',compact('reports'));
     }
 
     /**
@@ -111,8 +112,8 @@ class ReportController extends Controller
      */
     public function edit($id)
     {
-        $Reports =reports::find($id);
-        return view('admin.reports.edit',compact('Reports'));
+        $reports =Report::find($id);
+        return view('admin.reports.edit',compact('reports'));
     }
 
     /**
@@ -125,34 +126,30 @@ class ReportController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-        'patient_name' => 'required',
-        'description'=>'required',
-        'doctor_id' => 'required',
-        'lab_assistant_id' => 'required',
-        'test_bill_id' => 'required',
-        'report_file' => 'required|file|mimes:pdf,jpeg,png,jpg,gif,svg|max:2048',
+        'patient_name' => 'required|min:1|max:255',
+        'description' => 'required',
+        'doctor_name' => 'required',
+        'lab_assistant_name' => 'required',
+        'report_file' => 'required',
+    ]);
 
 
-        ]);
+        $report=new Report;
 
-
-        $report = new Report;
-    $report->description = $request->description;
-
-    if ($request->hasFile('report_file')) {
+        if ($request->hasFile('report_file')) {
         $file = $request->file('report_file');
         $fileName = time().'.'.$file->extension();
         $file->storeAs('public/reports', $fileName);
-        $report->photo_path = 'public/reports/'.$fileName;
-    }
+        $report->report_file = 'public/reports/'.$fileName;
+        }
 
-    $report->patient_id = $request->patient_name;
-    $report->doctor_id = $request->doctor_id;
-    $report->lab_assistant_id = $request->lab_assistant_id;
-    $report->test_bill_id = $request->test_bill_id;
-    $report->update();
+        $report->patient_id=$request->patient_name;
+        $report->doctor_id=$request->doctor_name;
+        $report->lab_assistant_id=$request->lab_assistant_name;
+        $report->description=$request->description;
+        $report->update();
 
-    return redirect()->route('reports.index')
+        return redirect()->route('reports.index')
                     ->with('success','Report updated successfully.');
     }
     /**
@@ -176,7 +173,8 @@ class ReportController extends Controller
 
     public function labassistantIndex(Request $request)
     {
-        $reports = Report::with(['testBill.doctor.labAssistant'])->get();
+        $reports = Report::get();
+       // dd($reports);
         return view('Lab Assistant.reports.index', compact('reports'));
 
     }

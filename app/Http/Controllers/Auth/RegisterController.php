@@ -55,6 +55,13 @@ class RegisterController extends Controller
             'l_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ]);
+
+    }
+
+    protected function validatePatient(array $data){
+
+        return Validator::make($data,[
             'address_line1'=> ['required','string', 'max:255'],
             'address_line2'=> ['required','string', 'max:255'],
             'address_line3'=> ['required','string', 'max:255'],
@@ -63,8 +70,6 @@ class RegisterController extends Controller
             'blood_group'=> ['required','string'],
             'age'=> ['required','string'],
         ]);
-        //dd($data);
-
     }
 
     /**
@@ -75,21 +80,31 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user= User::create([
             'f_name' => $data['f_name'],
             'l_name' => $data['l_name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
 
-        return Patient::create([
-            'address_line1'=> $data['address_line1'],
-            'address_line2'=> $data['address_line2'],
-            'address_line3'=> $data['address_line3'],
-            'blood_group'=> $data['blood_group'],
-            'age'=> $data['age'],
-            'telno'=> $data['telno'],
-            'nic'=> $data['nic']
-        ]);
+        $patient=new Patient();
+        $patient->address_line1 =$data['address_line1'];
+        $patient->address_line2 =$data['address_line2'];
+        $patient->address_line3 =$data['address_line3'];
+        $patient->blood_group =$data['blood_group'];
+        $patient->age =$data['age'];
+        $patient->telno =$data['telno'];
+        $patient->nic =$data['nic'];
+
+        $user->patient()->save($patient);
+        $user->assignRole('patient');
+
+        return $user;
+    }
+
+    private function removeUser($userId)
+    {
+        $user = User::findOrFail($userId);
+        $user->delete();
     }
 }

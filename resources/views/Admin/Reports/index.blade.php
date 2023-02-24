@@ -39,7 +39,7 @@
 
   <tr>
 
-     <th>No</th>
+
 
      <th>Patient Name</th>
 
@@ -47,7 +47,7 @@
 
      <th>Email Address</th>
 
-     <th>File</th>
+
 
      <th width="280px">Action</th>
 
@@ -57,20 +57,17 @@
 
     <tr>
 
-        <td>{{ ++$i }}</td>
+        <td>{{ $rep->patient->user->f_name }}</td>
 
-        <td>{{ $rep->f_name }}</td>
+        <td>{{ $rep->patient->telno}}</td>
 
-        <td>{{ $rep->telno}}</td>
+        <td>{{ $rep->patient->user->email}}</td>
 
-        <td>{{ $rep->email}}</td>
-
-        <td>{{ $rep->report_file}}</td>
 
 
         <td>
 
-            <a class="btn btn-info" href="{{ route('reports.show',$rep->user_id) }}">Show</a>
+            <a class="btn btn-info" href="{{ route('reports.show',$rep->id) }}">Show</a>
 
 
 

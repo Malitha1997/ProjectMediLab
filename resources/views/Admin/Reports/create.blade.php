@@ -8,7 +8,7 @@
     </div><button class="btn btn-primary" type="button" data-aos="fade-down" data-aos-duration="1000" style="padding: 5px 10px;margin-left: 20px;margin-top: 5px;"><a href="{{route('reports.index')}}"><span style="--bs-body-color: var(--bs-btn-color);padding-right: 5px;margin-left: 5px;margin-right: 5px;"><span style="color: rgb(255, 255, 255);">Report list</span></span></a></button>
 
     <div class="card" data-aos="fade-down" data-aos-duration="1000">
-        <form style="padding-left: 56px;margin-right: 68px;" method="post" action="{{route('reports.store')}}">
+        <form style="padding-left: 56px;margin-right: 68px;" method="post" action="{{route('reports.store')}}" enctype="multipart/form-data">
          {{csrf_field()}}
 
             <div class="row">

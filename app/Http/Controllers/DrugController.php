@@ -74,7 +74,7 @@ class DrugController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
+    { 
         $drugs = Drug::find($id);
         return view('admin.drugs.show', compact('drugs'));
     }

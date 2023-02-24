@@ -47,9 +47,9 @@
 
         <td>
 
-            <a class="btn btn-info" href="{{ route('doctors.show',$doctor->user_id) }}">Profile</a>
+            <a class="btn btn-info" href="{{ route('show_doctor-patient',$doctor->user_id) }}">Profile</a>
 
-            <a class="btn btn-outline-danger" href="{{ route('add_appointment',$doctor->id) }}">Book Appointment</a>
+            <a class="btn btn-outline-danger" href="{{ route('add_appointment-patient',$doctor->id) }}">Book Appointment</a>
 
         </td>
 

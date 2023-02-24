@@ -8,7 +8,7 @@
                 <div class="card-header text-center bg-primary text-white">{{ __('Signup') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('signup.store') }}">
+                    <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                         {{csrf_field()}}
                         <div class="row">
                             <div class="col"><label class="col-form-label text-dark mb-1">First Name</label></div>

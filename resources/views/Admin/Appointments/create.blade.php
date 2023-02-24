@@ -41,8 +41,8 @@
 
         {{ $doctor->telno}} <br>
 
-        {{ $doctor->user->email}}</td>
- 
+        {{ $doctor->user->email}}</td> 
+
 
 
         <td>

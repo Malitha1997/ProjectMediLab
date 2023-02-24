@@ -68,7 +68,7 @@
 
         <td>
 
-            <a class="btn btn-info" href="{{ route('doctors.show',$doctor->user_id) }}">Profile</a>
+            <a class="btn btn-info" href="{{ route('show_doctor-patient',$doctor->user_id) }}">Profile</a>
 
             @if(auth::user()->getRoleNames()[0]=='Admin')
             <a class="btn btn-success" href="{{ route('doctors.edit',$doctor->id) }}">Edit</a>
