@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Mail\DemoMail;
 use App\Models\Doctor;
 use App\Models\Schedule;
 use App\Models\Appointment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class AppointmentController extends Controller
 {
@@ -19,14 +21,9 @@ class AppointmentController extends Controller
      */
     public function index(Request $request)
     {
-        $appointment_users = DB::table('appointments')
-        ->join('users as doctors', 'appointments.doctor_id', '=', 'doctors.id')
-        ->join('users as patients', 'appointments.patient_id', '=', 'patients.id')
-        ->join('schedules', 'appointments.schedule_id', '=', 'schedules.id')
-        ->select('appointments.*', 'doctors.*', 'patients.*', 'schedules.*')
-        ->paginate(10);
+        $appointment = Appointment::paginate(10);
 
-        return view('admin.appointments.index', compact('appointment_users'));
+        return view('admin.appointments.index', compact('appointment'));
 
     }
 
@@ -48,14 +45,14 @@ class AppointmentController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request);
+        //dd($request);
         request()->validate([
             'patient_name'=>'required',
-            'doctor_name'=>'required',
-            'date'=>'required',
+            'doctor_id'=>'required',
+            'schedule_id'=>'required',
             'time'=>'required',
             'description'=>'required',
-            'schedule_id' => 'nullable'
+
         ]);
         //dd($request);
 
@@ -63,14 +60,26 @@ class AppointmentController extends Controller
 
         $appointment->patient_id=$request->patient_name;
         $appointment->doctor_id=$request->doctor_id;
-        $appointment->date=$request->date;
+        $appointment->schedule_id=$request->schedule_id;
         $appointment->time=$request->time;
         $appointment->description=$request->description;
 
 
         $appointment->save();
 
-        return redirect()->route('admin.appointments.index')
+        $email=$request->patient->email;
+
+        $mailData = [
+
+            'title' => 'Mail from Medilab',
+
+            'body' => 'Your appointment successfully created!'
+
+            ];
+
+            Mail::to($email)->send(new DemoMail($mailData,$email));
+
+        return redirect()->route('appointments.index')
                             ->with('success','Appointment created successfully.');
 
     }
@@ -118,7 +127,7 @@ class AppointmentController extends Controller
         ]);
 
         $appointment = new Appointment;
-dd($appointment);
+//dd($appointment);
         $appointment->patient_id=$request->patient_name;
         $appointment->doctor_id=$request->doctor_name;
         $appointment->date=$request->date;

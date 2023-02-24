@@ -132,7 +132,7 @@ class PatientController extends Controller
 
             'title' => 'Mail from Medilab',
 
-            'body' => 'Dear Sir/Madam,'
+            'body' => 'Hello and welcome!'
 
             ];
 

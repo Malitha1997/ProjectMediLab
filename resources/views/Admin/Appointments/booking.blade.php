@@ -20,14 +20,15 @@
 
                 <div class="row">
                     <div class="col"><label class="col-form-label text-dark mb-1" >Doctor Name</lable></div>
-                    <div class="col"><input class="form-control text-dark mb-1"   id="doctor_name" type="text" value="Dr. {{ $doctor->user->f_name }} {{ $doctor->user->l_name }}" readonly required>
+                    <div class="col"><input class="form-control text-dark mb-1" id="doctor_name" type="text" value="Dr. {{ $doctor->user->f_name }} {{ $doctor->user->l_name }}" readonly required>
                         <input type="hidden" name="doctor_id" value="{{ $doctor->id }}" >
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col"><label class="col-form-label text-dark mb-1">Available Day</lable></div>
-                    <div class="col"><input class="form-control text-dark mb-1" id="date" name="date" type="text" value="{{ $schedule[0]->available_day }}" readonly required>
+                    <div class="col"><input class="form-control text-dark mb-1" id="date" type="text" value="{{ $schedule[0]->available_day }}" readonly required>
+                        <input type="hidden" name="schedule_id" value="{{ $schedule[0]->id }}" >
                     </div>
                 </div>
 

@@ -38,7 +38,7 @@
 
   <tr>
 
-     <th>No</th>
+
 
      <th>Patient name</th>
 
@@ -52,29 +52,29 @@
 
   </tr>
 
-    @foreach ($appointment_users as $key => $appointments)
+    @foreach ($appointment as $key => $appointments)
 
     <tr>
 
-        <td>{{ ++$i }}</td>
 
-        <td>{{ $appointments->patient->user->f_name }}</td>
 
-        <td>{{ $appointments->doctor->user->f_name}}</td>
+        <td>{{ $appointments->patient->user->f_name }} {{ $appointments->patient->user->l_name }}</td>
+
+        <td>Dr. {{ $appointments->doctor->user->f_name}} {{ $appointments->doctor->user->l_name}}</td>
 
         <td>{{ $appointments->schedule->available_day}}</td>
 
-        <td>{{ $appointments->schedule->available_time }}</td>
+        <td>{{ $appointments->time }}</td>
 
         <td>
 
-            
+
 
                 <a class="btn btn-success" href="{{ route('appointments.edit',$appointments->id) }}">Edit</a>
 
-                {!! Form::open(['method' => 'DELETE','route' => ['appointments.destroy', $appointments->usr_id],'style'=>'display:inline']) !!}
+                {!! Form::open(['method' => 'DELETE','route' => ['appointments.destroy', $appointments->id],'style'=>'display:inline']) !!}
 
-                    {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
+                    {!! Form::submit('Cancel', ['class' => 'btn btn-danger']) !!}
 
                 {!! Form::close() !!}
 
@@ -87,6 +87,5 @@
 
 </table>
 
-{!! $appointment_users->render() !!}
 
 @endsection
