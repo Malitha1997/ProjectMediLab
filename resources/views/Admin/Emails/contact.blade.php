@@ -16,11 +16,7 @@
 
 
 
-    <p>Thank you for registering with us. We are excited to have you as a part of our community. You can now enjoy all the benefits of being a registered user, including exclusive access to our content and services.
-
-        If you have any questions or concerns, please don't hesitate to contact us. We are here to help you in any way we can.
-
-        Thank you again for joining us, and we hope you have a wonderful experience with our platform.</p>
+    <p>Your appointment was created successfully!</p>
 
 
     <p>Thank you!</p>

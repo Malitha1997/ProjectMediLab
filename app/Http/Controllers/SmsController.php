@@ -10,6 +10,12 @@ class SmsController extends Controller
     {
        $userId = '24482';
        $apiKey = 'r0tSJJp0Ljpx33xdxRtJ';
+
+       request()->validate([
+        'contact_No'=> 'required|regex:/^(?:\+\d{1,3}[- ]?)?\d{10}$/','max:11',
+        'msg'=>'required'
+       ]);
+
        $contact = $Request->contact_No;
        $msg = $Request->msg;
        $url = 'https://app.notify.lk/api/v1/send?user_id='.$userId.'&api_key='.$apiKey.'&sender_id=NotifyDEMO&to='.$contact.'&message='.$msg;
@@ -34,14 +40,14 @@ $response = file_get_contents('');*/
         }
 
 
-        return redirect()->route('send_sms')->with('success', 'Send !');
+        return redirect()->route('send_sms')->with('success', 'Message sent successfully!');
 
     }
     public function index()
     {
         return view('sms.send');
     }
-    
+
 
 
 }

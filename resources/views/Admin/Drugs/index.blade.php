@@ -57,7 +57,7 @@
 
     <tr>
 
-        <td>{{ ++$i }}</td>
+        
 
         <td>{{ $drug->drug_name }}</td>
 
@@ -69,11 +69,11 @@
 
         <td>
 
-            <a class="btn btn-info" href="{{ route('drugs.show',$drug->drug_id) }}">Show</a>
+            <a class="btn btn-info" href="{{ route('drugs.show',$drug->id) }}">Show</a>
 
-            <a class="btn btn-success" href="{{ route('drugs.edit',$drug->drug_id) }}">Edit</a>
+            <a class="btn btn-success" href="{{ route('drugs.edit',$drug->id) }}">Edit</a>
 
-            {!! Form::open(['method' => 'DELETE','route' => ['drugs.destroy', $drug->drug_id],'style'=>'display:inline']) !!}
+            {!! Form::open(['method' => 'DELETE','route' => ['drugs.destroy', $drug->id],'style'=>'display:inline']) !!}
 
                 {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
 

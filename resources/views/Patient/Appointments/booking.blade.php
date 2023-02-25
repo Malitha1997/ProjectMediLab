@@ -5,37 +5,36 @@
 <div class="container-fluid" data-aos="fade-down" data-aos-duration="1000">
     <h3 class="text-dark mb-1">Add Appointment</h3>
 </div>
-<button class="btn btn-primary" data-aos="fade-down" data-aos-duration="1000" type="button" style="padding: 5px 10px;margin-left: 20px;margin-top: 5px;"><a href="{{route('add_appointment-patient')}}"><span style="--bs-body-color: var(--bs-btn-color);padding-right: 0px;margin-left: 0px;margin-right: -5px;"><span style="color: rgb(255, 255, 255);">Back</span></span></a></button>
-
+<button class="btn btn-primary" data-aos="fade-down" data-aos-duration="1000" type="button" style="padding: 5px 10px;margin-left: 20px;margin-top: 5px;"><a href="{{route('doctor_appointment_list')}}"><span style="--bs-body-color: var(--bs-btn-color);padding-right: 0px;margin-left: 0px;margin-right: -5px;"><span style="color: rgb(255, 255, 255);">Back</span></span></a></button>
+<button class="btn btn-primary" data-aos="fade-down" data-aos-duration="1000" type="button" style="padding: 5px 10px;margin-left: 20px;margin-top: 5px;"><a href="{{route('appointments.index')}}"><span style="--bs-body-color: var(--bs-btn-color);padding-right: 0px;margin-left: 0px;margin-right: -5px;"><span style="color: rgb(255, 255, 255);">Appointment list</span></span></a></button>
 <div class="card" data-aos="fade-in" data-aos-duration="1000">
-    <form style="padding-left: 56px;margin-right: 68px;" method="POST" action="{{route('appointments.update',$doctor->id)}}" data-aos="fade-in" data-aos-duration="1000" enctype="multipart/form-data">
+    <form style="padding-left: 56px;margin-right: 68px;" method="POST" action="{{route('appointment.create')}}" data-aos="fade-in" data-aos-duration="1000" enctype="multipart/form-data">
      {{csrf_field()}}
-     @method('PUT')
+
                 <div class="row">
                     <div class="col"><label class="col-form-label text-dark mb-1">Patient Name</lable></div>
-                    <div class="col"><input class="form-control text-dark mb-1" type="text" id="patient_name" name="patient_name" required>
-                        <input type="hidden" name="patient_name" id="patient_nameid">
+                    <div class="col"><input class="form-control text-dark mb-1" type="text" id="patient_name" value="{{Auth::user()->f_name}} {{Auth::user()->l_name}}" readonly required>
+                        <input type="hidden" name="patient_id" id="patient_nameid" value="{{ Auth::user()->id }}" >
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col"><label class="col-form-label text-dark mb-1" >Doctor Name</lable></div>
-                    <div class="col"><input class="form-control text-dark mb-1" id="doctor_name" type="text" value="Dr. {{ $doctor->user->f_name }} {{ $doctor->user->l_name }}" required>
-                        <input type="hidden" name="doctor_name" id="doctor_nameid" >
+                    <div class="col"><input class="form-control text-dark mb-1" id="doctor_name" type="text" value="Dr. {{ $doctor->user->f_name }} {{ $doctor->user->l_name }}" readonly required>
+                        <input type="hidden" name="doctor_id" value="{{ $doctor->id }}" >
                     </div>
                 </div>
 
                 <div class="row">
-                    <div class="col"><label class="col-form-label text-dark mb-1">Appointment Day</lable></div>
-                    <div class="col"><input class="form-control text-dark mb-1" id="date" type="date" value="{{ $doctor->available_day }}" required>
-                        <input type="hidden" name="date" id="date">
+                    <div class="col"><label class="col-form-label text-dark mb-1">Available Day</lable></div>
+                    <div class="col"><input class="form-control text-dark mb-1" id="date" type="text" value="{{ $schedule[0]->available_day }}" readonly required>
+                        <input type="hidden" name="schedule_id" value="{{ $schedule[0]->id }}" >
                     </div>
                 </div>
 
                 <div class="row">
-                    <div class="col"><label class="col-form-label text-dark mb-1" >Appointment Time</label></div>
-                    <div class="col"><input class="form-control text-dark mb-1" id="time" type="time" value="{{ $schedule[0]->start_time }} to {{ $schedule[0]->end_time }}" required>
-                        <input type="hidden" name="time" id="time">
+                    <div class="col"><label class="col-form-label text-dark mb-1" >Available Time</label></div>
+                    <div class="col"><input class="form-control text-dark mb-1" id="time" name="time" type="text" value="{{ $schedule[0]->start_time }} to {{ $schedule[0]->end_time }}" readonly required>
                     </div>
                 </div>
 

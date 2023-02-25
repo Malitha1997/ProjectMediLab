@@ -26,6 +26,8 @@ class DemoMail extends Mailable
 
     public $mailData;
     public $email;
+    // public $doctor_fname;
+    // public $doctor_lname;
 
     public function __construct($mailData,$email)
 
@@ -33,6 +35,8 @@ class DemoMail extends Mailable
 
         $this->mailData = $mailData;
         $this->email = $email;
+        // $this->doctor_fname = $doctor_fname;
+        // $this->doctor_lname = $doctor_lname;
 
     }
 

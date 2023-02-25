@@ -18,8 +18,9 @@ class DrugController extends Controller
      */
     public function index(Request $request)
     {
-    $drugs = Drug::with('patients')->get();
 
+    $drugs = Drug::with('patients')->get();
+//dd( $drugs);
     return view('admin.drugs.index',compact('drugs'))
     ->with('i', ($request->input('page',1)-1)*5);
 
@@ -74,7 +75,7 @@ class DrugController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    { 
+    {
         $drugs = Drug::find($id);
         return view('admin.drugs.show', compact('drugs'));
     }
@@ -142,10 +143,9 @@ class DrugController extends Controller
 
     public function patientIndex(Request $request)
     {
-        $drugs = Drug::with('patients')->get();
+        $drugs = Drug::paginate(10);
 
-    return view('patient.drugs.index',compact('drugs'))
-    ->with('i', ($request->input('page',1)-1)*5);
+    return view('patient.drugs.index',compact('drugs'));
 
     }
 

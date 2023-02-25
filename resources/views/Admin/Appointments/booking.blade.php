@@ -41,7 +41,7 @@
                 <div class="row">
                     <div class="col"><label class="col-form-label text-dark mb-1" >Description</label></div>
                     <div class="col">
-                        <input class="form-control text-dark mb-1" type="text" name="description" required>
+                        <textarea class="form-control @error('description') is-invalid @enderror text-dark mb-1" id="description" name="description">{{ old('description') }}</textarea>
                     </div>
                 </div>
 

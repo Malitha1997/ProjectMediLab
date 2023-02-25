@@ -37,7 +37,7 @@ class LoginController extends Controller
         protected function redirectTo()
         {
            $role = auth::user()->getRoleNames();
-
+//dd($role);
             if($role[0] == 'Admin'){
                 return '/dashboard';
             }

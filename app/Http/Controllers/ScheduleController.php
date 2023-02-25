@@ -43,19 +43,19 @@ class ScheduleController extends Controller
      */
     public function store(Request $request)
     {
-        //dd($request);
-    request()->validate([
-        'doctor_name' => 'required',
-        'available_day' => 'required',
+        // dd($request);
+        request()->validate([
+        'doctor_id' => 'required',
+        'available_date' => 'required',
         'start_time' => 'required',
         'end_time' => 'required',
     ]);
 
-    $user = User::firstOrCreate(['f_name' => $request->doctor_name]);
+    // $user = User::firstOrCreate(['f_name' => $request->doctor_name]);
 
     $schedule = new Schedule;
-    $schedule->doctor_id = $user->id;
-    $schedule->available_day = $request->available_day;
+    $schedule->doctor_id = $request->doctor_id;
+    $schedule->available_day = $request->available_date;
     $schedule->start_time = $request->start_time;
     $schedule->end_time = $request->end_time;
     $schedule->save();
@@ -100,20 +100,20 @@ class ScheduleController extends Controller
     public function update(Request $request, $id)
     {
         request()->validate([
-            'doctor_name'=> 'required',
-            'available_day'=> 'required',
-            'available_time'=> 'required',
-
-
+            'doctor_id' => 'required',
+            'available_date' => 'required',
+            'start_time' => 'required',
+            'end_time' => 'required',
         ]);
 
-        $user = User::firstOrCreate(['f_name' => $request->doctor_name]);
+        // $user = User::firstOrCreate(['f_name' => $request->doctor_name]);
 
         $schedule = new Schedule;
-        $schedule->doctor_id = $user->id;
-        $schedule->available_day = $request->available_day;
+        $schedule->doctor_id = $request->doctor_id;
+        $schedule->available_day = $request->available_date;
         $schedule->start_time = $request->start_time;
         $schedule->end_time = $request->end_time;
+       
 
         $schedule->update();
 

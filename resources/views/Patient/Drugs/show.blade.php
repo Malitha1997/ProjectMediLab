@@ -14,7 +14,7 @@
 
         <div class="pull-right">
 
-            <a class="btn btn-primary" href="{{ route('users.index') }}"> Back</a>
+            <a class="btn btn-primary" href="{{ route('drug_list-patient') }}"> Back</a>
 
         </div>
 

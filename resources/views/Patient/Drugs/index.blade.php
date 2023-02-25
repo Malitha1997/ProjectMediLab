@@ -13,11 +13,7 @@
 
         </div>
 
-        <div class="pull-right">
 
-            <a class="btn btn-primary" href="{{ route('drugs.create') }}">Add Drug</a>
-
-          </div>
 
     </div>
 
@@ -57,7 +53,7 @@
 
     <tr>
 
-        <td>{{ ++$i }}</td>
+
 
         <td>{{ $drugs->drug_name }}</td>
 
@@ -69,7 +65,7 @@
 
         <td>
 
-            <a class="btn btn-info" href="{{ route('drugs.show',$drugs->drug_id) }}">Show</a>
+            <a class="btn btn-info" href="{{ route('show_drug-patient',$drugs->id) }}">Show</a>
 
 
 
@@ -81,6 +77,6 @@
 
 </table>
 
-{!! $drugs->render() !!}
+
 
 @endsection

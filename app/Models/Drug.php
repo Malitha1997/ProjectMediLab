@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Drug extends Model
 {
     protected $fillable = [
-        'drug_name',
+        'drug_name', 
         'qty',
         'issue_date',
         'expire_date'

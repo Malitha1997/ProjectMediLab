@@ -1,4 +1,4 @@
-@extends('Layout.doctorNavbar')
+@extends('Layout.navbar')
 
 @section('content')
 
@@ -9,6 +9,12 @@
         <div class="pull-left">
 
             <h2 class="text-dark mb-1">Appointment List</h2>
+
+        </div>
+
+        <div class="pull-right">
+
+            <a class="btn btn-primary" href="{{ route('appointment-patient') }}">Add Appointment</a>
 
         </div>
 
@@ -36,7 +42,7 @@
 
      <th>Patient name</th>
 
-
+     <th>Doctor name</th>
 
      <th>Appointment date</th>
 
@@ -46,11 +52,15 @@
 
   </tr>
 
-    @foreach ($appointment_users as $key => $appointments)
+    @foreach ($appointment as $key => $appointments)
 
     <tr>
 
-        <td>{{ $appointments->patient->user->f_name }}</td>
+
+
+        <td>{{ $appointments->patient->user->f_name }} {{ $appointments->patient->user->l_name }}</td>
+
+        <td>Dr. {{ $appointments->doctor->user->f_name}} {{ $appointments->doctor->user->l_name}}</td>
 
         <td>{{ $appointments->schedule->available_day}}</td>
 
@@ -64,7 +74,7 @@
 
                 {!! Form::open(['method' => 'DELETE','route' => ['appointments.destroy', $appointments->id],'style'=>'display:inline']) !!}
 
-                    {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
+                    {!! Form::submit('Cancel', ['class' => 'btn btn-danger']) !!}
 
                 {!! Form::close() !!}
 
@@ -77,6 +87,5 @@
 
 </table>
 
-{!! $appointment_users->render() !!}
 
 @endsection

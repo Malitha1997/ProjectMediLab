@@ -118,27 +118,9 @@ class PatientController extends Controller
         $patient->age = $request->age;
 
 
-
-
-
-
         $user->patient()->save($patient);
 
         $user->assignRole('patient');
-
-        $email=$request->email;
-
-        $mailData = [
-
-            'title' => 'Mail from Medilab',
-
-            'body' => 'Hello and welcome!'
-
-            ];
-
-            Mail::to($email)->send(new DemoMail($mailData,$email));
-
-            //dd("Email is sent successfully.");
 
         return redirect()->route('patients.index')
                             ->with('success','Patient created successfully.');

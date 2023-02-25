@@ -5,12 +5,15 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Mail\DemoMail;
 use App\Models\Doctor;
+use App\Models\Patient;
 use App\Models\Schedule;
 use App\Models\Appointment;
 use Illuminate\Http\Request;
+use App\Mail\AppointmentMail;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\AppMail;
 
 class AppointmentController extends Controller
 {
@@ -67,13 +70,20 @@ class AppointmentController extends Controller
 
         $appointment->save();
 
-        $email=$request->patient->email;
+        $email=Patient::find($request->patient_name)->user->email;
+        // $doctor_fname=Doctor::find($request->doctor_name)->user->f_name;
+        // $doctor_lname=Doctor::find($request->doctor_name)->user->l_name;
+        // $available_time=Appointment::find($request->time);
+        // $available_day=Appointment::find($request->time);
 
+
+        //$email = User::pluck('email');
+        //$email=Auth::user()->email;
         $mailData = [
 
             'title' => 'Mail from Medilab',
 
-            'body' => 'Your appointment successfully created!'
+            'body' => 'Dear Sir/Madam,'
 
             ];
 
@@ -225,14 +235,65 @@ class AppointmentController extends Controller
 
     public function doctorIndex(Request $request)
     {
-        $appointment_users = DB::table('appointments')
-        ->join('users as doctors', 'appointments.doctor_id', '=', 'doctors.id')
-        ->join('users as patients', 'appointments.patient_id', '=', 'patients.id')
-        ->join('schedules', 'appointments.schedule_id', '=', 'schedules.id')
-        ->select('appointments.*', 'doctors.*', 'patients.*', 'schedules.*')
-        ->paginate(10);
-
+        // $appointment_users = DB::table('appointments')
+        // ->join('users as doctors', 'appointments.doctor_id', '=', 'doctors.id')
+        // ->join('users as patients', 'appointments.patient_id', '=', 'patients.id')
+        // ->join('schedules', 'appointments.schedule_id', '=', 'schedules.id')
+        // ->select('appointments.*', 'doctors.*', 'patients.*', 'schedules.*')
+        // ->paginate(10);
+        $doctor_id=Auth::user()->doctor->id;
+        $appointment_users = Appointment::where('doctor_id', $doctor_id)->paginate(10);
+//dd(  $appointment_users);
         return view('doctor.appointments.index', compact('appointment_users'));
+
+    }
+
+    public function patientAppointmentStore(Request $request)
+    {
+        //dd($request);
+        request()->validate([
+            'patient_id'=>'required',
+            'doctor_id'=>'required',
+            'schedule_id'=>'required',
+            'time'=>'required',
+            'description'=>'required',
+
+        ]);
+        //dd($request);
+
+        $appointment = new Appointment;
+
+        $appointment->patient_id=$request->patient_id;
+        $appointment->doctor_id=$request->doctor_id;
+        $appointment->schedule_id=$request->schedule_id;
+        $appointment->time=$request->time;
+        $appointment->description=$request->description;
+
+
+        $appointment->save();
+        //$email=Patient::find($request->patient_name)->user->email;
+
+        $email=Auth::user()->email;
+        $mailData = [
+
+            'title' => 'Mail from Medilab',
+
+            'body' => 'Your appointment successfully created!'
+
+            ];
+
+            Mail::to($email)->send(new DemoMail($mailData,$email));
+
+        return redirect()->route('appointment-patient')
+                            ->with('success','Appointment created successfully.');
+
+    }
+
+    public function patientIndex(Request $request)
+    {
+        $appointment = Appointment::paginate(10);
+
+        return view('patient.appointments.index', compact('appointment'));
 
     }
 }

@@ -1,7 +1,6 @@
 <?php
 
 use App\User;
-use App\Models\Sms;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SmsController;
 use App\Http\Controllers\DrugController;
@@ -24,6 +23,7 @@ use App\Http\Controllers\DoctorDashboardController;
 use App\Http\Controllers\PatientDashboardController;
 use App\Http\Controllers\AppointmentDoctorController;
 use App\Http\Controllers\LabAssistantDashboardController;
+use App\Http\Controllers\Sms;
 
 
 /*
@@ -88,6 +88,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/appointment-patient', [AppointmentController::class, 'patientCreate'])->name('appointment-patient');
     Route::get('/show_doctor-patient/{id}', [DoctorController::class, 'patientShow'])->name('show_doctor-patient');
     Route::get('/add_appointment-patient/{id}', [AppointmentController::class, 'patientBooking'])->name('add_appointment-patient');
+    Route::post('/patientAppointmentStore', [AppointmentController::class, 'patientAppointmentStore'])->name('appointment.create');
 
     //lab assistant
     Route::get('/add_report-labassistant', [ReportController::class, 'labassistantCreate'])->name('add_report-labassistant');
@@ -96,7 +97,7 @@ Route::group(['middleware' => ['auth']], function() {
 
     //drug
     Route::get('/drug_list-patient', [DrugController::class, 'patientIndex'])->name('drug_list-patient');
-    Route::get('/show_drug-patient', [DrugController::class, 'patientShow'])->name('show_drug-patient');
+    Route::get('/show_drug-patient/{id}', [DrugController::class, 'patientShow'])->name('show_drug-patient');
 
     //doctor
     Route::get('/doctor_list-doctor', [DoctorController::class, 'doctorIndex'])->name('doctor_list-doctor');
@@ -107,15 +108,11 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('send-mail', [MailController::class, 'index'])->name('send-mail');
 
     //SMS
-    Route::get('/send_sms', [SmsController::class, 'send'])->name('send_sms');
+    Route::get('/send_sms', function () {
+        return view('Admin.Sms.send_sms');
+    });
 
-
-    //appointment routes
-    //Route::resource('appointment', 'AppointmentController');
-    //Route::post('/appointment/check', 'AppointmentController@check')->name('appointment.check');
-    //Route::post('/appointment/update', 'AppointmentController@updateTime')->name('update');
-
-
+    Route::post('/send_sms', [SmsController::class, 'send'])->name('send_sms');
 });
 
 Route::post('/livesearch', [AppointmentController::class, 'livesearch'])->name('livesearch');
@@ -124,7 +121,6 @@ Route::post('/livesearch3', [ReportController::class, 'livesearch3'])->name('liv
 Auth::routes();
 
 //Route::match(['get','post'],'/send_sms', [SmsController::class, 'send'])->name('send_sms');
-
 
 
 
