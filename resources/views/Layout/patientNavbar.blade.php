@@ -27,7 +27,7 @@
             <div class="container-fluid d-flex flex-column p-0"><a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="#" style="margin-left: 3px;padding-left: 0px;padding-right: 0px;margin-right: -16px;"><span style="font-size: 14px;">Medilab</span></a>
                 <ul class="navbar-nav text-light" id="accordionSidebar">
                     <li class="nav-item"><a class="nav-link" href="/patientDashboard" style="margin-top: -1px;margin-left: 0px;margin-right: 0px;padding-left: 15px;"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
-
+ 
 
 
                             <li class="nav-item"><a class="nav-link" href="/doctor_list-patient" style="margin-top: -1px;margin-left: 0px;margin-right: 0px;padding-left: 15px;"><i class="fas fa-tachometer-alt"></i><span>Doctor list</span></a></li>
@@ -61,7 +61,7 @@
                             </form>
                         </li>
                 </ul>
-                
+
             </div>
         </nav>
         <div class="d-flex flex-column" id="content-wrapper">

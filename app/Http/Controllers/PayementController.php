@@ -1,42 +1,79 @@
+<?php
 
-?php
+
 
 namespace App\Http\Controllers;
 
+
+
+use App\Models\User;
+
+use App\Models\Doctor;
+use App\Models\Lab_assistant;
 use Illuminate\Http\Request;
-use Session;
-use Stripe;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
-class StripePaymentController extends Controller
+
+
+class PayementController extends Controller
+
 {
+
     /**
-     * success response method.
+
+     * Display a listing of the resource.
+
      *
+
      * @return \Illuminate\Http\Response
+
      */
-    public function stripe()
+
+    function __construct()
+
     {
-        return view('Admin.Payements.create');
+
+         /*$this->middleware('permission:product-list|product-create|product-edit|product-delete', ['only' => ['index','show']]);
+
+         $this->middleware('permission:product-create', ['only' => ['create','store']]);
+
+         $this->middleware('permission:product-edit', ['only' => ['edit','update']]);
+
+         $this->middleware('permission:product-delete', ['only' => ['destroy']]);*/
+
     }
 
     /**
-     * success response method.
+
+     * Display a listing of the resource.
+
      *
+
      * @return \Illuminate\Http\Response
+
      */
-    public function stripePost(Request $request)
+
+
+
+
+
+    /**
+
+     * Show the form for creating a new resource.
+
+     *
+
+     * @return \Illuminate\Http\Response
+
+     */
+
+    public function create()
+
     {
-        Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
-
-        Stripe\Charge::create ([
-                "amount" => 100 * 100,
-                "currency" => "usd",
-                "source" => $request->stripeToken,
-                "description" => "Test payment from itsolutionstuff.com."
-        ]);
-
-        Session::flash('success', 'Payment successful!');
-
-        return back();
+        return view('admin.payements.create');
     }
+
+
+
 }

@@ -1,6 +1,7 @@
 <?php
 
 use App\User;
+use App\Http\Controllers\Sms;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SmsController;
 use App\Http\Controllers\DrugController;
@@ -13,6 +14,7 @@ use App\Http\Controllers\ReportController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\SignupController;
 use App\Http\Controllers\PatientController;
+use App\Http\Controllers\PayementController;
 use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\TestBillController;
 use App\Http\Controllers\AppointmentController;
@@ -23,7 +25,6 @@ use App\Http\Controllers\DoctorDashboardController;
 use App\Http\Controllers\PatientDashboardController;
 use App\Http\Controllers\AppointmentDoctorController;
 use App\Http\Controllers\LabAssistantDashboardController;
-use App\Http\Controllers\Sms;
 
 
 /*
@@ -56,6 +57,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('reports', ReportController::class);
     Route::resource('drugs', DrugController::class);
     Route::resource('register', RegisterController::class);
+    Route::resource('payements', PayementController::class);
 
     Route::get('/add_user', [UserController::class, 'create']);
     Route::get('/add_patient', [PatientController::class, 'create']);
@@ -114,7 +116,12 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/send_sms', function () {
         return view('Admin.Sms.send_sms');
     });
+    Route::get('/lab_send_sms', function () {
+        return view('Lab Assistant.Sms.create');
+    });
 
+
+    Route::post('/lab_send_sms', [SmsController::class, 'send'])->name('lab_send_sms');
     Route::post('/send_sms', [SmsController::class, 'send'])->name('send_sms');
     Route::post('/msgHistory', [msgHistory::class, 'send'])->name('msgHistory');
     Route::get('/msgHistory', function () {

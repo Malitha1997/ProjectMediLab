@@ -48,7 +48,7 @@ class DrugController extends Controller
 
         $this->validate($request,[
             'drug_name'=>'required|max:100|min:2',
-            'qty'=>'required|numeric|min:1|max:100',
+            'qty'=>'required|min:1|max:100',
             'issue_date' => 'required|date',
             'expire_date' => 'required|date',
         ]);
@@ -105,15 +105,15 @@ class DrugController extends Controller
         //$drug=new Drug;
 
         request()->validate([
-            'drug_name'=>['required|max:100|min:5'],
-            'qty'=>['required|numeric|min:1|max:100'],
-            'issue_date' => ['required|date' ],
-            'expire_date' => ['required|date']
+            'drug_name'=>'required|max:100|min:2',
+            'qty'=>'required|min:1|max:100',
+            'issue_date' => 'required|date',
+            'expire_date' => 'required|date',
         ]);
 
         $drugs->drug_name=$request->drug_name;
         $drugs->qty=$request->qty;
-        $drugs->issue_date=Hash::make($request->issue_date);
+        $drugs->issue_date=$request->issue_date;
         $drugs->expire_date=$request->expire_date;
 
 
