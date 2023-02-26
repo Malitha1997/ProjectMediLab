@@ -14,7 +14,7 @@
 
         <div class="pull-right">
 
-            <a class="btn btn-primary" href="{{ route('appointments.create') }}">Add Appointment</a>
+            <a class="btn btn-primary" href="{{ route('doctor_appointment_list') }}">Add Appointment</a>
 
         </div>
 

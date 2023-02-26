@@ -15,12 +15,9 @@ return new class extends Migration
     {
         Schema::create('sms_models', function (Blueprint $table) {
 
-
-
-            $table->integer('Patient Id');
-            $table->String('Patient Name');
-            $table->integer('Contact Number');
-            $table->integer('Description');
+            $table->String('patient_name');
+            $table->integer('contact_number');
+            $table->integer('description');
 
             $table->timestamps();
 

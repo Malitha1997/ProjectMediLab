@@ -2,8 +2,11 @@
 
 @section('content')
     <div class="container-fluid">
-        <h3 class="text-dark mb-1">Send SMS to Patient</h3>
+        <h3 class="text-dark mb-1">Send SMS</h3>
     </div>
+    <div class="d-flex justify-content-end mb-3">
+        <a href="" class="btn btn-secondary">Message History</a>
+</div>
     <div class="card shadow mb-3">
         <div class="card-body">
             @if (\Session::has('success'))

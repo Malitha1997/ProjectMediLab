@@ -34,15 +34,13 @@
 
 
 
-     <th>Patient name</th>
+    <th>Patient name</th>
 
+    <th>Appointment date</th>
 
+    <th>Appointment time</th>
 
-     <th>Appointment date</th>
-
-     <th>Appointment time</th>
-
-     <th width="280px">Action</th>
+    <th width="280px">Action</th>
 
   </tr>
 
@@ -50,7 +48,8 @@
 
     <tr>
 
-        <td>{{ $appointments->patient->user->f_name }}</td>
+
+        <td>{{ $appointments->patient->user->f_name }} {{ $appointments->patient->user->l_name }}</td>
 
         <td>{{ $appointments->schedule->available_day}}</td>
 
@@ -59,12 +58,9 @@
         <td>
 
 
-
-                <a class="btn btn-success" href="{{ route('appointments.edit',$appointments->id) }}">Edit</a>
-
                 {!! Form::open(['method' => 'DELETE','route' => ['appointments.destroy', $appointments->id],'style'=>'display:inline']) !!}
 
-                    {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
+                    {!! Form::submit('Cancel Appointment', ['class' => 'btn btn-danger']) !!}
 
                 {!! Form::close() !!}
 

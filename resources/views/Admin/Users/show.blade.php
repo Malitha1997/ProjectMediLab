@@ -24,7 +24,7 @@
 <table class="table text-dark">
         <tr>
             <th scope="col">Name</th>
-            <td>{{ $user->f_name }}</td>
+            <td>{{ $user->f_name }} {{ $user->l_name }}</td>
         </tr>
 
         <tr>

@@ -195,8 +195,8 @@ class PatientController extends Controller
 
     {
         request()->validate([
-            'first_name' => 'required', 'string', 'alpha', 'max:255','min:1',
-            'last_name' => 'required', 'string', 'alpha', 'max:255','min:1',
+            'f_name' => 'required', 'string', 'alpha', 'max:255','min:1',
+            'l_name' => 'required', 'string', 'alpha', 'max:255','min:1',
             'address_line1'=> 'required',
             'address_line2'=> 'required',
             'address_line3'=> 'required',
@@ -231,7 +231,7 @@ class PatientController extends Controller
         $user->patient()->update($patient->toArray());
 
         return redirect()->route('patients.index')
-                            ->with('success','Patient created successfully.');
+                            ->with('success','Patient updated successfully.');
 
 
     }

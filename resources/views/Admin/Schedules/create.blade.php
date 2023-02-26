@@ -11,24 +11,21 @@
      {{csrf_field()}}
                 <div class="row">
                     <div class="col"><label class="col-form-label text-dark mb-1" >Doctor Name</lable></div>
+                    <div class="col"><label class="col-form-label text-dark mb-1">Available Date</lable></div>
+                    <div class="col"><label class="col-form-label text-dark mb-1" >Start Time</label></div>
+                    <div class="col"><label class="col-form-label text-dark mb-1" >End Time</label></div>
+                </div>
+
+
+                <div class="row">
                     <div class="col"><input class="form-control text-dark mb-1" id="doctor_name" type="text" placeholder="Search doctor.." required></div>
                     <input type="hidden" name="doctor_id" id="doctor_nameid" >
-                </div>
-
-                <div class="row">
-                    <div class="col"><label class="col-form-label text-dark mb-1">Available Date</lable></div>
                     <div class="col"><input class="form-control text-dark mb-1" id="available_date" type="date" name="available_date" required></div>
-                </div>
-
-                <div class="row">
-                    <div class="col"><label class="col-form-label text-dark mb-1" >Start Time</label></div>
                     <div class="col"><input class="form-control text-dark mb-1" id="start_time" type="time" name="start_time" required></div>
-                </div>
-
-                <div class="row">
-                    <div class="col"><label class="col-form-label text-dark mb-1" >End Time</label></div>
                     <div class="col"><input class="form-control text-dark mb-1" id="end_time" type="time" name="end_time" required></div>
                 </div>
+
+                
 
 </div>
 <button class="btn btn-primary" id="btn_save" type="submit">Done</button>

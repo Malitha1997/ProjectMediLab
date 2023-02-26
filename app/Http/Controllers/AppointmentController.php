@@ -158,13 +158,13 @@ class AppointmentController extends Controller
      */
     public function destroy($id)
     {
-        /*$doctor = Doctor::find($id);
+        $doctor = Doctor::find($id);
 
         $doctor->schedules()->delete();
         $doctor->delete();
 
         return redirect()->route('appointments.index')
-        ->with('success','Appointment deleted successfully');*/
+        ->with('success','Appointment deleted successfully');
     }
 
     public function livesearch(Request $request)

@@ -67,7 +67,10 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/add_test_bill', [TestBillController::class, 'create']);
     Route::get('/calender', [AppointmentController::class, 'calender']);
     Route::get('/add_appointment/{id}', [AppointmentController::class, 'booking'])->name('add_appointment');
-
+    Route::controller(PaymentController::class)->group(function(){
+        Route::get('stripe', 'stripe');
+        Route::post('stripe', 'stripePost')->name('stripe.post');
+    });
     Route::get('/patient_list', [PatientController::class, 'index'])->name('patient_list');
     Route::get('/user_list', [UserController::class, 'index'])->name('user_list');
     Route::get('/doctor_list', [DoctorController::class, 'index'])->name('doctor_list');
@@ -88,7 +91,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/appointment-patient', [AppointmentController::class, 'patientCreate'])->name('appointment-patient');
     Route::get('/show_doctor-patient/{id}', [DoctorController::class, 'patientShow'])->name('show_doctor-patient');
     Route::get('/add_appointment-patient/{id}', [AppointmentController::class, 'patientBooking'])->name('add_appointment-patient');
-    Route::post('/patientAppointmentStore', [AppointmentController::class, 'patientAppointmentStore'])->name('appointment.create');
+    Route::post('/patientAppointmentStore', [AppointmentController::class, 'patientAppointmentStore'])->name('patientAppointmentStore');
 
     //lab assistant
     Route::get('/add_report-labassistant', [ReportController::class, 'labassistantCreate'])->name('add_report-labassistant');
@@ -113,6 +116,10 @@ Route::group(['middleware' => ['auth']], function() {
     });
 
     Route::post('/send_sms', [SmsController::class, 'send'])->name('send_sms');
+    Route::post('/msgHistory', [msgHistory::class, 'send'])->name('msgHistory');
+    Route::get('/msgHistory', function () {
+        return view('Admin.Sms.msgHistory');
+    });
 });
 
 Route::post('/livesearch', [AppointmentController::class, 'livesearch'])->name('livesearch');

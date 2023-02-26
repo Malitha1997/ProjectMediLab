@@ -55,7 +55,7 @@
 
             First Name:
 
-            {!! Form::text('f_name', null, array('placeholder' => 'First Name','class' => 'form-control')) !!}
+            {!! Form::text('f_name', null, array('placeholder' => 'First Name','class' => 'form-control text-dark mb-1')) !!}
 
         </div>
 
@@ -67,7 +67,7 @@
 
             Last Name:
 
-            {!! Form::text('l_name', null, array('placeholder' => 'Last Name','class' => 'form-control')) !!}
+            {!! Form::text('l_name', null, array('placeholder' => 'Last Name','class' => 'form-control text-dark mb-1')) !!}
 
         </div>
 
@@ -79,7 +79,7 @@
 
             Email:
 
-            {!! Form::text('email', null, array('placeholder' => 'Email','class' => 'form-control')) !!}
+            {!! Form::text('email', null, array('placeholder' => 'Email','class' => 'form-control text-dark mb-1')) !!}
 
         </div>
 
@@ -91,7 +91,7 @@
 
             Password:
 
-            {!! Form::password('password', array('placeholder' => 'Password','class' => 'form-control')) !!}
+            {!! Form::password('password', array('placeholder' => 'Password','class' => 'form-control text-dark mb-1')) !!}
 
         </div>
 
@@ -103,7 +103,7 @@
 
             Confirm Password:
 
-            {!! Form::password('confirm-password', array('placeholder' => 'Confirm Password','class' => 'form-control')) !!}
+            {!! Form::password('confirm-password', array('placeholder' => 'Confirm Password','class' => 'form-control text-dark mb-1')) !!}
 
         </div>
 
@@ -115,7 +115,7 @@
 
             Role:
 
-            {!! Form::select('roles[]', $roles,$userRole, array('class' => 'form-control','multiple')) !!}
+            {!! Form::select('roles[]', $roles,$userRole, array('class' => 'form-control text-dark mb-1','multiple')) !!}
 
         </div>
 

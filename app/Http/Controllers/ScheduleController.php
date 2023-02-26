@@ -113,7 +113,7 @@ class ScheduleController extends Controller
         $schedule->available_day = $request->available_date;
         $schedule->start_time = $request->start_time;
         $schedule->end_time = $request->end_time;
-       
+
 
         $schedule->update();
 
@@ -129,10 +129,12 @@ class ScheduleController extends Controller
      */
     public function destroy($id)
     {
-        $doctor = Doctor::find($id);
+        //$schedule = Schedule::find($id);
+        $doctor=Doctor::find($id);
 
         $doctor->schedules()->delete();
         $doctor->delete();
+        //$schedule->delete();
 
         return redirect()->route('schedules.index')
         ->with('success','Schedule deleted successfully');

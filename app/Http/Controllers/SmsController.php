@@ -12,7 +12,7 @@ class SmsController extends Controller
        $apiKey = 'r0tSJJp0Ljpx33xdxRtJ';
 
        request()->validate([
-        'contact_No'=> 'required|regex:/^(?:\+\d{1,3}[- ]?)?\d{10}$/','max:11',
+        'contact_No'=> 'required','max:12',
         'msg'=>'required'
        ]);
 

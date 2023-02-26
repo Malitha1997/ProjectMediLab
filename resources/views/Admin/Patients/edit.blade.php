@@ -50,7 +50,7 @@
             </div>
             <div class="row">
                 <div class="col"><label class="col-form-label text-dark mb-1">Address</label></div>
-                <div class="col"><input class="form-control text-dark mb-1" type="text" placeholder="House No." name="house_no" value="{{ $patient->house_no }}"><input class="form-control text-dark mb-1" type="text" placeholder="Street No." name="street_no" value="{{ $patient->street_no }}"><input class="form-control text-dark mb-1" type="text" placeholder="City" name="city" value="{{ $patient->city }}"></div>
+                <div class="col"><input class="form-control text-dark mb-1" type="text" placeholder="Address Line 1" name="address_line1" value="{{ $patient->address_line1 }}"><input class="form-control text-dark mb-1" type="text" placeholder="Address Line 2" name="address_line2" value="{{ $patient->address_line2 }}"><input class="form-control text-dark mb-1" type="text" placeholder="Address Line3" name="address_line3" value="{{ $patient->address_line3 }}"></div>
             </div>
             <div class="row">
                 <div class="col"><label class="col-form-label text-dark mb-1">Blood group</label></div>

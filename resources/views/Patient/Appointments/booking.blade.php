@@ -8,7 +8,7 @@
 <button class="btn btn-primary" data-aos="fade-down" data-aos-duration="1000" type="button" style="padding: 5px 10px;margin-left: 20px;margin-top: 5px;"><a href="{{route('doctor_appointment_list')}}"><span style="--bs-body-color: var(--bs-btn-color);padding-right: 0px;margin-left: 0px;margin-right: -5px;"><span style="color: rgb(255, 255, 255);">Back</span></span></a></button>
 <button class="btn btn-primary" data-aos="fade-down" data-aos-duration="1000" type="button" style="padding: 5px 10px;margin-left: 20px;margin-top: 5px;"><a href="{{route('appointments.index')}}"><span style="--bs-body-color: var(--bs-btn-color);padding-right: 0px;margin-left: 0px;margin-right: -5px;"><span style="color: rgb(255, 255, 255);">Appointment list</span></span></a></button>
 <div class="card" data-aos="fade-in" data-aos-duration="1000">
-    <form style="padding-left: 56px;margin-right: 68px;" method="POST" action="{{route('appointment.create')}}" data-aos="fade-in" data-aos-duration="1000" enctype="multipart/form-data">
+    <form style="padding-left: 56px;margin-right: 68px;" method="POST" action="{{route('patientAppointmentStore')}}" data-aos="fade-in" data-aos-duration="1000" enctype="multipart/form-data">
      {{csrf_field()}}
 
                 <div class="row">
