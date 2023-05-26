@@ -39,7 +39,7 @@ class DemoMail extends Mailable
         // $this->doctor_lname = $doctor_lname;
 
     }
-
+ 
 
 
     /**

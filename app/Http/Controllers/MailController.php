@@ -25,7 +25,7 @@ class MailController extends Controller
 
     {
         $email=$request->email;
-        $f_name=$request->f_name;
+        $f_name=$request->f_name; 
 
         $mailData = [
 

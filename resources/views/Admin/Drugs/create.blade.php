@@ -23,7 +23,7 @@
                 <div class="col"><input class="form-control text-dark mb-1" type="text" name="qty" value="{{ old('qty') }}" required>
                 @if($errors->has('qty'))
                 <p class="text-danger">{{ $errors->first('qty') }}</p>
-                @endif
+                @endif 
             </div>
             </div>
 

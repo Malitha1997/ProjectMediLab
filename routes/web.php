@@ -112,6 +112,7 @@ Route::group(['middleware' => ['auth']], function() {
     //Email
     Route::get('send-mail', [MailController::class, 'index'])->name('send-mail');
 
+
     //SMS
     Route::get('/send_sms', function () {
         return view('Admin.Sms.send_sms');

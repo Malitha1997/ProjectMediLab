@@ -134,7 +134,7 @@ class DrugController extends Controller
         $drug = Drug::find($id);
 
         $drug->drug()->delete();
-        $drug->delete();
+        $drug->delete(); 
 
         return redirect()->route('admin.drugs.index')
         ->with('success','Drug deleted successfully');
